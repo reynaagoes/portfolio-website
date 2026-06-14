@@ -96,6 +96,7 @@ a {
   width: 100%;
   min-height: 100vh;
   z-index: 9999;
+  isolation: isolate;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,6 +110,7 @@ a {
   visibility: visible;
   pointer-events: auto;
   color: #edf2fb;
+  font-family: inherit;
   transition: opacity 360ms ease, visibility 360ms ease;
 }
 

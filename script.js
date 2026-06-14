@@ -78,18 +78,24 @@ const initIntroScreen = () => {
 
   introScreen.setAttribute("aria-hidden", "false");
   document.body.classList.add("intro-active");
+  let introCleanedUp = false;
 
   const cleanupIntroScreen = () => {
-    if (!document.body.classList.contains("intro-active")) {
+    if (introCleanedUp) {
       return;
     }
 
+    introCleanedUp = true;
     introScreen.remove();
     document.body.classList.remove("intro-active");
     initRevealAnimations();
   };
 
   window.setTimeout(() => {
+    if (introCleanedUp) {
+      return;
+    }
+
     introScreen.classList.add("is-hidden");
   }, INTRO_DURATION);
 
