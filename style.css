@@ -80,16 +80,16 @@ a {
 }
 
 .container {
-  width: min(1160px, calc(100% - 48px));
+  width: min(1120px, calc(100% - 48px));
   margin: 0 auto;
 }
 
 .section {
-  padding: 104px 0;
+  padding: 80px 0;
 }
 
 .section--compact {
-  padding-top: 24px;
+  padding-top: 16px;
 }
 
 .section--soft {
@@ -126,7 +126,7 @@ body.dark-theme .site-header {
 
 .navbar {
   justify-content: space-between;
-  min-height: 84px;
+  min-height: 80px;
   gap: 24px;
 }
 
@@ -225,9 +225,13 @@ body.dark-theme .theme-toggle__icon--moon {
   padding-top: 64px;
 }
 
+.page-main {
+  padding-bottom: 8px;
+}
+
 .page-hero {
-  padding-top: 72px;
-  padding-bottom: 36px;
+  padding-top: 96px;
+  padding-bottom: 24px;
 }
 
 .hero-layout,
@@ -240,6 +244,11 @@ body.dark-theme .theme-toggle__icon--moon {
 .hero-layout {
   grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.9fr);
   align-items: end;
+}
+
+.content-grid {
+  display: grid;
+  gap: 28px;
 }
 
 .status-badge,
@@ -273,18 +282,33 @@ body.dark-theme .theme-toggle__icon--moon {
 }
 
 .hero h1,
-.page-hero h1,
+.page-title,
 .section-heading h2,
+.section-header h2,
 .info-card h3,
 .project-content h3 {
   margin: 0;
 }
 
-.hero h1,
-.page-hero h1 {
+.hero h1 {
   font-size: clamp(4.4rem, 12vw, 8.2rem);
   line-height: 0.9;
   letter-spacing: -0.08em;
+}
+
+.page-eyebrow {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.page-title {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
 }
 
 .hero-subheadline {
@@ -295,6 +319,7 @@ body.dark-theme .theme-toggle__icon--moon {
   line-height: 1.18;
 }
 
+.page-subtitle,
 .page-intro,
 .hero-description,
 .about-copy p,
@@ -309,9 +334,10 @@ body.dark-theme .theme-toggle__icon--moon {
 }
 
 .hero-description,
-.page-intro {
+.page-intro,
+.page-subtitle {
   max-width: 60ch;
-  margin: 24px 0 0;
+  margin: 20px 0 0;
   font-size: 1.04rem;
 }
 
@@ -479,15 +505,18 @@ body.dark-theme .metric {
   font-size: 0.98rem;
 }
 
-.section-heading {
-  margin-bottom: 32px;
+.section-heading,
+.section-header {
+  margin-bottom: 24px;
 }
 
-.section-heading--compact {
+.section-heading--compact,
+.section-header--compact {
   margin-bottom: 0;
 }
 
-.section-heading h2 {
+.section-heading h2,
+.section-header h2 {
   font-size: clamp(2.1rem, 4vw, 3.4rem);
   line-height: 1.02;
   letter-spacing: -0.05em;
@@ -508,6 +537,7 @@ body.dark-theme .metric {
 .about-layout {
   grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.88fr);
   align-items: start;
+  gap: 24px;
 }
 
 .about-copy p {
@@ -808,6 +838,7 @@ body.dark-theme .education-logo {
 .contact-layout {
   grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
   align-items: start;
+  gap: 24px;
 }
 
 .contact-list {
@@ -876,7 +907,8 @@ body.dark-theme .education-logo {
   }
 
   .navbar {
-    padding: 18px 0;
+    min-height: auto;
+    padding: 16px 0;
   }
 
   .nav-links {
@@ -890,7 +922,7 @@ body.dark-theme .education-logo {
   }
 
   .hero h1,
-  .page-hero h1 {
+  .page-title {
     font-size: clamp(3.4rem, 18vw, 5.8rem);
   }
 
@@ -901,11 +933,11 @@ body.dark-theme .education-logo {
 
 @media (max-width: 560px) {
   .container {
-    width: min(100% - 24px, 1160px);
+    width: min(100% - 24px, 1120px);
   }
 
   .section {
-    padding: 76px 0;
+    padding: 64px 0;
   }
 
   .hero-panel,
