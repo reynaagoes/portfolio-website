@@ -1,153 +1,226 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Website portofolio Muhammad Reyna Athallah Agoes untuk tugas individu K2.">
-  <title>Portfolio | Muhammad Reyna Athallah Agoes</title>
+  <meta name="description" content="Personal portfolio of Reyna Agoes featuring selected projects, skills, and contact links.">
+  <title>Reyna Agoes | Personal Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
-    <nav class="navbar container" aria-label="Navigasi utama">
-      <a class="brand" href="#hero">Portfolio K2</a>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ubah tema">
-        <span class="theme-toggle__icon" aria-hidden="true">Mode</span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="#tentang">Tentang</a></li>
-        <li><a href="#proyek">Proyek</a></li>
-        <li><a href="#skill">Skill</a></li>
-        <li><a href="#kontak">Kontak</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <nav class="navbar" aria-label="Primary navigation">
+        <a class="brand" href="#top">Reyna Agoes</a>
+        <div class="nav-actions">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+            <span class="theme-toggle__track" aria-hidden="true">
+              <span class="theme-toggle__thumb"></span>
+            </span>
+          </button>
+        </div>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="hero" id="hero">
-      <div class="container hero__content">
-        <div class="hero__text">
-          <p class="eyebrow">Tugas Individu K2</p>
-          <h1>Muhammad Reyna Athallah Agoes</h1>
-          <p class="hero__meta">NIM 18224112 | Kelas K2</p>
-          <p class="hero__description">
-            Mahasiswa yang membangun website portofolio sederhana, rapi, dan profesional
-            untuk menampilkan identitas, proyek, dan kesiapan deploy berbasis GitHub Pages.
+  <main id="top">
+    <section class="hero section">
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <p class="hero-badge">Currently building better digital experiences.</p>
+          <h1>portfolio.</h1>
+          <p class="hero-subheadline">A personal space for my work, ideas, and digital experiments.</p>
+          <p class="hero-description">
+            I&apos;m Reyna Agoes, a technology student exploring web development, product design,
+            data, IoT, and digital product development.
           </p>
-          <div class="hero__actions">
-            <a class="button button--primary" href="#proyek">Lihat Proyek</a>
-            <a class="button button--secondary" href="#kontak">Hubungi Saya</a>
+          <div class="hero-actions">
+            <a class="button button--primary" href="#projects">View Projects</a>
+            <a class="button button--ghost" href="#contact">Contact Me</a>
           </div>
         </div>
-        <aside class="hero__card" aria-label="Informasi singkat">
-          <p class="hero__card-label">Status Website</p>
-          <h2>Siap untuk Demo CI/CD</h2>
-          <p>Demo CI/CD: versi awal website portofolio.</p>
-          <ul class="hero__highlights">
-            <li>Static website HTML, CSS, JavaScript</li>
-            <li>Deploy otomatis ke GitHub Pages</li>
-            <li>Struktur ringan dan mudah dipelihara</li>
-          </ul>
+        <aside class="hero-panel" aria-label="Portfolio summary">
+          <div class="hero-panel__visual">
+            <span class="shape shape--one"></span>
+            <span class="shape shape--two"></span>
+            <span class="shape shape--three"></span>
+          </div>
+          <div class="hero-panel__content">
+            <p class="panel-label">Selected directions</p>
+            <ul class="hero-list">
+              <li>Clean interfaces with deliberate structure</li>
+              <li>Digital product ideas shaped into useful experiences</li>
+              <li>Technical curiosity spanning web, data, and connected systems</li>
+            </ul>
+          </div>
         </aside>
       </div>
     </section>
 
-    <section class="section" id="tentang">
+    <section class="section section--tight" id="about">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Tentang Saya</p>
-          <h2>Profil Singkat</h2>
+          <p class="section-kicker">About</p>
+          <h2>About</h2>
         </div>
-        <div class="about-grid">
-          <article class="panel">
+        <div class="about-layout">
+          <article class="about-copy">
             <p>
-              Saya adalah Muhammad Reyna Athallah Agoes, mahasiswa kelas K2 dengan NIM 18224112.
-              Website ini dibuat sebagai portofolio akademik yang menampilkan identitas,
-              contoh proyek, keterampilan, dan kesiapan workflow deploy otomatis.
-            </p>
-            <p>
-              Fokus utama website ini adalah kesederhanaan, tampilan profesional,
-              serta kemudahan pembaruan agar cocok untuk demonstrasi perubahan kode
-              yang langsung terpublikasi ke website live.
+              I enjoy turning ideas into functional digital products. My current interests include
+              building clean websites, designing simple user experiences, working with data, and
+              experimenting with IoT-based systems.
             </p>
           </article>
-          <article class="panel panel--accent">
-            <h3>Informasi Akademik</h3>
-            <ul class="info-list">
-              <li><strong>Nama:</strong> Muhammad Reyna Athallah Agoes</li>
-              <li><strong>NIM:</strong> 18224112</li>
-              <li><strong>Kelas:</strong> K2</li>
-              <li><strong>Repository:</strong> portfolio-website</li>
-              <li><strong>Target Deploy:</strong> GitHub Pages</li>
-            </ul>
-          </article>
+          <aside class="facts-card">
+            <p class="panel-label">Small facts</p>
+            <div class="fact-row">
+              <span>Focus</span>
+              <strong>Web, UI/UX, Data, IoT</strong>
+            </div>
+            <div class="fact-row">
+              <span>Based in</span>
+              <strong>Indonesia</strong>
+            </div>
+            <div class="fact-row">
+              <span>Currently learning</span>
+              <strong>Deployment, Git workflow, and product development</strong>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <section class="section section--muted" id="proyek">
+    <section class="section" id="projects">
       <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Proyek</p>
-          <h2>Contoh Pekerjaan</h2>
-        </div>
-        <div class="card-grid">
-          <article class="card">
-            <h3>Website Portofolio K2</h3>
-            <p>
-              Landing page satu halaman yang dibuat untuk memenuhi tugas individu K2
-              dengan fokus pada desain yang bersih, responsif, dan mudah dideploy.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Workflow GitHub Pages</h3>
-            <p>
-              Konfigurasi GitHub Actions untuk melakukan build artifact dan deploy otomatis
-              ke GitHub Pages setiap kali ada push ke branch <code>main</code>.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Demo CI/CD Sederhana</h3>
-            <p>
-              Menyediakan teks demo yang mudah diubah untuk membuktikan bahwa perubahan kode
-              pada repository akan tercermin pada website live setelah workflow selesai.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="skill">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Skill</p>
-          <h2>Kemampuan yang Ditampilkan</h2>
-        </div>
-        <div class="card-grid card-grid--skills">
-          <article class="card card--skill"><h3>HTML Semantik</h3><p>Struktur halaman rapi dan mudah dibaca.</p></article>
-          <article class="card card--skill"><h3>CSS Responsif</h3><p>Tampilan adaptif untuk desktop dan mobile.</p></article>
-          <article class="card card--skill"><h3>JavaScript Dasar</h3><p>Interaksi ringan seperti smooth scroll dan tema.</p></article>
-          <article class="card card--skill"><h3>GitHub Pages</h3><p>Deploy static website tanpa server tambahan.</p></article>
-          <article class="card card--skill"><h3>Git & GitHub</h3><p>Version control dan kolaborasi repository.</p></article>
-          <article class="card card--skill"><h3>CI/CD Workflow</h3><p>Otomatisasi publish melalui GitHub Actions.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--contact" id="kontak">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Kontak</p>
-          <h2>Hubungi Saya</h2>
-        </div>
-        <div class="contact-panel">
-          <p>
-            Untuk keperluan tugas, bagian ini dapat digunakan sebagai tempat menampilkan
-            informasi kontak atau tautan tambahan sesuai kebutuhan presentasi.
+        <div class="section-heading section-heading--split">
+          <div>
+            <p class="section-kicker">Projects</p>
+            <h2>Selected work</h2>
+          </div>
+          <p class="section-note">
+            A curated selection of personal and academic work presented as case-study style cards.
           </p>
-          <div class="contact-links">
-            <a class="button button--primary" href="mailto:reyna@example.com">Email</a>
-            <a class="button button--secondary" href="https://github.com/reynaagoes" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-card__visual visual--blue">
+              <span class="project-card__number">01</span>
+            </div>
+            <div class="project-card__content">
+              <p class="project-card__category">Web Development</p>
+              <h3>Portfolio Website</h3>
+              <p>A personal portfolio website built to present my profile, selected works, skills, and contact links.</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__visual visual--slate">
+              <span class="project-card__number">02</span>
+            </div>
+            <div class="project-card__content">
+              <p class="project-card__category">Web Platform</p>
+              <h3>CuanSampah Platform</h3>
+              <p>A waste-management platform concept connecting households, collectors, recyclers, and admins through a structured digital workflow.</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__visual visual--teal">
+              <span class="project-card__number">03</span>
+            </div>
+            <div class="project-card__content">
+              <p class="project-card__category">IoT Prototype</p>
+              <h3>IoT Focus Monitoring</h3>
+              <p>A focus-monitoring prototype using ESP32, sensors, and display modules to observe study environment and body signals.</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__visual visual--indigo">
+              <span class="project-card__number">04</span>
+            </div>
+            <div class="project-card__content">
+              <p class="project-card__category">Website Design</p>
+              <h3>Company Profile Website</h3>
+              <p>A clean business website concept for presenting company identity, services, products, and contact information.</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__visual visual--graphite">
+              <span class="project-card__number">05</span>
+            </div>
+            <div class="project-card__content">
+              <p class="project-card__category">Database</p>
+              <h3>Database Design Project</h3>
+              <p>A database design project focused on ERD modeling, relational structure, and application data flow.</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__visual visual--sky">
+              <span class="project-card__number">06</span>
+            </div>
+            <div class="project-card__content">
+              <p class="project-card__category">Programming</p>
+              <h3>Algorithm Programming Project</h3>
+              <p>A programming project involving data structures, algorithmic logic, and implementation using C.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">Skills</p>
+          <h2>Tools and interests</h2>
+        </div>
+        <div class="skills-cloud">
+          <span class="skill-chip">HTML</span>
+          <span class="skill-chip">CSS</span>
+          <span class="skill-chip">JavaScript</span>
+          <span class="skill-chip">Git</span>
+          <span class="skill-chip">GitHub</span>
+          <span class="skill-chip">GitHub Pages</span>
+          <span class="skill-chip">UI/UX</span>
+          <span class="skill-chip">Product Design</span>
+          <span class="skill-chip">Database</span>
+          <span class="skill-chip">C Programming</span>
+          <span class="skill-chip">IoT</span>
+          <span class="skill-chip">Data Analysis</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-layout">
+        <div class="section-heading">
+          <p class="section-kicker">Contact</p>
+          <h2>Contact</h2>
+          <p class="section-note">
+            Interested in discussing a project, collaboration, or just connecting?
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-list">
+            <a href="mailto:reynaagoes@gmail.com">reynaagoes@gmail.com</a>
+            <a href="https://github.com/reynaagoes" target="_blank" rel="noreferrer">github.com/reynaagoes</a>
+            <a href="https://www.instagram.com/reynaath" target="_blank" rel="noreferrer">instagram.com/reynaath</a>
+          </div>
+          <div class="contact-actions">
+            <a class="button button--primary" href="mailto:reynaagoes@gmail.com">Email Me</a>
+            <a class="button button--ghost" href="https://github.com/reynaagoes" target="_blank" rel="noreferrer">View GitHub</a>
+            <a class="button button--ghost" href="https://www.instagram.com/reynaath" target="_blank" rel="noreferrer">Instagram</a>
           </div>
         </div>
       </div>
@@ -155,9 +228,8 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer__content">
-      <p>&copy; <span id="currentYear"></span> Muhammad Reyna Athallah Agoes. Portfolio tugas K2.</p>
-      <p>Dibuat dengan HTML, CSS, dan JavaScript untuk GitHub Pages.</p>
+    <div class="container footer-layout">
+      <p>&copy; <span id="currentYear"></span> Reyna Agoes. Built with HTML, CSS, and JavaScript.</p>
     </div>
   </footer>
 
