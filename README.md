@@ -7,13 +7,21 @@ Personal portfolio website for Muhammad Reyna Athallah Agoes, built as a clean, 
 - HTML
 - CSS
 - JavaScript
-- GitHub Actions
+- C
+- SQL
+- Git
+- GitHub
 - GitHub Pages
+- Arduino / ESP32
+- UI/UX
+- Roblox UGC
+- GitHub Actions
 
 ## Main Features
 
 - Multi-page portfolio with separate Home, About, Projects, and Contact pages
 - Clean layout with strong typography, generous whitespace, and responsive behavior
+- Homepage profile photo card and languages / tools sections on Home and About
 - Seven case study style project cards with screenshots and abstract placeholders
 - Dark and light mode toggle with saved preference in `localStorage`
 - Active navigation state based on the current page filename
