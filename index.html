@@ -5,22 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta
     name="description"
-    content="Personal portfolio of Reyna Agoes featuring selected work across web development, product design, data, IoT, and Roblox UGC."
+    content="Personal portfolio homepage of Reyna Agoes featuring selected work, digital interests, and contact links."
   >
   <title>Reyna Agoes | Personal Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-page="home">
   <header class="site-header">
     <div class="container">
       <nav class="navbar" aria-label="Primary navigation">
-        <a class="brand" href="#top">Reyna Agoes</a>
+        <a class="brand" href="index.html">Reyna Agoes</a>
         <div class="nav-cluster">
           <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
           <button
             class="theme-toggle"
@@ -37,7 +36,7 @@
     </div>
   </header>
 
-  <main id="top">
+  <main>
     <section class="hero section">
       <div class="container hero-layout">
         <div class="hero-copy">
@@ -50,8 +49,8 @@
             IoT, Roblox UGC, and digital product development.
           </p>
           <div class="hero-actions">
-            <a class="button button--primary" href="#projects">View Projects</a>
-            <a class="button button--secondary" href="#contact">Contact Me</a>
+            <a class="button button--primary" href="projects.html">View Projects</a>
+            <a class="button button--secondary" href="contact.html">Contact Me</a>
           </div>
         </div>
 
@@ -65,8 +64,8 @@
             <p class="panel-label">Snapshot</p>
             <div class="hero-metrics">
               <div class="metric">
-                <span class="metric__value">07</span>
-                <span class="metric__label">Selected projects</span>
+                <span class="metric__value">03</span>
+                <span class="metric__label">Featured projects</span>
               </div>
               <div class="metric">
                 <span class="metric__value">06+</span>
@@ -74,60 +73,26 @@
               </div>
             </div>
             <p class="hero-panel__text">
-              Clean interfaces, thoughtful product direction, and practical digital experiments.
+              Clean interfaces, product thinking, and practical digital experiments across multiple disciplines.
             </p>
           </div>
         </aside>
       </div>
     </section>
 
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-heading">
-          <p class="section-kicker">About</p>
-          <h2>About</h2>
-        </div>
-        <div class="about-layout">
-          <article class="about-copy">
-            <p>
-              I enjoy turning ideas into functional digital products. My current interests include
-              building clean websites, designing simple user experiences, working with data,
-              experimenting with IoT-based systems, and creating digital assets for Roblox UGC.
-            </p>
-          </article>
-
-          <aside class="facts-card">
-            <p class="panel-label">Small facts card</p>
-            <div class="fact-row">
-              <span>Focus</span>
-              <strong>Web, UI/UX, Data, IoT, Roblox UGC</strong>
-            </div>
-            <div class="fact-row">
-              <span>Based in</span>
-              <strong>Indonesia</strong>
-            </div>
-            <div class="fact-row">
-              <span>Currently learning</span>
-              <strong>Deployment, Git workflow, product development, and digital asset presentation</strong>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
+    <section class="section">
       <div class="container">
         <div class="section-heading section-heading--split">
           <div>
-            <p class="section-kicker">Projects</p>
-            <h2>Selected work</h2>
+            <p class="section-kicker">Selected Preview</p>
+            <h2>Three projects from my portfolio</h2>
           </div>
           <p class="section-note">
-            A curated set of portfolio pieces spanning websites, systems, prototypes, and digital assets.
+            A quick look at work in web development, platform thinking, and digital asset presentation.
           </p>
         </div>
 
-        <div class="project-grid">
+        <div class="project-grid project-grid--featured">
           <article class="project-card">
             <div class="project-visual image-visual">
               <span class="project-number">01</span>
@@ -154,128 +119,21 @@
 
           <article class="project-card">
             <div class="project-visual image-visual">
-              <span class="project-number">03</span>
-              <img src="assets/images/focusmate-dashboard.png" alt="IoT Focus Monitoring project preview">
-            </div>
-            <div class="project-content">
-              <p class="project-category">IoT Prototype</p>
-              <h3>IoT Focus Monitoring</h3>
-              <p>A focus-monitoring prototype using ESP32, sensors, and display modules to observe study environment and body signals.</p>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-visual image-visual">
-              <span class="project-number">04</span>
-              <img src="assets/images/rwa-company-profile.png" alt="Company Profile Website project preview">
-            </div>
-            <div class="project-content">
-              <p class="project-category">Website Design</p>
-              <h3>Company Profile Website</h3>
-              <p>A clean business website concept for presenting company identity, services, products, and contact information.</p>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-visual placeholder-visual placeholder-visual--data">
-              <span class="project-number">05</span>
-              <div class="placeholder-pattern" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-            <div class="project-content">
-              <p class="project-category">Database</p>
-              <h3>Database Design Project</h3>
-              <p>A database design project focused on ERD modeling, relational structure, and application data flow.</p>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-visual placeholder-visual placeholder-visual--logic">
-              <span class="project-number">06</span>
-              <div class="placeholder-pattern placeholder-pattern--grid" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-            <div class="project-content">
-              <p class="project-category">Programming</p>
-              <h3>Algorithm Programming Project</h3>
-              <p>A programming project involving data structures, algorithmic logic, and implementation using C.</p>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-visual image-visual">
               <span class="project-number">07</span>
               <img src="assets/images/roblox-ugc.png" alt="Roblox UGC project preview">
             </div>
             <div class="project-content">
               <p class="project-category">Digital Fashion / 3D Asset</p>
               <h3>Roblox UGC</h3>
-              <p>A Roblox UGC project focused on creating and presenting digital fashion items for avatar customization, including clothing concepts, item previews, and store-style presentation.</p>
+              <p>A Roblox UGC project focused on presenting digital fashion items for avatar customization and store-style previews.</p>
             </div>
           </article>
         </div>
       </div>
     </section>
-
-    <section class="section section--soft" id="skills">
-      <div class="container">
-        <div class="section-heading">
-          <p class="section-kicker">Skills</p>
-          <h2>Skills</h2>
-        </div>
-        <div class="skills-cloud" aria-label="Skill badges">
-          <span class="skill-chip">HTML</span>
-          <span class="skill-chip">CSS</span>
-          <span class="skill-chip">JavaScript</span>
-          <span class="skill-chip">Git</span>
-          <span class="skill-chip">GitHub</span>
-          <span class="skill-chip">GitHub Pages</span>
-          <span class="skill-chip">UI/UX</span>
-          <span class="skill-chip">Product Design</span>
-          <span class="skill-chip">Database</span>
-          <span class="skill-chip">C Programming</span>
-          <span class="skill-chip">IoT</span>
-          <span class="skill-chip">Data Analysis</span>
-          <span class="skill-chip">Roblox UGC</span>
-          <span class="skill-chip">Digital Asset</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container contact-layout">
-        <div class="section-heading">
-          <p class="section-kicker">Contact</p>
-          <h2>Contact</h2>
-          <p class="section-note">
-            Interested in discussing a project, collaboration, or just connecting?
-          </p>
-        </div>
-
-        <div class="contact-card">
-          <div class="contact-list">
-            <a href="mailto:reynaagoes@gmail.com">Email: reynaagoes@gmail.com</a>
-            <a href="https://github.com/reynaagoes" target="_blank" rel="noreferrer">GitHub: github.com/reynaagoes</a>
-            <a href="https://www.instagram.com/reynaath" target="_blank" rel="noreferrer">Instagram: instagram.com/reynaath</a>
-          </div>
-          <div class="contact-actions">
-            <a class="button button--primary" href="mailto:reynaagoes@gmail.com">Email Me</a>
-            <a class="button button--secondary" href="https://github.com/reynaagoes" target="_blank" rel="noreferrer">View GitHub</a>
-            <a class="button button--secondary" href="https://www.instagram.com/reynaath" target="_blank" rel="noreferrer">Instagram</a>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer footer">
     <div class="container footer-layout">
       <p>&copy; <span id="currentYear"></span> Reyna Agoes. Built with HTML, CSS, and JavaScript.</p>
     </div>

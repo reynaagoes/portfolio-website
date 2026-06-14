@@ -1,6 +1,6 @@
-# Reyna Agoes — Personal Portfolio
+# Reyna Agoes - Personal Portfolio
 
-Personal portfolio website for Muhammad Reyna Athallah Agoes, built as a clean, minimal, and modern static site to present selected work, skills, and contact links.
+Personal portfolio website for Muhammad Reyna Athallah Agoes, built as a clean, minimal, and modern multi-page static site to present selected work, personal interests, and contact links.
 
 ## Tech Stack
 
@@ -12,12 +12,19 @@ Personal portfolio website for Muhammad Reyna Athallah Agoes, built as a clean, 
 
 ## Main Features
 
-- Clean personal portfolio with strong typography and spacious layout
-- Responsive hero, about, projects, skills, and contact sections
+- Multi-page portfolio with separate Home, About, Projects, and Contact pages
+- Clean layout with strong typography, generous whitespace, and responsive behavior
 - Seven case study style project cards with screenshots and abstract placeholders
 - Dark and light mode toggle with saved preference in `localStorage`
-- Smooth scroll navigation and active nav state on scroll
+- Active navigation state based on the current page filename
 - Static deployment workflow for GitHub Pages
+
+## Page Structure
+
+- Home: `index.html`
+- About: `about.html`
+- Projects: `projects.html`
+- Contact: `contact.html`
 
 ## Selected Works
 
@@ -34,6 +41,7 @@ Personal portfolio website for Muhammad Reyna Athallah Agoes, built as a clean, 
 1. Clone this repository.
 2. Open the project folder.
 3. Open `index.html` directly in your browser.
+4. Open `about.html`, `projects.html`, and `contact.html` to review the full multi-page experience.
 
 ## Deploy to GitHub Pages
 

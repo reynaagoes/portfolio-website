@@ -88,6 +88,10 @@ a {
   padding: 104px 0;
 }
 
+.section--compact {
+  padding-top: 24px;
+}
+
 .section--soft {
   background: linear-gradient(180deg, rgba(226, 232, 240, 0.34), rgba(226, 232, 240, 0.14));
 }
@@ -221,6 +225,11 @@ body.dark-theme .theme-toggle__icon--moon {
   padding-top: 64px;
 }
 
+.page-hero {
+  padding-top: 72px;
+  padding-bottom: 36px;
+}
+
 .hero-layout,
 .about-layout,
 .contact-layout {
@@ -264,12 +273,15 @@ body.dark-theme .theme-toggle__icon--moon {
 }
 
 .hero h1,
+.page-hero h1,
 .section-heading h2,
+.info-card h3,
 .project-content h3 {
   margin: 0;
 }
 
-.hero h1 {
+.hero h1,
+.page-hero h1 {
   font-size: clamp(4.4rem, 12vw, 8.2rem);
   line-height: 0.9;
   letter-spacing: -0.08em;
@@ -283,6 +295,7 @@ body.dark-theme .theme-toggle__icon--moon {
   line-height: 1.18;
 }
 
+.page-intro,
 .hero-description,
 .about-copy p,
 .section-note,
@@ -290,11 +303,13 @@ body.dark-theme .theme-toggle__icon--moon {
 .fact-row span,
 .contact-list a,
 .hero-panel__text,
+.info-card p,
 .site-footer p {
   color: var(--text-soft);
 }
 
-.hero-description {
+.hero-description,
+.page-intro {
   max-width: 60ch;
   margin: 24px 0 0;
   font-size: 1.04rem;
@@ -339,7 +354,8 @@ body.dark-theme .theme-toggle__icon--moon {
 .hero-panel,
 .facts-card,
 .project-card,
-.contact-card {
+.contact-card,
+.info-card {
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 28px;
@@ -350,13 +366,11 @@ body.dark-theme .theme-toggle__icon--moon {
 .hero-panel__mesh {
   position: relative;
   min-height: 272px;
-  background:
-    linear-gradient(135deg, #081325 0%, #173462 48%, #2b5aa0 100%);
+  background: linear-gradient(135deg, #081325 0%, #173462 48%, #2b5aa0 100%);
 }
 
 body.dark-theme .hero-panel__mesh {
-  background:
-    linear-gradient(135deg, #081121 0%, #102646 48%, #274472 100%);
+  background: linear-gradient(135deg, #081121 0%, #102646 48%, #274472 100%);
 }
 
 .mesh-orb {
@@ -392,7 +406,8 @@ body.dark-theme .hero-panel__mesh {
 .hero-panel__content,
 .facts-card,
 .project-content,
-.contact-card {
+.contact-card,
+.info-card {
   padding: 28px;
 }
 
@@ -441,6 +456,10 @@ body.dark-theme .metric {
 
 .section-heading {
   margin-bottom: 32px;
+}
+
+.section-heading--compact {
+  margin-bottom: 0;
 }
 
 .section-heading h2 {
@@ -493,6 +512,10 @@ body.dark-theme .metric {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
+}
+
+.project-grid--featured {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .project-card {
@@ -620,33 +643,28 @@ body.dark-theme .metric {
   font-weight: 700;
 }
 
-.project-content h3 {
+.project-content h3,
+.info-card h3 {
   font-size: 1.55rem;
   line-height: 1.1;
   letter-spacing: -0.04em;
 }
 
-.project-content p {
+.project-content p,
+.info-card p {
   margin: 0;
 }
 
-.skills-cloud {
+.exploration-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.skills-list {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-}
-
-.skill-chip {
-  display: inline-flex;
-  align-items: center;
-  min-height: 46px;
-  padding: 0 16px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--bg-elevated);
-  box-shadow: var(--shadow-soft);
-  font-size: 0.95rem;
-  font-weight: 700;
 }
 
 .contact-layout {
@@ -672,7 +690,8 @@ body.dark-theme .metric {
   border-color: var(--border);
 }
 
-.site-footer {
+.site-footer,
+.footer {
   padding: 18px 0 36px;
 }
 
@@ -680,6 +699,13 @@ body.dark-theme .metric {
   justify-content: flex-start;
   padding-top: 18px;
   border-top: 1px solid var(--border);
+}
+
+@media (max-width: 1100px) {
+  .project-grid--featured,
+  .exploration-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 980px) {
@@ -716,11 +742,13 @@ body.dark-theme .metric {
     gap: 14px 18px;
   }
 
-  .hero {
+  .hero,
+  .page-hero {
     padding-top: 28px;
   }
 
-  .hero h1 {
+  .hero h1,
+  .page-hero h1 {
     font-size: clamp(3.4rem, 18vw, 5.8rem);
   }
 
@@ -741,14 +769,16 @@ body.dark-theme .metric {
   .hero-panel,
   .facts-card,
   .project-card,
-  .contact-card {
+  .contact-card,
+  .info-card {
     border-radius: 24px;
   }
 
   .hero-panel__content,
   .facts-card,
   .project-content,
-  .contact-card {
+  .contact-card,
+  .info-card {
     padding: 22px;
   }
 
