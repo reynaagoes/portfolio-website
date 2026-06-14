@@ -80,16 +80,22 @@ a {
 }
 
 .container {
-  width: min(1120px, calc(100% - 48px));
+  width: min(1180px, 100%);
+  padding-left: 32px;
+  padding-right: 32px;
   margin: 0 auto;
 }
 
 .section {
-  padding: 80px 0;
+  padding: 76px 0;
 }
 
 .section--compact {
-  padding-top: 16px;
+  padding-top: 12px;
+}
+
+.section--tight-top {
+  padding-top: 40px;
 }
 
 .section--soft {
@@ -128,6 +134,10 @@ body.dark-theme .site-header {
   justify-content: space-between;
   min-height: 80px;
   gap: 24px;
+}
+
+.nav-shell {
+  display: block;
 }
 
 .brand {
@@ -222,7 +232,8 @@ body.dark-theme .theme-toggle__icon--moon {
 }
 
 .hero {
-  padding-top: 64px;
+  padding-top: 56px;
+  padding-bottom: 56px;
 }
 
 .page-main {
@@ -231,7 +242,7 @@ body.dark-theme .theme-toggle__icon--moon {
 
 .page-hero {
   padding-top: 96px;
-  padding-bottom: 24px;
+  padding-bottom: 64px;
 }
 
 .hero-layout,
@@ -244,6 +255,7 @@ body.dark-theme .theme-toggle__icon--moon {
 .hero-layout {
   grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.9fr);
   align-items: end;
+  gap: 28px;
 }
 
 .content-grid {
@@ -291,7 +303,7 @@ body.dark-theme .theme-toggle__icon--moon {
 }
 
 .hero h1 {
-  font-size: clamp(4.4rem, 12vw, 8.2rem);
+  font-size: clamp(4.5rem, 10vw, 8rem);
   line-height: 0.9;
   letter-spacing: -0.08em;
 }
@@ -306,7 +318,7 @@ body.dark-theme .theme-toggle__icon--moon {
 }
 
 .page-title {
-  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-size: clamp(4.5rem, 9vw, 7.5rem);
   line-height: 0.92;
   letter-spacing: -0.07em;
 }
@@ -336,16 +348,17 @@ body.dark-theme .theme-toggle__icon--moon {
 .hero-description,
 .page-intro,
 .page-subtitle {
-  max-width: 60ch;
+  max-width: 720px;
   margin: 20px 0 0;
-  font-size: 1.04rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.55;
 }
 
 .hero-actions,
 .contact-actions {
   gap: 14px;
   flex-wrap: wrap;
-  margin-top: 32px;
+  margin-top: 28px;
 }
 
 .button {
@@ -532,10 +545,11 @@ body.dark-theme .metric {
 .section-note {
   max-width: 38ch;
   margin: 0;
+  font-size: 1rem;
 }
 
 .about-layout {
-  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.88fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 0.8fr);
   align-items: start;
   gap: 24px;
 }
@@ -656,7 +670,7 @@ body.dark-theme .education-logo {
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  gap: 28px;
 }
 
 .project-grid--featured {
@@ -677,7 +691,7 @@ body.dark-theme .education-logo {
 .project-visual {
   position: relative;
   overflow: hidden;
-  min-height: 260px;
+  min-height: 300px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -696,7 +710,7 @@ body.dark-theme .education-logo {
 
 .image-visual img {
   width: 100%;
-  height: 260px;
+  height: 300px;
   object-fit: cover;
   object-position: top center;
   transition: transform 0.35s ease;
@@ -794,7 +808,7 @@ body.dark-theme .education-logo {
 
 .project-content h3,
 .info-card h3 {
-  font-size: 1.55rem;
+  font-size: 1.65rem;
   line-height: 1.1;
   letter-spacing: -0.04em;
 }
@@ -802,6 +816,7 @@ body.dark-theme .education-logo {
 .project-content p,
 .info-card p {
   margin: 0;
+  font-size: 1rem;
 }
 
 .exploration-grid {
@@ -836,7 +851,7 @@ body.dark-theme .education-logo {
 }
 
 .contact-layout {
-  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 0.9fr);
   align-items: start;
   gap: 24px;
 }
@@ -890,6 +905,10 @@ body.dark-theme .education-logo {
     align-items: start;
   }
 
+  .section--tight-top {
+    padding-top: 28px;
+  }
+
   .education-card {
     grid-template-columns: 1fr;
   }
@@ -933,7 +952,9 @@ body.dark-theme .education-logo {
 
 @media (max-width: 560px) {
   .container {
-    width: min(100% - 24px, 1120px);
+    width: min(1180px, 100%);
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .section {
@@ -968,8 +989,8 @@ body.dark-theme .education-logo {
 
   .project-visual,
   .image-visual img {
-    min-height: 220px;
-    height: 220px;
+    min-height: 240px;
+    height: 240px;
   }
 
   .profile-photo {
