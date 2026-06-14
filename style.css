@@ -582,6 +582,10 @@ body.dark-theme .metric {
   transition: transform 0.35s ease;
 }
 
+.project-image--center {
+  object-position: center;
+}
+
 .project-card:hover .image-visual img,
 .project-card:focus-within .image-visual img {
   transform: scale(1.03);
