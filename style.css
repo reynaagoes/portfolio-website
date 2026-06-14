@@ -533,6 +533,96 @@ body.dark-theme .metric {
   color: var(--text);
 }
 
+.education-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.education-card:hover,
+.education-card:focus-within {
+  transform: translateY(-4px);
+  border-color: rgba(22, 61, 122, 0.22);
+  box-shadow: 0 26px 60px rgba(15, 23, 42, 0.12);
+}
+
+.education-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  padding: 14px;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: var(--shadow-soft);
+}
+
+body.dark-theme .education-logo {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.education-logo img {
+  width: 100%;
+  max-width: 60px;
+  height: auto;
+}
+
+.education-content {
+  display: grid;
+  gap: 14px;
+}
+
+.education-content h3 {
+  margin: 0;
+  font-size: 1.8rem;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.education-content p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.education-meta {
+  display: grid;
+  gap: 8px;
+}
+
+.education-meta strong {
+  color: var(--text);
+}
+
+.education-link {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-size: 0.94rem;
+  font-weight: 700;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.education-link:hover,
+.education-link:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(22, 61, 122, 0.26);
+}
+
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -768,6 +858,10 @@ body.dark-theme .metric {
     display: grid;
     align-items: start;
   }
+
+  .education-card {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 760px) {
@@ -817,6 +911,7 @@ body.dark-theme .metric {
   .hero-panel,
   .profile-card,
   .facts-card,
+  .education-card,
   .project-card,
   .contact-card,
   .info-card {
@@ -826,10 +921,17 @@ body.dark-theme .metric {
   .hero-panel__content,
   .profile-card__content,
   .facts-card,
+  .education-card,
   .project-content,
   .contact-card,
   .info-card {
     padding: 22px;
+  }
+
+  .education-logo {
+    width: 76px;
+    height: 76px;
+    border-radius: 20px;
   }
 
   .project-visual,

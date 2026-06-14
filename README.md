@@ -2,6 +2,8 @@
 
 Personal portfolio website for Muhammad Reyna Athallah Agoes, built as a clean, minimal, and modern multi-page static site to present selected work, personal interests, and contact links.
 
+Education: Institut Teknologi Bandung — Sistem dan Teknologi Informasi
+
 ## Tech Stack
 
 - HTML
