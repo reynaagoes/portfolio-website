@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Website portofolio Muhammad Reyna Athallah Agoes untuk tugas individu K2.">
+  <title>Portfolio | Muhammad Reyna Athallah Agoes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navigasi utama">
+      <a class="brand" href="#hero">Portfolio K2</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ubah tema">
+        <span class="theme-toggle__icon" aria-hidden="true">Mode</span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#proyek">Proyek</a></li>
+        <li><a href="#skill">Skill</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="container hero__content">
+        <div class="hero__text">
+          <p class="eyebrow">Tugas Individu K2</p>
+          <h1>Muhammad Reyna Athallah Agoes</h1>
+          <p class="hero__meta">NIM 18224112 | Kelas K2</p>
+          <p class="hero__description">
+            Mahasiswa yang membangun website portofolio sederhana, rapi, dan profesional
+            untuk menampilkan identitas, proyek, dan kesiapan deploy berbasis GitHub Pages.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#proyek">Lihat Proyek</a>
+            <a class="button button--secondary" href="#kontak">Hubungi Saya</a>
+          </div>
+        </div>
+        <aside class="hero__card" aria-label="Informasi singkat">
+          <p class="hero__card-label">Status Website</p>
+          <h2>Siap untuk Demo CI/CD</h2>
+          <p>Demo CI/CD: versi awal website portofolio.</p>
+          <ul class="hero__highlights">
+            <li>Static website HTML, CSS, JavaScript</li>
+            <li>Deploy otomatis ke GitHub Pages</li>
+            <li>Struktur ringan dan mudah dipelihara</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="tentang">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Tentang Saya</p>
+          <h2>Profil Singkat</h2>
+        </div>
+        <div class="about-grid">
+          <article class="panel">
+            <p>
+              Saya adalah Muhammad Reyna Athallah Agoes, mahasiswa kelas K2 dengan NIM 18224112.
+              Website ini dibuat sebagai portofolio akademik yang menampilkan identitas,
+              contoh proyek, keterampilan, dan kesiapan workflow deploy otomatis.
+            </p>
+            <p>
+              Fokus utama website ini adalah kesederhanaan, tampilan profesional,
+              serta kemudahan pembaruan agar cocok untuk demonstrasi perubahan kode
+              yang langsung terpublikasi ke website live.
+            </p>
+          </article>
+          <article class="panel panel--accent">
+            <h3>Informasi Akademik</h3>
+            <ul class="info-list">
+              <li><strong>Nama:</strong> Muhammad Reyna Athallah Agoes</li>
+              <li><strong>NIM:</strong> 18224112</li>
+              <li><strong>Kelas:</strong> K2</li>
+              <li><strong>Repository:</strong> portfolio-website</li>
+              <li><strong>Target Deploy:</strong> GitHub Pages</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted" id="proyek">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Proyek</p>
+          <h2>Contoh Pekerjaan</h2>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Website Portofolio K2</h3>
+            <p>
+              Landing page satu halaman yang dibuat untuk memenuhi tugas individu K2
+              dengan fokus pada desain yang bersih, responsif, dan mudah dideploy.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Workflow GitHub Pages</h3>
+            <p>
+              Konfigurasi GitHub Actions untuk melakukan build artifact dan deploy otomatis
+              ke GitHub Pages setiap kali ada push ke branch <code>main</code>.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Demo CI/CD Sederhana</h3>
+            <p>
+              Menyediakan teks demo yang mudah diubah untuk membuktikan bahwa perubahan kode
+              pada repository akan tercermin pada website live setelah workflow selesai.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skill">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Skill</p>
+          <h2>Kemampuan yang Ditampilkan</h2>
+        </div>
+        <div class="card-grid card-grid--skills">
+          <article class="card card--skill"><h3>HTML Semantik</h3><p>Struktur halaman rapi dan mudah dibaca.</p></article>
+          <article class="card card--skill"><h3>CSS Responsif</h3><p>Tampilan adaptif untuk desktop dan mobile.</p></article>
+          <article class="card card--skill"><h3>JavaScript Dasar</h3><p>Interaksi ringan seperti smooth scroll dan tema.</p></article>
+          <article class="card card--skill"><h3>GitHub Pages</h3><p>Deploy static website tanpa server tambahan.</p></article>
+          <article class="card card--skill"><h3>Git & GitHub</h3><p>Version control dan kolaborasi repository.</p></article>
+          <article class="card card--skill"><h3>CI/CD Workflow</h3><p>Otomatisasi publish melalui GitHub Actions.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--contact" id="kontak">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Kontak</p>
+          <h2>Hubungi Saya</h2>
+        </div>
+        <div class="contact-panel">
+          <p>
+            Untuk keperluan tugas, bagian ini dapat digunakan sebagai tempat menampilkan
+            informasi kontak atau tautan tambahan sesuai kebutuhan presentasi.
+          </p>
+          <div class="contact-links">
+            <a class="button button--primary" href="mailto:reyna@example.com">Email</a>
+            <a class="button button--secondary" href="https://github.com/reynaagoes" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__content">
+      <p>&copy; <span id="currentYear"></span> Muhammad Reyna Athallah Agoes. Portfolio tugas K2.</p>
+      <p>Dibuat dengan HTML, CSS, dan JavaScript untuk GitHub Pages.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
