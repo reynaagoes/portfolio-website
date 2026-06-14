@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="home">
-  <header class="site-header">
+  <header class="site-header reveal reveal-up" style="--delay: 40ms;">
     <div class="container nav-shell">
       <nav class="navbar" aria-label="Primary navigation">
         <a class="brand" href="index.html">REYNA AGOES</a>
@@ -41,21 +41,21 @@
     <section class="hero section">
       <div class="container hero-layout">
         <div class="hero-copy">
-          <p class="status-badge">Currently building better digital experiences.</p>
-          <p class="eyebrow">Personal Portfolio</p>
-          <h1>portfolio.</h1>
-          <p class="hero-subheadline">A personal space for my work, ideas, and digital experiments.</p>
-          <p class="hero-description">
+          <p class="status-badge reveal reveal-up" style="--delay: 120ms;">Currently building better digital experiences.</p>
+          <p class="eyebrow reveal reveal-up" style="--delay: 180ms;">Personal Portfolio</p>
+          <h1 class="reveal reveal-up" style="--delay: 240ms;">portfolio.</h1>
+          <p class="hero-subheadline reveal reveal-up" style="--delay: 320ms;">A personal space for my work, ideas, and digital experiments.</p>
+          <p class="hero-description reveal reveal-up" style="--delay: 400ms;">
             I&apos;m Reyna Agoes, a technology student at Institut Teknologi Bandung exploring web development,
             product design, data, IoT, Roblox UGC, and digital product development.
           </p>
-          <div class="hero-actions">
+          <div class="hero-actions reveal reveal-up" style="--delay: 480ms;">
             <a class="button button--primary" href="projects.html">View Projects</a>
             <a class="button button--secondary" href="contact.html">Contact Me</a>
           </div>
         </div>
 
-        <aside class="profile-card" aria-label="Portrait of Reyna Agoes">
+        <aside class="profile-card reveal reveal-right" style="--delay: 280ms;" aria-label="Portrait of Reyna Agoes">
           <div class="profile-photo">
             <img src="assets/images/reyna-profile.jpeg" alt="Portrait of Reyna Agoes">
           </div>
@@ -71,7 +71,7 @@
 
     <section class="section section--tight-top">
       <div class="container">
-        <div class="section-heading section-heading--split">
+        <div class="section-heading section-heading--split reveal reveal-up" style="--delay: 80ms;">
           <div>
             <p class="section-kicker">Selected Preview</p>
             <h2>Selected projects from my portfolio</h2>
@@ -82,78 +82,84 @@
         </div>
 
         <div class="project-grid project-grid--featured">
-          <a
-            class="project-card project-link-card"
-            href="https://sampahkita.vercel.app/login"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View CuanSampah Platform project"
-          >
-            <div class="project-visual image-visual">
-              <span class="project-number">01</span>
-              <img src="assets/images/cuansampah.png" alt="CuanSampah Platform project preview">
-            </div>
-            <div class="project-content">
-              <p class="project-category">Web Platform</p>
-              <h3>CuanSampah Platform</h3>
-              <p>A waste-management platform concept connecting households, collectors, recyclers, and admins through a structured digital workflow.</p>
-              <span class="project-link-label">View project ↗</span>
-            </div>
-          </a>
+          <div class="reveal reveal-up stagger-item" style="--delay: 80ms;">
+            <a
+              class="project-card project-link-card"
+              href="https://sampahkita.vercel.app/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View CuanSampah Platform project"
+            >
+              <div class="project-visual image-visual">
+                <span class="project-number">01</span>
+                <img src="assets/images/cuansampah.png" alt="CuanSampah Platform project preview">
+              </div>
+              <div class="project-content">
+                <p class="project-category">Web Platform</p>
+                <h3>CuanSampah Platform</h3>
+                <p>A waste-management platform concept connecting households, collectors, recyclers, and admins through a structured digital workflow.</p>
+                <span class="project-link-label">View project &nearr;</span>
+              </div>
+            </a>
+          </div>
 
-          <article class="project-card">
-            <div class="project-visual image-visual">
-              <span class="project-number">02</span>
-              <img src="assets/images/food-planner.png" alt="Food Planner project preview">
-            </div>
-            <div class="project-content">
-              <p class="project-category">Web Application</p>
-              <h3>Food Planner</h3>
-              <p>A nutrition and kitchen-budget planning application concept designed to help users organize weekly meals, manage food stock, and control household spending.</p>
-            </div>
-          </article>
+          <div class="reveal reveal-up stagger-item" style="--delay: 160ms;">
+            <article class="project-card">
+              <div class="project-visual image-visual">
+                <span class="project-number">02</span>
+                <img src="assets/images/food-planner.png" alt="Food Planner project preview">
+              </div>
+              <div class="project-content">
+                <p class="project-category">Web Application</p>
+                <h3>Food Planner</h3>
+                <p>A nutrition and kitchen-budget planning application concept designed to help users organize weekly meals, manage food stock, and control household spending.</p>
+              </div>
+            </article>
+          </div>
 
-          <a
-            class="project-card project-link-card"
-            href="https://www.roblox.com/communities/3579419/Rare-Clothes-Group#!/store"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View Roblox UGC project"
-          >
-            <div class="project-visual image-visual">
-              <span class="project-number">03</span>
-              <img src="assets/images/roblox-ugc.png" alt="Roblox UGC project preview">
-            </div>
-            <div class="project-content">
-              <p class="project-category">Digital Fashion / 3D Asset</p>
-              <h3>Roblox UGC</h3>
-              <p>A Roblox UGC project focused on presenting digital fashion items for avatar customization and store-style previews.</p>
-              <span class="project-link-label">View project ↗</span>
-            </div>
-          </a>
+          <div class="reveal reveal-up stagger-item" style="--delay: 240ms;">
+            <a
+              class="project-card project-link-card"
+              href="https://www.roblox.com/communities/3579419/Rare-Clothes-Group#!/store"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Roblox UGC project"
+            >
+              <div class="project-visual image-visual">
+                <span class="project-number">03</span>
+                <img src="assets/images/roblox-ugc.png" alt="Roblox UGC project preview">
+              </div>
+              <div class="project-content">
+                <p class="project-category">Digital Fashion / 3D Asset</p>
+                <h3>Roblox UGC</h3>
+                <p>A Roblox UGC project focused on presenting digital fashion items for avatar customization and store-style previews.</p>
+                <span class="project-link-label">View project &nearr;</span>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section section--soft language-section">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading reveal reveal-up" style="--delay: 80ms;">
           <p class="section-kicker">Languages &amp; Tools</p>
           <h2>Languages &amp; Tools</h2>
         </div>
         <div class="language-grid" aria-label="Languages and tools used by Reyna Agoes">
-          <span class="language-badge">HTML</span>
-          <span class="language-badge">CSS</span>
-          <span class="language-badge">JavaScript</span>
-          <span class="language-badge">C</span>
-          <span class="language-badge">SQL</span>
-          <span class="language-badge">Git</span>
-          <span class="language-badge">GitHub</span>
-          <span class="language-badge">GitHub Pages</span>
-          <span class="language-badge">Arduino / ESP32</span>
-          <span class="language-badge">UI/UX</span>
-          <span class="language-badge">Figma</span>
-          <span class="language-badge">Roblox UGC</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 80ms;">HTML</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 120ms;">CSS</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 160ms;">JavaScript</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 200ms;">C</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 240ms;">SQL</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 280ms;">Git</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 320ms;">GitHub</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 360ms;">GitHub Pages</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 400ms;">Arduino / ESP32</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 440ms;">UI/UX</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 480ms;">Figma</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 520ms;">Roblox UGC</span>
         </div>
       </div>
     </section>
