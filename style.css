@@ -1008,20 +1008,89 @@ body.dark-theme .education-logo {
 
 .contact-list {
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
 
-.contact-list a {
-  padding-bottom: 4px;
-  border-bottom: 1px solid transparent;
-  font-weight: 600;
-  transition: color 0.2s ease, border-color 0.2s ease;
+.contact-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.46);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
 }
 
-.contact-list a:hover,
-.contact-list a:focus-visible {
+.contact-item:hover,
+.contact-item:focus-visible {
+  transform: translateY(-4px);
   color: var(--text);
-  border-color: var(--border);
+  border-color: rgba(22, 61, 122, 0.24);
+  box-shadow: 0 24px 50px rgba(15, 23, 42, 0.12);
+}
+
+body.dark-theme .contact-item {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+body.dark-theme .contact-item:hover,
+body.dark-theme .contact-item:focus-visible {
+  border-color: rgba(138, 180, 255, 0.22);
+  box-shadow: 0 24px 52px rgba(2, 6, 23, 0.34);
+}
+
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+body.dark-theme .contact-icon {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.contact-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.contact-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.contact-label {
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contact-value {
+  color: var(--text);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.contact-meta {
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  font-weight: 600;
 }
 
 .site-footer,
@@ -1241,7 +1310,8 @@ body.dark-theme .education-logo {
   .project-card,
   .button,
   .theme-toggle,
-  .education-link {
+  .education-link,
+  .contact-item {
     transition-duration: 0.01ms;
   }
 

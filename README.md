@@ -11,6 +11,8 @@ Education: Institut Teknologi Bandung — Sistem dan Teknologi Informasi
 - JavaScript
 - C
 - SQL
+- MySQL
+- PostgreSQL
 - Git
 - GitHub
 - GitHub Pages
@@ -24,7 +26,7 @@ Education: Institut Teknologi Bandung — Sistem dan Teknologi Informasi
 - Multi-page portfolio with separate Home, About, Projects, and Contact pages
 - Clean layout with strong typography, generous whitespace, and responsive behavior
 - Homepage profile photo card and languages / tools sections on Home and About
-- Eight project cards with screenshots and abstract placeholders
+- Seven project cards with screenshots
 - Dark and light mode toggle with saved preference in `localStorage`
 - Active navigation state based on the current page filename
 - Static deployment workflow for GitHub Pages
@@ -43,7 +45,6 @@ Education: Institut Teknologi Bandung — Sistem dan Teknologi Informasi
 - Company Profile Website
 - Food Planner
 - Sushimate Game
-- Database Design Project
 - Algorithm Programming Project
 - Roblox UGC
 
