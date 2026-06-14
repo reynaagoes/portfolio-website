@@ -1,6 +1,6 @@
-# Reyna Agoes - Personal Portfolio
+# Reyna Agoes — Personal Portfolio
 
-Personal portfolio website with a clean, minimal, and modern presentation. This website highlights selected projects, core skills, and contact links in a lightweight static setup that can run locally and deploy easily through GitHub Pages.
+Personal portfolio website for Muhammad Reyna Athallah Agoes, built as a clean, minimal, and modern static site to present selected work, skills, and contact links.
 
 ## Tech Stack
 
@@ -10,37 +10,48 @@ Personal portfolio website with a clean, minimal, and modern presentation. This 
 - GitHub Actions
 - GitHub Pages
 
-## Fitur Utama
+## Main Features
 
-- Personal landing page with strong typography and generous whitespace
-- Responsive project grid styled as modern case study cards
-- Dark and light mode with saved preference in `localStorage`
-- Smooth scrolling and active navigation state on scroll
+- Clean personal portfolio with strong typography and spacious layout
+- Responsive hero, about, projects, skills, and contact sections
+- Seven case study style project cards with screenshots and abstract placeholders
+- Dark and light mode toggle with saved preference in `localStorage`
+- Smooth scroll navigation and active nav state on scroll
 - Static deployment workflow for GitHub Pages
 
-## Cara Menjalankan Lokal
+## Selected Works
 
-1. Clone repository ini.
-2. Buka folder project.
-3. Buka `index.html` langsung di browser.
+- Portfolio Website
+- CuanSampah Platform
+- IoT Focus Monitoring
+- Company Profile Website
+- Database Design Project
+- Algorithm Programming Project
+- Roblox UGC
 
-## Cara Deploy ke GitHub Pages
+## Run Locally
 
-1. Push project ke branch `main`.
-2. Buka repository di GitHub.
-3. Masuk ke `Settings > Pages`.
-4. Pastikan source menggunakan `GitHub Actions`.
-5. Tunggu workflow deploy selesai, lalu buka URL GitHub Pages.
+1. Clone this repository.
+2. Open the project folder.
+3. Open `index.html` directly in your browser.
 
-## Penjelasan CI/CD
+## Deploy to GitHub Pages
 
-Push ke branch `main` akan menjalankan GitHub Actions dan deploy otomatis ke GitHub Pages.
+1. Push the project to the `main` branch.
+2. Open the repository on GitHub.
+3. Go to `Settings > Pages`.
+4. Set the source to `GitHub Actions`.
+5. Wait for the workflow to finish and open the published GitHub Pages URL.
 
-## Langkah Demo Deployment
+## CI/CD
 
-1. Buka website live.
-2. Buka repository GitHub.
-3. Ubah teks `Currently building better digital experiences.` di `index.html`.
-4. Commit dan push ke branch `main`.
-5. Buka tab Actions dan tunggu workflow selesai.
-6. Refresh website live dan tunjukkan perubahan.
+Push to branch `main` will trigger GitHub Actions and deploy the website automatically to GitHub Pages.
+
+## Deployment Demo Steps
+
+1. Open the live website.
+2. Open the GitHub repository.
+3. Change the text `Currently building better digital experiences.` in `index.html`.
+4. Commit and push the change to branch `main`.
+5. Open the `Actions` tab and wait for the workflow to finish.
+6. Refresh the live website and confirm the update is visible.

@@ -1,17 +1,25 @@
 const themeToggle = document.getElementById("themeToggle");
 const currentYear = document.getElementById("currentYear");
-const navLinks = document.querySelectorAll('.nav-links a');
+const navLinks = document.querySelectorAll(".nav-links a");
 const sections = document.querySelectorAll("main section[id]");
 const savedTheme = localStorage.getItem("portfolio-theme");
 
-if (savedTheme === "dark") {
-  document.body.classList.add("dark-theme");
-}
+const applyTheme = (theme) => {
+  const isDark = theme === "dark";
+
+  document.body.classList.toggle("dark-theme", isDark);
+
+  if (themeToggle) {
+    themeToggle.setAttribute("aria-pressed", String(isDark));
+  }
+};
+
+applyTheme(savedTheme === "dark" ? "dark" : "light");
 
 if (themeToggle) {
   themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-theme");
-    const nextTheme = document.body.classList.contains("dark-theme") ? "dark" : "light";
+    const nextTheme = document.body.classList.contains("dark-theme") ? "light" : "dark";
+    applyTheme(nextTheme);
     localStorage.setItem("portfolio-theme", nextTheme);
   });
 }
@@ -19,35 +27,39 @@ if (themeToggle) {
 navLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
     const targetId = link.getAttribute("href");
-    const target = targetId ? document.querySelector(targetId) : null;
+    const targetSection = targetId ? document.querySelector(targetId) : null;
 
-    if (!target) {
+    if (!targetSection) {
       return;
     }
 
     event.preventDefault();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 
 const setActiveLink = () => {
-  let currentId = "";
+  const offset = 160;
+  let activeId = "";
 
   sections.forEach((section) => {
-    const rect = section.getBoundingClientRect();
-    if (rect.top <= 160 && rect.bottom >= 160) {
-      currentId = section.id;
+    const top = section.offsetTop;
+    const bottom = top + section.offsetHeight;
+
+    if (window.scrollY + offset >= top && window.scrollY + offset < bottom) {
+      activeId = section.id;
     }
   });
 
   navLinks.forEach((link) => {
-    const isActive = link.getAttribute("href") === `#${currentId}`;
-    link.classList.toggle("is-active", isActive);
+    const href = link.getAttribute("href");
+    link.classList.toggle("is-active", href === `#${activeId}`);
   });
 };
 
 window.addEventListener("scroll", setActiveLink, { passive: true });
 window.addEventListener("load", setActiveLink);
+window.addEventListener("resize", setActiveLink);
 
 if (currentYear) {
   currentYear.textContent = new Date().getFullYear();
