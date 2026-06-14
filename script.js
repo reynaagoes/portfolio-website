@@ -4,6 +4,10 @@ const navLinks = document.querySelectorAll(".nav-links a");
 const savedTheme = localStorage.getItem("portfolio-theme");
 const revealElements = document.querySelectorAll(".reveal");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const openingScene = document.getElementById("openingScene");
+const OPENING_SCENE_ENABLED = true;
+const OPENING_SCENE_KEY = "portfolio-opening-seen";
+const OPENING_SCENE_DURATION = 2000;
 
 const applyTheme = (theme) => {
   const isDark = theme === "dark";
@@ -62,10 +66,52 @@ const initRevealAnimations = () => {
   });
 };
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initRevealAnimations);
-} else {
+const shouldPlayOpeningScene = () => {
+  if (!OPENING_SCENE_ENABLED || !openingScene) {
+    return false;
+  }
+
+  if (openingScene.dataset.enabled === "false") {
+    return false;
+  }
+
+  if (document.body.dataset.page !== "home") {
+    return false;
+  }
+
+  if (prefersReducedMotion.matches) {
+    return false;
+  }
+
+  return sessionStorage.getItem(OPENING_SCENE_KEY) !== "true";
+};
+
+const finishOpeningScene = () => {
+  if (openingScene) {
+    openingScene.setAttribute("aria-hidden", "true");
+  }
+
+  document.body.classList.remove("opening-active");
   initRevealAnimations();
+};
+
+const initOpeningScene = () => {
+  if (!shouldPlayOpeningScene()) {
+    initRevealAnimations();
+    return;
+  }
+
+  sessionStorage.setItem(OPENING_SCENE_KEY, "true");
+  openingScene.setAttribute("aria-hidden", "false");
+  document.body.classList.add("opening-active");
+
+  window.setTimeout(finishOpeningScene, OPENING_SCENE_DURATION);
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initOpeningScene);
+} else {
+  initOpeningScene();
 }
 
 if (themeToggle) {

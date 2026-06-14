@@ -54,6 +54,10 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
+body.opening-active {
+  overflow: hidden;
+}
+
 body.dark-theme {
   background:
     radial-gradient(circle at top left, rgba(138, 180, 255, 0.08), transparent 28%),
@@ -84,6 +88,108 @@ a {
   padding-left: 32px;
   padding-right: 32px;
   margin: 0 auto;
+}
+
+.opening-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(138, 180, 255, 0.1), transparent 30%),
+    radial-gradient(circle at 80% 76%, rgba(138, 180, 255, 0.08), transparent 24%),
+    linear-gradient(180deg, #050b16 0%, #09111f 100%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.opening-scene::after {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  border: 1px solid rgba(138, 180, 255, 0.08);
+  border-radius: 28px;
+}
+
+.opening-scene__inner {
+  position: relative;
+  width: min(100%, 960px);
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.opening-scene__keywords,
+.opening-scene__brand-lockup {
+  display: grid;
+  justify-items: center;
+}
+
+.opening-scene__keywords {
+  gap: 10px;
+}
+
+.opening-scene__keyword,
+.opening-scene__name,
+.opening-scene__title {
+  margin: 0;
+  color: #edf2fb;
+}
+
+.opening-scene__keyword,
+.opening-scene__name {
+  font-size: clamp(0.92rem, 1.6vw, 1.08rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.opening-scene__keyword {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.opening-scene__brand-lockup {
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.opening-scene__name {
+  color: #bfd4ff;
+}
+
+.opening-scene__title {
+  font-size: clamp(3.8rem, 10vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 0.9;
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+body.opening-active .opening-scene {
+  opacity: 1;
+  visibility: visible;
+  animation: openingSceneFadeOut 480ms cubic-bezier(0.22, 1, 0.36, 1) 1520ms forwards;
+}
+
+body.opening-active .opening-scene__keyword {
+  animation:
+    openingKeywordIn 320ms cubic-bezier(0.22, 1, 0.36, 1) var(--keyword-delay) forwards,
+    openingKeywordOut 260ms ease calc(var(--keyword-delay) + 620ms) forwards;
+}
+
+body.opening-active .opening-scene__brand-lockup {
+  animation: openingBrandIn 480ms cubic-bezier(0.22, 1, 0.36, 1) 860ms forwards;
+}
+
+body.opening-active .opening-scene__title {
+  animation: openingTitleIn 360ms cubic-bezier(0.22, 1, 0.36, 1) 1140ms forwards;
 }
 
 :root {
@@ -937,6 +1043,66 @@ body.dark-theme .education-logo {
   border-top: 1px solid var(--border);
 }
 
+@keyframes openingKeywordIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes openingKeywordOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes openingBrandIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes openingSceneFadeOut {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes openingTitleIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 1100px) {
   .project-grid--featured,
   .exploration-grid {
@@ -1058,6 +1224,23 @@ body.dark-theme .education-logo {
     min-width: 52px;
     padding: 7px 8px;
   }
+
+  .opening-scene {
+    padding: 20px;
+  }
+
+  .opening-scene::after {
+    inset: 16px;
+    border-radius: 22px;
+  }
+
+  .opening-scene__inner {
+    gap: 16px;
+  }
+
+  .opening-scene__keywords {
+    gap: 8px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1080,5 +1263,17 @@ body.dark-theme .education-logo {
   .theme-toggle,
   .education-link {
     transition-duration: 0.01ms;
+  }
+
+  .opening-scene,
+  .opening-scene::after,
+  .opening-scene__keyword,
+  .opening-scene__brand-lockup {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  body.opening-active {
+    overflow: auto;
   }
 }
