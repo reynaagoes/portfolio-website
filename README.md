@@ -22,7 +22,7 @@ Personal portfolio website for Muhammad Reyna Athallah Agoes, built as a clean, 
 - Multi-page portfolio with separate Home, About, Projects, and Contact pages
 - Clean layout with strong typography, generous whitespace, and responsive behavior
 - Homepage profile photo card and languages / tools sections on Home and About
-- Seven case study style project cards with screenshots and abstract placeholders
+- Six main project cards with screenshots and abstract placeholders
 - Dark and light mode toggle with saved preference in `localStorage`
 - Active navigation state based on the current page filename
 - Static deployment workflow for GitHub Pages
@@ -36,7 +36,6 @@ Personal portfolio website for Muhammad Reyna Athallah Agoes, built as a clean, 
 
 ## Selected Works
 
-- Portfolio Website
 - CuanSampah Platform
 - IoT Focus Monitoring
 - Company Profile Website
