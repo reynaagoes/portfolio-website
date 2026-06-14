@@ -678,6 +678,7 @@ body.dark-theme .education-logo {
 }
 
 .project-card {
+  display: block;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
@@ -686,6 +687,15 @@ body.dark-theme .education-logo {
   transform: translateY(-8px);
   border-color: rgba(22, 61, 122, 0.22);
   box-shadow: 0 32px 70px rgba(15, 23, 42, 0.14);
+}
+
+.project-link-card {
+  cursor: pointer;
+}
+
+.project-link-card:hover,
+.project-link-card:focus-visible {
+  box-shadow: 0 36px 78px rgba(15, 23, 42, 0.16);
 }
 
 .project-visual {
@@ -817,6 +827,16 @@ body.dark-theme .education-logo {
 .info-card p {
   margin: 0;
   font-size: 1rem;
+}
+
+.project-link-label {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: 4px;
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 700;
 }
 
 .exploration-grid {

@@ -47,6 +47,11 @@ Education: Institut Teknologi Bandung — Sistem dan Teknologi Informasi
 - Algorithm Programming Project
 - Roblox UGC
 
+## Project Links
+
+- CuanSampah Platform: `https://sampahkita.vercel.app/login`
+- Roblox UGC: `https://www.roblox.com/communities/3579419/Rare-Clothes-Group#!/store`
+
 ## Run Locally
 
 1. Clone this repository.
