@@ -54,7 +54,7 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-body.opening-active {
+body.intro-active {
   overflow: hidden;
 }
 
@@ -90,10 +90,10 @@ a {
   margin: 0 auto;
 }
 
-.opening-scene {
+.intro-screen {
   position: fixed;
   inset: 0;
-  z-index: 120;
+  z-index: 9999;
   display: grid;
   place-items: center;
   padding: 32px;
@@ -101,12 +101,13 @@ a {
     radial-gradient(circle at 20% 20%, rgba(138, 180, 255, 0.1), transparent 30%),
     radial-gradient(circle at 80% 76%, rgba(138, 180, 255, 0.08), transparent 24%),
     linear-gradient(180deg, #050b16 0%, #09111f 100%);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 360ms ease, visibility 360ms ease;
 }
 
-.opening-scene::after {
+.intro-screen::after {
   content: "";
   position: absolute;
   inset: 24px;
@@ -114,7 +115,7 @@ a {
   border-radius: 28px;
 }
 
-.opening-scene__inner {
+.intro-screen__inner {
   position: relative;
   width: min(100%, 960px);
   display: grid;
@@ -123,73 +124,64 @@ a {
   text-align: center;
 }
 
-.opening-scene__keywords,
-.opening-scene__brand-lockup {
+.intro-keywords,
+.intro-lockup {
   display: grid;
   justify-items: center;
 }
 
-.opening-scene__keywords {
+.intro-keywords {
   gap: 10px;
 }
 
-.opening-scene__keyword,
-.opening-scene__name,
-.opening-scene__title {
+.intro-keyword,
+.intro-name,
+.intro-title {
   margin: 0;
   color: #edf2fb;
 }
 
-.opening-scene__keyword,
-.opening-scene__name {
+.intro-keyword,
+.intro-name {
   font-size: clamp(0.92rem, 1.6vw, 1.08rem);
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
-.opening-scene__keyword {
+.intro-keyword {
   opacity: 0;
   transform: translateY(18px);
+  animation:
+    introKeywordIn 320ms cubic-bezier(0.22, 1, 0.36, 1) var(--intro-delay) forwards,
+    introKeywordOut 260ms ease calc(var(--intro-delay) + 620ms) forwards;
 }
 
-.opening-scene__brand-lockup {
+.intro-lockup {
   gap: 8px;
+}
+
+.intro-name {
+  color: #bfd4ff;
   opacity: 0;
   transform: translateY(18px);
+  animation: introNameIn 420ms cubic-bezier(0.22, 1, 0.36, 1) 940ms forwards;
 }
 
-.opening-scene__name {
-  color: #bfd4ff;
-}
-
-.opening-scene__title {
+.intro-title {
   font-size: clamp(3.8rem, 10vw, 7rem);
   font-weight: 700;
   letter-spacing: -0.08em;
   line-height: 0.9;
   opacity: 0;
   transform: translateY(16px);
+  animation: introTitleIn 360ms cubic-bezier(0.22, 1, 0.36, 1) 1260ms forwards;
 }
 
-body.opening-active .opening-scene {
-  opacity: 1;
-  visibility: visible;
-  animation: openingSceneFadeOut 480ms cubic-bezier(0.22, 1, 0.36, 1) 1520ms forwards;
-}
-
-body.opening-active .opening-scene__keyword {
-  animation:
-    openingKeywordIn 320ms cubic-bezier(0.22, 1, 0.36, 1) var(--keyword-delay) forwards,
-    openingKeywordOut 260ms ease calc(var(--keyword-delay) + 620ms) forwards;
-}
-
-body.opening-active .opening-scene__brand-lockup {
-  animation: openingBrandIn 480ms cubic-bezier(0.22, 1, 0.36, 1) 860ms forwards;
-}
-
-body.opening-active .opening-scene__title {
-  animation: openingTitleIn 360ms cubic-bezier(0.22, 1, 0.36, 1) 1140ms forwards;
+.intro-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 :root {
@@ -1043,7 +1035,7 @@ body.dark-theme .education-logo {
   border-top: 1px solid var(--border);
 }
 
-@keyframes openingKeywordIn {
+@keyframes introKeywordIn {
   from {
     opacity: 0;
     transform: translateY(18px);
@@ -1055,7 +1047,7 @@ body.dark-theme .education-logo {
   }
 }
 
-@keyframes openingKeywordOut {
+@keyframes introKeywordOut {
   from {
     opacity: 1;
     transform: translateY(0);
@@ -1067,7 +1059,7 @@ body.dark-theme .education-logo {
   }
 }
 
-@keyframes openingBrandIn {
+@keyframes introNameIn {
   from {
     opacity: 0;
     transform: translateY(18px);
@@ -1079,19 +1071,7 @@ body.dark-theme .education-logo {
   }
 }
 
-@keyframes openingSceneFadeOut {
-  from {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@keyframes openingTitleIn {
+@keyframes introTitleIn {
   from {
     opacity: 0;
     transform: translateY(16px);
@@ -1225,20 +1205,20 @@ body.dark-theme .education-logo {
     padding: 7px 8px;
   }
 
-  .opening-scene {
+  .intro-screen {
     padding: 20px;
   }
 
-  .opening-scene::after {
+  .intro-screen::after {
     inset: 16px;
     border-radius: 22px;
   }
 
-  .opening-scene__inner {
+  .intro-screen__inner {
     gap: 16px;
   }
 
-  .opening-scene__keywords {
+  .intro-keywords {
     gap: 8px;
   }
 }
@@ -1265,15 +1245,20 @@ body.dark-theme .education-logo {
     transition-duration: 0.01ms;
   }
 
-  .opening-scene,
-  .opening-scene::after,
-  .opening-scene__keyword,
-  .opening-scene__brand-lockup {
+  .intro-screen,
+  .intro-screen::after,
+  .intro-keyword,
+  .intro-name,
+  .intro-title {
     animation: none !important;
     transition: none !important;
   }
 
-  body.opening-active {
+  .intro-screen {
+    display: none;
+  }
+
+  body.intro-active {
     overflow: auto;
   }
 }

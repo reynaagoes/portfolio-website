@@ -4,10 +4,8 @@ const navLinks = document.querySelectorAll(".nav-links a");
 const savedTheme = localStorage.getItem("portfolio-theme");
 const revealElements = document.querySelectorAll(".reveal");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const openingScene = document.getElementById("openingScene");
-const OPENING_SCENE_ENABLED = true;
-const OPENING_SCENE_KEY = "portfolio-opening-seen";
-const OPENING_SCENE_DURATION = 2000;
+const introScreen = document.querySelector(".intro-screen");
+const INTRO_DURATION = 2200;
 
 const applyTheme = (theme) => {
   const isDark = theme === "dark";
@@ -66,52 +64,52 @@ const initRevealAnimations = () => {
   });
 };
 
-const shouldPlayOpeningScene = () => {
-  if (!OPENING_SCENE_ENABLED || !openingScene) {
-    return false;
-  }
-
-  if (openingScene.dataset.enabled === "false") {
-    return false;
-  }
-
-  if (document.body.dataset.page !== "home") {
-    return false;
-  }
-
-  if (prefersReducedMotion.matches) {
-    return false;
-  }
-
-  return sessionStorage.getItem(OPENING_SCENE_KEY) !== "true";
-};
-
-const finishOpeningScene = () => {
-  if (openingScene) {
-    openingScene.setAttribute("aria-hidden", "true");
-  }
-
-  document.body.classList.remove("opening-active");
-  initRevealAnimations();
-};
-
-const initOpeningScene = () => {
-  if (!shouldPlayOpeningScene()) {
+const initIntroScreen = () => {
+  if (!introScreen || document.body.dataset.page !== "home") {
     initRevealAnimations();
     return;
   }
 
-  sessionStorage.setItem(OPENING_SCENE_KEY, "true");
-  openingScene.setAttribute("aria-hidden", "false");
-  document.body.classList.add("opening-active");
+  if (prefersReducedMotion.matches) {
+    introScreen.remove();
+    initRevealAnimations();
+    return;
+  }
 
-  window.setTimeout(finishOpeningScene, OPENING_SCENE_DURATION);
+  introScreen.setAttribute("aria-hidden", "false");
+  document.body.classList.add("intro-active");
+
+  const cleanupIntroScreen = () => {
+    if (!document.body.classList.contains("intro-active")) {
+      return;
+    }
+
+    introScreen.remove();
+    document.body.classList.remove("intro-active");
+    initRevealAnimations();
+  };
+
+  window.setTimeout(() => {
+    introScreen.classList.add("is-hidden");
+  }, INTRO_DURATION);
+
+  const handleIntroTransitionEnd = (event) => {
+    if (event.target !== introScreen || event.propertyName !== "opacity") {
+      return;
+    }
+
+    introScreen.removeEventListener("transitionend", handleIntroTransitionEnd);
+    cleanupIntroScreen();
+  };
+
+  introScreen.addEventListener("transitionend", handleIntroTransitionEnd);
+  window.setTimeout(cleanupIntroScreen, INTRO_DURATION + 500);
 };
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initOpeningScene);
+  document.addEventListener("DOMContentLoaded", initIntroScreen);
 } else {
-  initOpeningScene();
+  initIntroScreen();
 }
 
 if (themeToggle) {
