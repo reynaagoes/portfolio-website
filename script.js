@@ -4,8 +4,6 @@ const navLinks = document.querySelectorAll(".nav-links a");
 const savedTheme = localStorage.getItem("portfolio-theme");
 const revealElements = document.querySelectorAll(".reveal");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const openingScroll = document.querySelector(".opening-hero__scroll");
-const openingMenu = document.querySelector(".opening-hero__menu");
 
 const applyTheme = (theme) => {
   const isDark = theme === "dark";
@@ -64,28 +62,11 @@ const initRevealAnimations = () => {
   });
 };
 
-const scrollToHomeMain = (event) => {
-  const homeMain = document.getElementById("home-main");
-
-  if (!homeMain) {
-    return;
-  }
-
-  event.preventDefault();
-  homeMain.scrollIntoView({
-    behavior: prefersReducedMotion.matches ? "auto" : "smooth",
-    block: "start"
-  });
-};
-
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initRevealAnimations);
 } else {
   initRevealAnimations();
 }
-
-openingScroll?.addEventListener("click", scrollToHomeMain);
-openingMenu?.addEventListener("click", scrollToHomeMain);
 
 if (themeToggle) {
   themeToggle.addEventListener("click", () => {
