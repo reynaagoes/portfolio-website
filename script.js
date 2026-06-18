@@ -4,8 +4,8 @@ const navLinks = document.querySelectorAll(".nav-links a");
 const savedTheme = localStorage.getItem("portfolio-theme");
 const revealElements = document.querySelectorAll(".reveal");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const introScreen = document.querySelector(".intro-screen");
-const INTRO_DURATION = 2200;
+const openingScroll = document.querySelector(".opening-hero__scroll");
+const openingMenu = document.querySelector(".opening-hero__menu");
 
 const applyTheme = (theme) => {
   const isDark = theme === "dark";
@@ -64,59 +64,28 @@ const initRevealAnimations = () => {
   });
 };
 
-const initIntroScreen = () => {
-  if (!introScreen || document.body.dataset.page !== "home") {
-    initRevealAnimations();
+const scrollToHomeMain = (event) => {
+  const homeMain = document.getElementById("home-main");
+
+  if (!homeMain) {
     return;
   }
 
-  if (prefersReducedMotion.matches) {
-    introScreen.remove();
-    initRevealAnimations();
-    return;
-  }
-
-  introScreen.setAttribute("aria-hidden", "false");
-  document.body.classList.add("intro-active");
-  let introCleanedUp = false;
-
-  const cleanupIntroScreen = () => {
-    if (introCleanedUp) {
-      return;
-    }
-
-    introCleanedUp = true;
-    introScreen.remove();
-    document.body.classList.remove("intro-active");
-    initRevealAnimations();
-  };
-
-  window.setTimeout(() => {
-    if (introCleanedUp) {
-      return;
-    }
-
-    introScreen.classList.add("is-hidden");
-  }, INTRO_DURATION);
-
-  const handleIntroTransitionEnd = (event) => {
-    if (event.target !== introScreen || event.propertyName !== "opacity") {
-      return;
-    }
-
-    introScreen.removeEventListener("transitionend", handleIntroTransitionEnd);
-    cleanupIntroScreen();
-  };
-
-  introScreen.addEventListener("transitionend", handleIntroTransitionEnd);
-  window.setTimeout(cleanupIntroScreen, INTRO_DURATION + 500);
+  event.preventDefault();
+  homeMain.scrollIntoView({
+    behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+    block: "start"
+  });
 };
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initIntroScreen);
+  document.addEventListener("DOMContentLoaded", initRevealAnimations);
 } else {
-  initIntroScreen();
+  initRevealAnimations();
 }
+
+openingScroll?.addEventListener("click", scrollToHomeMain);
+openingMenu?.addEventListener("click", scrollToHomeMain);
 
 if (themeToggle) {
   themeToggle.addEventListener("click", () => {
