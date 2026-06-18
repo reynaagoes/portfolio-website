@@ -4,8 +4,8 @@ const navLinks = document.querySelectorAll(".nav-links a");
 const savedTheme = localStorage.getItem("portfolio-theme");
 const revealElements = document.querySelectorAll(".reveal");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const introScreen = document.querySelector(".intro-screen");
-const INTRO_DURATION = 2200;
+const workspaceOpening = document.querySelector(".workspace-opening");
+const workspaceScrollLinks = document.querySelectorAll(".workspace-scroll, .workspace-cta, .workspace-menu");
 
 const applyTheme = (theme) => {
   const isDark = theme === "dark";
@@ -64,59 +64,73 @@ const initRevealAnimations = () => {
   });
 };
 
-const initIntroScreen = () => {
-  if (!introScreen || document.body.dataset.page !== "home") {
-    initRevealAnimations();
+const scrollToHomeMain = (event) => {
+  const homeMain = document.getElementById("home-main");
+
+  if (!homeMain) {
     return;
   }
 
-  if (prefersReducedMotion.matches) {
-    introScreen.remove();
-    initRevealAnimations();
+  event.preventDefault();
+  homeMain.scrollIntoView({
+    behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+    block: "start"
+  });
+};
+
+const initWorkspaceOpening = () => {
+  if (!workspaceOpening || prefersReducedMotion.matches) {
     return;
   }
 
-  introScreen.setAttribute("aria-hidden", "false");
-  document.body.classList.add("intro-active");
-  let introCleanedUp = false;
+  let ticking = false;
 
-  const cleanupIntroScreen = () => {
-    if (introCleanedUp) {
-      return;
-    }
-
-    introCleanedUp = true;
-    introScreen.remove();
-    document.body.classList.remove("intro-active");
-    initRevealAnimations();
+  const updateScrollProgress = () => {
+    const progress = Math.min(window.scrollY / Math.max(workspaceOpening.offsetHeight, 1), 1);
+    workspaceOpening.style.setProperty("--scroll-progress", progress.toFixed(3));
+    ticking = false;
   };
 
-  window.setTimeout(() => {
-    if (introCleanedUp) {
+  const requestScrollUpdate = () => {
+    if (ticking) {
       return;
     }
 
-    introScreen.classList.add("is-hidden");
-  }, INTRO_DURATION);
-
-  const handleIntroTransitionEnd = (event) => {
-    if (event.target !== introScreen || event.propertyName !== "opacity") {
-      return;
-    }
-
-    introScreen.removeEventListener("transitionend", handleIntroTransitionEnd);
-    cleanupIntroScreen();
+    ticking = true;
+    window.requestAnimationFrame(updateScrollProgress);
   };
 
-  introScreen.addEventListener("transitionend", handleIntroTransitionEnd);
-  window.setTimeout(cleanupIntroScreen, INTRO_DURATION + 500);
+  workspaceOpening.addEventListener("mousemove", (event) => {
+    const rect = workspaceOpening.getBoundingClientRect();
+    const mouseX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+    const mouseY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+
+    workspaceOpening.style.setProperty("--mouse-x", mouseX.toFixed(3));
+    workspaceOpening.style.setProperty("--mouse-y", mouseY.toFixed(3));
+  });
+
+  workspaceOpening.addEventListener("mouseleave", () => {
+    workspaceOpening.style.setProperty("--mouse-x", "0");
+    workspaceOpening.style.setProperty("--mouse-y", "0");
+  });
+
+  window.addEventListener("scroll", requestScrollUpdate, { passive: true });
+  updateScrollProgress();
 };
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initIntroScreen);
+  document.addEventListener("DOMContentLoaded", () => {
+    initRevealAnimations();
+    initWorkspaceOpening();
+  });
 } else {
-  initIntroScreen();
+  initRevealAnimations();
+  initWorkspaceOpening();
 }
+
+workspaceScrollLinks.forEach((link) => {
+  link.addEventListener("click", scrollToHomeMain);
+});
 
 if (themeToggle) {
   themeToggle.addEventListener("click", () => {
