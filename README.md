@@ -23,6 +23,7 @@ Education: Institut Teknologi Bandung — Sistem dan Teknologi Informasi
 
 ## Main Features
 
+- Standalone voxel-inspired opening page with loading animation in `intro.html`
 - Multi-page portfolio with separate Home, About, Projects, and Contact pages
 - Clean layout with strong typography, generous whitespace, and responsive behavior
 - Homepage profile photo card and languages / tools sections on Home and About
@@ -33,10 +34,13 @@ Education: Institut Teknologi Bandung — Sistem dan Teknologi Informasi
 
 ## Page Structure
 
+- Intro / opening world: `intro.html`
 - Home: `index.html`
 - About: `about.html`
 - Projects: `projects.html`
 - Contact: `contact.html`
+
+The live portfolio homepage can be opened from `index.html`. The voxel opening experience is available separately from `intro.html` and links into the main portfolio through `index.html`.
 
 ## Selected Works
 
@@ -57,8 +61,9 @@ Education: Institut Teknologi Bandung — Sistem dan Teknologi Informasi
 
 1. Clone this repository.
 2. Open the project folder.
-3. Open `index.html` directly in your browser.
-4. Open `about.html`, `projects.html`, and `contact.html` to review the full multi-page experience.
+3. Open `intro.html` directly in your browser to review the opening experience.
+4. Open `index.html` directly in your browser to review the main homepage.
+5. Open `about.html`, `projects.html`, and `contact.html` to review the full multi-page experience.
 
 ## Deploy to GitHub Pages
 

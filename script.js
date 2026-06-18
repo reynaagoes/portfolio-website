@@ -26,7 +26,7 @@ const setActiveNav = () => {
   });
 };
 
-applyTheme(savedTheme === "dark" ? "dark" : "light");
+applyTheme(savedTheme === "light" ? "light" : "dark");
 setActiveNav();
 
 const revealAll = () => {
@@ -71,6 +71,28 @@ const initVoxelOpening = () => {
 
   const scrollLinks = voxelOpening.querySelectorAll(".voxel-opening__enter, .voxel-opening__scroll, .voxel-opening__menu");
   let ticking = false;
+  const enterPortfolio = (event) => {
+    const target = event.currentTarget;
+    const href = target.getAttribute("href") || "index.html";
+
+    if (!href.startsWith("#")) {
+      event.preventDefault();
+      window.location.href = href;
+      return;
+    }
+
+    const homeMain = document.querySelector(href);
+
+    if (!homeMain) {
+      return;
+    }
+
+    event.preventDefault();
+    homeMain.scrollIntoView({
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+      block: "start"
+    });
+  };
 
   const updateOpening = () => {
     const rect = voxelOpening.getBoundingClientRect();
@@ -91,19 +113,7 @@ const initVoxelOpening = () => {
   };
 
   scrollLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const homeMain = document.getElementById("home-main");
-
-      if (!homeMain) {
-        return;
-      }
-
-      event.preventDefault();
-      homeMain.scrollIntoView({
-        behavior: prefersReducedMotion.matches ? "auto" : "smooth",
-        block: "start"
-      });
-    });
+    link.addEventListener("click", enterPortfolio);
   });
 
   if (!prefersReducedMotion.matches) {
@@ -130,18 +140,22 @@ const initVoxelOpening = () => {
 
 const getWorldLoaderLabel = (progress) => {
   if (progress >= 96) {
-    return "Ready";
+    return "Entering world";
   }
 
-  if (progress >= 71) {
+  if (progress >= 76) {
     return "Building interface";
   }
 
-  if (progress >= 36) {
+  if (progress >= 51) {
     return "Loading projects";
   }
 
-  return "Preparing blocks";
+  if (progress >= 26) {
+    return "Placing blocks";
+  }
+
+  return "Generating terrain";
 };
 
 const initWorldLoader = () => {
@@ -152,7 +166,7 @@ const initWorldLoader = () => {
   const label = worldLoader.querySelector(".world-loader__label");
   const percent = worldLoader.querySelector(".world-loader__percent");
   const progressBar = worldLoader.querySelector(".world-loader__progress");
-  const duration = prefersReducedMotion.matches ? 120 : 2000;
+  const duration = prefersReducedMotion.matches ? 120 : 2400;
   let animationFrame;
   let isHidden = false;
 
