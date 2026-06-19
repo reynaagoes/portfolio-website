@@ -11,6 +11,13 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="intro">
+  <script>
+    try {
+      document.body.classList.add((localStorage.getItem("portfolio-theme") === "light") ? "light-theme" : "dark-theme");
+    } catch (error) {
+      document.body.classList.add("dark-theme");
+    }
+  </script>
   <div class="world-loader" aria-hidden="true">
     <div class="world-loader__particles" aria-hidden="true">
       <span></span>
@@ -79,11 +86,11 @@
     <div class="voxel-cloud cloud-page-2" aria-hidden="true"></div>
 
     <header class="voxel-opening__topbar">
-      <a href="index.html" class="voxel-opening__avatar" aria-label="Reyna Agoes portfolio home">
+      <a href="index.html" class="voxel-opening__avatar" aria-label="Reyna Agoes intro page">
         <img src="assets/images/reyna-profile.jpeg" alt="Reyna Agoes profile photo">
       </a>
 
-      <button class="voxel-opening__menu" type="button" aria-label="Enter portfolio">
+      <button class="voxel-opening__menu" type="button" data-href="home.html" aria-label="Enter portfolio">
         <span>MENU</span>
         <i aria-hidden="true"></i>
         <i aria-hidden="true"></i>
@@ -100,7 +107,7 @@
           Building digital products through web, UI/UX, IoT, data, and Roblox UGC.
         </p>
 
-        <a href="index.html" class="voxel-opening__enter">ENTER PORTFOLIO</a>
+        <a href="home.html" class="voxel-opening__enter">ENTER PORTFOLIO</a>
       </div>
 
       <div class="voxel-scene" aria-hidden="true">
@@ -146,7 +153,7 @@
       <span class="voxel-block block-e"></span>
     </div>
 
-    <a href="index.html" class="voxel-opening__scroll">CLICK ENTER TO CONTINUE</a>
+    <a href="home.html" class="voxel-opening__scroll">CLICK ENTER TO CONTINUE</a>
   </section>
 
   <script src="script.js"></script>

@@ -1,7 +1,14 @@
 const themeToggle = document.getElementById("themeToggle");
 const currentYear = document.getElementById("currentYear");
 const navLinks = document.querySelectorAll(".nav-links a");
-const savedTheme = localStorage.getItem("portfolio-theme");
+const getSavedTheme = () => {
+  try {
+    return localStorage.getItem("portfolio-theme");
+  } catch (error) {
+    return null;
+  }
+};
+const savedTheme = getSavedTheme();
 const revealElements = document.querySelectorAll(".reveal");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const voxelOpening = document.querySelector(".voxel-opening");
@@ -10,7 +17,10 @@ const worldLoader = document.querySelector(".world-loader");
 const applyTheme = (theme) => {
   const isDark = theme === "dark";
 
+  document.documentElement.classList.toggle("dark-theme", isDark);
+  document.documentElement.classList.toggle("light-theme", !isDark);
   document.body.classList.toggle("dark-theme", isDark);
+  document.body.classList.toggle("light-theme", !isDark);
 
   if (themeToggle) {
     themeToggle.setAttribute("aria-pressed", String(isDark));
@@ -73,7 +83,7 @@ const initVoxelOpening = () => {
   let ticking = false;
   const enterPortfolio = (event) => {
     const target = event.currentTarget;
-    const href = target.getAttribute("href") || "index.html";
+    const href = target.getAttribute("href") || target.dataset.href || "home.html";
 
     if (!href.startsWith("#")) {
       event.preventDefault();
@@ -226,14 +236,62 @@ const initWorldLoader = () => {
   }, duration + 900);
 };
 
+const initThemeAmbience = () => {
+  if (voxelOpening || document.querySelector(".theme-ambience")) {
+    return;
+  }
+
+  const page = document.body.dataset.page;
+  const supportedPages = new Set(["home", "about", "projects", "contact"]);
+
+  if (!supportedPages.has(page)) {
+    return;
+  }
+
+  const ambience = document.createElement("div");
+  ambience.className = "theme-ambience";
+  ambience.setAttribute("aria-hidden", "true");
+  ambience.innerHTML = `
+    <div class="theme-ambience__light">
+      <span class="theme-sun"></span>
+      <span class="theme-cloud theme-cloud--one"></span>
+      <span class="theme-cloud theme-cloud--two"></span>
+      <span class="theme-cloud theme-cloud--three"></span>
+      <span class="theme-birds theme-birds--one">
+        <svg viewBox="0 0 120 44" focusable="false"><path d="M6 26c7-10 15-14 24-14 5 0 10 1 16 5 6-4 11-5 16-5 10 0 18 4 25 14" /></svg>
+      </span>
+      <span class="theme-birds theme-birds--two">
+        <svg viewBox="0 0 92 38" focusable="false"><path d="M6 24c5-8 11-11 18-11 4 0 8 1 12 4 4-3 8-4 12-4 8 0 14 3 20 11" /></svg>
+      </span>
+      <span class="theme-particle theme-particle--one"></span>
+      <span class="theme-particle theme-particle--two"></span>
+      <span class="theme-particle theme-particle--three"></span>
+      <span class="theme-particle theme-particle--four"></span>
+    </div>
+    <div class="theme-ambience__dark">
+      <span class="theme-moon"></span>
+      <div class="theme-stars">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <span class="theme-meteor theme-meteor--one"></span>
+      <span class="theme-meteor theme-meteor--two"></span>
+    </div>
+  `;
+
+  document.body.prepend(ambience);
+};
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     initWorldLoader();
+    initThemeAmbience();
     initRevealAnimations();
     initVoxelOpening();
   });
 } else {
   initWorldLoader();
+  initThemeAmbience();
   initRevealAnimations();
   initVoxelOpening();
 }
@@ -242,7 +300,12 @@ if (themeToggle) {
   themeToggle.addEventListener("click", () => {
     const nextTheme = document.body.classList.contains("dark-theme") ? "light" : "dark";
     applyTheme(nextTheme);
-    localStorage.setItem("portfolio-theme", nextTheme);
+
+    try {
+      localStorage.setItem("portfolio-theme", nextTheme);
+    } catch (error) {
+      return;
+    }
   });
 }
 

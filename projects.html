@@ -11,13 +11,20 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="projects">
+  <script>
+    try {
+      document.body.classList.add((localStorage.getItem("portfolio-theme") === "light") ? "light-theme" : "dark-theme");
+    } catch (error) {
+      document.body.classList.add("dark-theme");
+    }
+  </script>
   <header class="site-header reveal reveal-up" style="--delay: 40ms;">
     <div class="container nav-shell">
       <nav class="navbar" aria-label="Primary navigation">
-        <a class="brand" href="index.html">REYNA AGOES</a>
+        <a class="brand" href="home.html">REYNA AGOES</a>
         <div class="nav-cluster">
           <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="home.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="projects.html">Projects</a></li>
             <li><a href="contact.html">Contact</a></li>

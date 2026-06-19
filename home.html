@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Personal portfolio homepage of Reyna Agoes featuring selected work, digital interests, and contact links."
+  >
+  <title>Reyna Agoes | Personal Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="home">
+  <script>
+    try {
+      document.body.classList.add((localStorage.getItem("portfolio-theme") === "light") ? "light-theme" : "dark-theme");
+    } catch (error) {
+      document.body.classList.add("dark-theme");
+    }
+  </script>
+  <main id="home-main" class="page-main home-main">
+    <header class="site-header reveal reveal-up" style="--delay: 40ms;">
+      <div class="container nav-shell">
+        <nav class="navbar" aria-label="Primary navigation">
+          <a class="brand" href="home.html">REYNA AGOES</a>
+          <div class="nav-cluster">
+            <ul class="nav-links">
+              <li><a href="home.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button
+              class="theme-toggle"
+              id="themeToggle"
+              type="button"
+              aria-label="Toggle color theme"
+              aria-pressed="false"
+            >
+              <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">Light</span>
+              <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">Dark</span>
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <section class="hero section">
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <p class="status-badge reveal reveal-up" style="--delay: 120ms;">Currently building better digital experiences.</p>
+          <p class="eyebrow reveal reveal-up" style="--delay: 180ms;">Personal Portfolio</p>
+          <h1 class="reveal reveal-up" style="--delay: 240ms;">portfolio.</h1>
+          <p class="hero-subheadline reveal reveal-up" style="--delay: 320ms;">A personal space for my work, ideas, and digital experiments.</p>
+          <p class="hero-description reveal reveal-up" style="--delay: 400ms;">
+            I&apos;m Reyna Agoes, a technology student at Institut Teknologi Bandung exploring web development,
+            product design, data, IoT, Roblox UGC, and digital product development.
+          </p>
+          <div class="hero-actions reveal reveal-up" style="--delay: 480ms;">
+            <a class="button button--primary" href="projects.html">View Projects</a>
+            <a class="button button--secondary" href="contact.html">Contact Me</a>
+          </div>
+        </div>
+
+        <aside class="profile-card reveal reveal-right" style="--delay: 280ms;" aria-label="Portrait of Reyna Agoes">
+          <div class="profile-photo">
+            <img src="assets/images/reyna-profile.jpeg" alt="Portrait of Reyna Agoes">
+          </div>
+          <div class="profile-card__content">
+            <p class="panel-label">Profile</p>
+            <p class="profile-note">
+              Based in Indonesia &middot; Exploring digital products, web, UI/UX, IoT, and Roblox UGC.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section--tight-top">
+      <div class="container">
+        <div class="section-heading section-heading--split reveal reveal-up" style="--delay: 80ms;">
+          <div>
+            <p class="section-kicker">Selected Preview</p>
+            <h2>Selected projects from my portfolio</h2>
+          </div>
+          <p class="section-note">
+            A quick look at my work across web platforms, application design, and digital asset presentation.
+          </p>
+        </div>
+
+        <div class="project-grid project-grid--featured">
+          <div class="reveal reveal-up stagger-item" style="--delay: 80ms;">
+            <a
+              class="project-card project-link-card"
+              href="https://sampahkita.vercel.app/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View CuanSampah Platform project"
+            >
+              <div class="project-visual image-visual">
+                <span class="project-number">01</span>
+                <img src="assets/images/cuansampah.png" alt="CuanSampah Platform project preview">
+              </div>
+              <div class="project-content">
+                <p class="project-category">Web Platform</p>
+                <h3>CuanSampah Platform</h3>
+                <p>A waste-management platform concept connecting households, collectors, recyclers, and admins through a structured digital workflow.</p>
+                <span class="project-link-label">View project &nearr;</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="reveal reveal-up stagger-item" style="--delay: 160ms;">
+            <article class="project-card">
+              <div class="project-visual image-visual">
+                <span class="project-number">02</span>
+                <img src="assets/images/food-planner.png" alt="Food Planner project preview">
+              </div>
+              <div class="project-content">
+                <p class="project-category">Web Application</p>
+                <h3>Food Planner</h3>
+                <p>A nutrition and kitchen-budget planning application concept designed to help users organize weekly meals, manage food stock, and control household spending.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="reveal reveal-up stagger-item" style="--delay: 240ms;">
+            <a
+              class="project-card project-link-card"
+              href="https://www.roblox.com/communities/3579419/Rare-Clothes-Group#!/store"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Roblox UGC project"
+            >
+              <div class="project-visual image-visual">
+                <span class="project-number">03</span>
+                <img src="assets/images/roblox-ugc.png" alt="Roblox UGC project preview">
+              </div>
+              <div class="project-content">
+                <p class="project-category">Digital Fashion / 3D Asset</p>
+                <h3>Roblox UGC</h3>
+                <p>A Roblox UGC project focused on presenting digital fashion items for avatar customization and store-style previews.</p>
+                <span class="project-link-label">View project &nearr;</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft language-section">
+      <div class="container">
+        <div class="section-heading reveal reveal-up" style="--delay: 80ms;">
+          <p class="section-kicker">Languages &amp; Tools</p>
+          <h2>Languages &amp; Tools</h2>
+        </div>
+        <div class="language-grid" aria-label="Languages and tools used by Reyna Agoes">
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 80ms;">HTML</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 120ms;">CSS</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 160ms;">JavaScript</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 200ms;">C</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 240ms;">SQL</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 280ms;">MySQL</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 320ms;">PostgreSQL</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 360ms;">Git</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 400ms;">GitHub</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 440ms;">GitHub Pages</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 480ms;">Arduino / ESP32</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 520ms;">UI/UX</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 560ms;">Figma</span>
+          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 600ms;">Roblox UGC</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer footer">
+    <div class="container footer-layout">
+      <p>&copy; <span id="currentYear"></span> Reyna Agoes. Built with HTML, CSS, and JavaScript.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
