@@ -253,10 +253,14 @@ const initThemeAmbience = () => {
   ambience.setAttribute("aria-hidden", "true");
   ambience.innerHTML = `
     <div class="theme-ambience__light">
+      <span class="theme-glow theme-glow--one"></span>
+      <span class="theme-glow theme-glow--two"></span>
       <span class="theme-sun"></span>
       <span class="theme-cloud theme-cloud--one"></span>
       <span class="theme-cloud theme-cloud--two"></span>
       <span class="theme-cloud theme-cloud--three"></span>
+      <span class="theme-block theme-block--one"></span>
+      <span class="theme-block theme-block--two"></span>
       <span class="theme-birds theme-birds--one">
         <svg viewBox="0 0 120 44" focusable="false"><path d="M6 26c7-10 15-14 24-14 5 0 10 1 16 5 6-4 11-5 16-5 10 0 18 4 25 14" /></svg>
       </span>
@@ -269,7 +273,13 @@ const initThemeAmbience = () => {
       <span class="theme-particle theme-particle--four"></span>
     </div>
     <div class="theme-ambience__dark">
+      <span class="theme-glow theme-glow--three"></span>
+      <span class="theme-glow theme-glow--four"></span>
       <span class="theme-moon"></span>
+      <span class="theme-cloud theme-cloud--night-one"></span>
+      <span class="theme-cloud theme-cloud--night-two"></span>
+      <span class="theme-block theme-block--three"></span>
+      <span class="theme-block theme-block--four"></span>
       <div class="theme-stars">
         <span></span><span></span><span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span><span></span><span></span>
