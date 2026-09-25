@@ -953,114 +953,8 @@ a {
   line-height: 1.05;
 }
 
-.voxel-character {
-  position: absolute;
-  right: 10%;
-  bottom: 4%;
-  z-index: 3;
-  width: 92px;
-  height: 190px;
-  transform: translate(calc(var(--voxel-mouse-x) * 5px), calc(var(--voxel-mouse-y) * 3px));
-  animation: voxelCharacterIdle 3.8s ease-in-out infinite;
-}
-
-.voxel-character::after {
-  content: "";
-  position: absolute;
-  left: 14px;
-  bottom: -10px;
-  width: 68px;
-  height: 10px;
-  background: rgba(2, 6, 23, 0.48);
-  box-shadow: 0 0 18px rgba(2, 6, 23, 0.4);
-}
-
-.voxel-head,
-.voxel-body,
-.voxel-arm,
-.voxel-leg {
-  position: absolute;
-  border: 2px solid rgba(191, 212, 255, 0.16);
-  box-shadow:
-    inset -7px -7px 0 rgba(2, 6, 23, 0.26),
-    inset 5px 5px 0 rgba(255, 255, 255, 0.06),
-    4px 4px 0 rgba(2, 6, 23, 0.56);
-}
-
-.voxel-head {
-  left: 22px;
-  top: 0;
-  width: 52px;
-  height: 52px;
-  background: linear-gradient(180deg, #d7b48a, #a87952);
-}
-
-.voxel-eye {
-  position: absolute;
-  top: 22px;
-  width: 6px;
-  height: 6px;
-  background: #07111f;
-}
-
-.eye-left {
-  left: 15px;
-}
-
-.eye-right {
-  right: 15px;
-}
-
-.voxel-face-light {
-  position: absolute;
-  left: 12px;
-  top: 8px;
-  width: 14px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.14);
-}
-
-.voxel-body {
-  left: 18px;
-  top: 56px;
-  width: 60px;
-  height: 74px;
-  background: linear-gradient(180deg, #0f766e 0 22px, #1d4ed8 22px 100%);
-}
-
-.voxel-arm {
-  top: 62px;
-  width: 22px;
-  height: 72px;
-  background: linear-gradient(180deg, #134e4a, #0f1a2f);
-}
-
-.voxel-arm--left {
-  left: 0;
-  animation: voxelArmIdle 3.8s ease-in-out infinite;
-}
-
-.voxel-arm--right {
-  right: 0;
-  animation: voxelArmIdle 3.8s ease-in-out infinite reverse;
-}
-
-.voxel-leg {
-  top: 134px;
-  width: 26px;
-  height: 52px;
-  background: linear-gradient(180deg, #1e3a8a, #111827);
-}
-
-.voxel-leg--left {
-  left: 20px;
-}
-
-.voxel-leg--right {
-  right: 16px;
-}
-
 .voxel-terrain {
+  --ground-top: 40px;
   position: absolute;
   z-index: 2;
   left: 0;
@@ -1068,6 +962,155 @@ a {
   bottom: 0;
   height: 156px;
   pointer-events: none;
+}
+
+.ground-npc-track {
+  position: absolute;
+  z-index: 4;
+  bottom: calc(100% - var(--ground-top));
+  width: 44px;
+  height: 68px;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.ground-npc-track::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 7px;
+  bottom: -3px;
+  width: 30px;
+  height: 5px;
+  background: rgba(2, 6, 23, 0.44);
+  box-shadow: 4px 0 0 rgba(2, 6, 23, 0.2);
+}
+
+.ground-npc-track--walk {
+  left: -54px;
+  animation: groundNpcWalkAcross 14s linear -1.7s infinite;
+}
+
+.ground-npc-track--run {
+  right: -54px;
+  animation: groundNpcRunAcross 10.5s linear -4s infinite;
+}
+
+.ground-npc {
+  position: relative;
+  width: 44px;
+  height: 68px;
+  filter: drop-shadow(2px 2px 0 rgba(2, 6, 23, 0.5));
+  animation: groundNpcBob 420ms steps(2, end) infinite;
+}
+
+.ground-npc--run {
+  animation: groundNpcRunBob 300ms steps(2, end) infinite;
+}
+
+.ground-npc__head,
+.ground-npc__body,
+.ground-npc__arm,
+.ground-npc__leg {
+  position: absolute;
+  border: 2px solid #07111f;
+  box-shadow: inset -3px -3px 0 rgba(2, 6, 23, 0.2), inset 2px 2px 0 rgba(255, 255, 255, 0.1);
+}
+
+.ground-npc__head {
+  top: 0;
+  left: 12px;
+  width: 21px;
+  height: 22px;
+  background: #d7b48a;
+}
+
+.ground-npc__head::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 21px;
+  height: 7px;
+  background: #0f1a2f;
+  box-shadow: 3px 5px 0 -1px #0f1a2f;
+}
+
+.ground-npc__head::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 3px;
+  width: 4px;
+  height: 4px;
+  background: #07111f;
+}
+
+.ground-npc__body {
+  z-index: 2;
+  top: 21px;
+  left: 10px;
+  width: 25px;
+  height: 25px;
+  background: linear-gradient(180deg, #2dd4bf 0 7px, #0f766e 7px 100%);
+}
+
+.ground-npc--run .ground-npc__body {
+  background: linear-gradient(180deg, #8ab4ff 0 7px, #1d4ed8 7px 100%);
+}
+
+.ground-npc--run .ground-npc__head {
+  background: #b98763;
+}
+
+.ground-npc__arm {
+  z-index: 1;
+  top: 23px;
+  width: 8px;
+  height: 25px;
+  background: linear-gradient(180deg, #0f766e 0 11px, #d7b48a 11px 100%);
+  transform-origin: top center;
+  animation: groundNpcArm 420ms steps(2, end) infinite;
+}
+
+.ground-npc--run .ground-npc__arm {
+  background: linear-gradient(180deg, #1d4ed8 0 11px, #b98763 11px 100%);
+  animation-duration: 300ms;
+}
+
+.ground-npc__arm--left {
+  left: 3px;
+}
+
+.ground-npc__arm--right {
+  right: 3px;
+  animation-direction: reverse;
+}
+
+.ground-npc__leg {
+  top: 44px;
+  width: 10px;
+  height: 24px;
+  background: linear-gradient(180deg, #173462 0 18px, #07111f 18px 100%);
+  transform-origin: top center;
+  animation: groundNpcLeg 420ms steps(2, end) infinite;
+}
+
+.ground-npc--run .ground-npc__leg {
+  background: linear-gradient(180deg, #0f1a2f 0 18px, #2dd4bf 18px 100%);
+}
+
+.ground-npc--run .ground-npc__leg {
+  animation-duration: 300ms;
+}
+
+.ground-npc__leg--left {
+  left: 11px;
+}
+
+.ground-npc__leg--right {
+  right: 10px;
+  animation-direction: reverse;
 }
 
 .voxel-terrain::before {
@@ -1150,7 +1193,6 @@ a {
 .tag-web { left: 0; top: 34%; }
 .tag-ui { right: 0; top: 34%; animation-delay: -1.1s; }
 .tag-iot { left: 12%; bottom: 24%; animation-delay: -1.8s; }
-.tag-ugc { right: 8%; bottom: 8%; animation-delay: -0.6s; }
 
 .voxel-opening__scroll {
   position: absolute;
@@ -3800,25 +3842,59 @@ body.light-theme .skills-list span {
   }
 }
 
-@keyframes voxelCharacterIdle {
-  0%,
-  100% {
-    transform: translate(calc(var(--voxel-mouse-x) * 5px), calc(var(--voxel-mouse-y) * 3px));
-  }
-
-  50% {
-    transform: translate(calc(var(--voxel-mouse-x) * 5px), calc((var(--voxel-mouse-y) * 3px) - 5px));
+@keyframes groundNpcWalkAcross {
+  to {
+    transform: translateX(calc(100vw + 104px));
   }
 }
 
-@keyframes voxelArmIdle {
+@keyframes groundNpcRunAcross {
+  to {
+    transform: translateX(calc(-100vw - 104px));
+  }
+}
+
+@keyframes groundNpcBob {
   0%,
   100% {
     transform: translateY(0);
   }
 
   50% {
-    transform: translateY(4px);
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes groundNpcRunBob {
+  0%,
+  100% {
+    transform: translateY(0) scaleX(-1);
+  }
+
+  50% {
+    transform: translateY(-2px) scaleX(-1);
+  }
+}
+
+@keyframes groundNpcArm {
+  0%,
+  100% {
+    transform: rotate(-12deg);
+  }
+
+  50% {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes groundNpcLeg {
+  0%,
+  100% {
+    transform: rotate(14deg);
+  }
+
+  50% {
+    transform: rotate(-14deg);
   }
 }
 
@@ -3880,14 +3956,6 @@ body.light-theme .skills-list span {
 
   .voxel-portal {
     width: min(82%, 500px);
-  }
-
-  .voxel-character {
-    right: 8%;
-    bottom: 15%;
-    transform: scale(0.9);
-    transform-origin: bottom right;
-    animation: none;
   }
 
   .hero-layout,
@@ -4052,50 +4120,8 @@ body.light-theme .skills-list span {
     font-size: 1.28rem;
   }
 
-  .voxel-character {
-    right: 4%;
-    bottom: 15%;
-    width: 70px;
-    height: 146px;
-    transform: scale(0.78);
-    transform-origin: bottom right;
-    animation: none;
-  }
-
-  .voxel-head {
-    left: 17px;
-    width: 42px;
-    height: 42px;
-  }
-
-  .voxel-body {
-    left: 14px;
-    top: 46px;
-    width: 48px;
-    height: 58px;
-  }
-
-  .voxel-arm {
-    top: 50px;
-    width: 18px;
-    height: 56px;
-  }
-
-  .voxel-leg {
-    top: 108px;
-    width: 21px;
-    height: 40px;
-  }
-
-  .voxel-leg--left {
-    left: 16px;
-  }
-
-  .voxel-leg--right {
-    right: 12px;
-  }
-
   .voxel-terrain {
+    --ground-top: 32px;
     bottom: 0;
     height: 118px;
   }
@@ -4130,8 +4156,7 @@ body.light-theme .skills-list span {
     letter-spacing: 0.08em;
   }
 
-  .tag-iot,
-  .tag-ugc {
+  .tag-iot {
     display: none;
   }
 
@@ -4228,8 +4253,9 @@ body.light-theme .skills-list span {
   .voxel-moon,
   .voxel-stars *,
   .voxel-meteor,
-  .voxel-character,
-  .voxel-arm,
+  .ground-npc-track,
+  .ground-npc,
+  .ground-npc__leg,
   .world-loader,
   .world-loader * {
     animation: none !important;
@@ -4246,6 +4272,18 @@ body.light-theme .skills-list span {
   .voxel-scene {
     opacity: 1;
     transform: none;
+  }
+
+  .ground-npc-track--walk {
+    left: 16%;
+  }
+
+  .ground-npc-track--run {
+    right: 16%;
+  }
+
+  .ground-npc--run {
+    transform: scaleX(-1);
   }
 }
 
