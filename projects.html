@@ -3,183 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta
-    name="description"
-    content="Selected projects and experiments by Reyna Agoes across web development, IoT, programming, and Roblox UGC."
-  >
+  <meta name="description" content="Selected projects and experiments by Reyna Agoes across web development, IoT, programming, and Roblox UGC.">
   <title>Projects | Reyna Agoes</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260929-work-repair">
 </head>
-<body data-page="projects">
-  <script>
-    try {
-      document.body.classList.add((localStorage.getItem("portfolio-theme") === "light") ? "light-theme" : "dark-theme");
-    } catch (error) {
-      document.body.classList.add("dark-theme");
-    }
-  </script>
-  <header class="site-header reveal reveal-up" style="--delay: 40ms;">
-    <div class="container nav-shell">
-      <nav class="navbar" aria-label="Primary navigation">
-        <a class="brand" href="home.html">REYNA AGOES</a>
-        <div class="nav-cluster">
-          <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-          <button
-            class="theme-toggle"
-            id="themeToggle"
-            type="button"
-            aria-label="Toggle color theme"
-            aria-pressed="false"
-          >
-            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">Light</span>
-            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">Dark</span>
-          </button>
-        </div>
-      </nav>
-    </div>
+<body class="light-theme page-work" data-page="projects">
+  <header class="home-nav">
+    <nav class="home-nav__inner work-shell" aria-label="Primary navigation">
+      <a class="home-nav__brand site-wordmark" href="home.html" aria-label="Reyna Agoes — Home">
+        <span class="site-wordmark__first">REYNA</span>
+        <span class="site-wordmark__last">AGOES</span>
+      </a>
+      <ul class="home-nav__links">
+        <li><a href="projects.html" aria-current="page">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="page-main">
-    <section class="page-hero">
-      <div class="container">
-        <p class="page-eyebrow reveal reveal-up" style="--delay: 120ms;">Projects</p>
-        <h1 class="page-title reveal reveal-up" style="--delay: 200ms;">Projects</h1>
-        <p class="page-subtitle reveal reveal-up" style="--delay: 280ms;">
-          Selected works, experiments, and projects across web development, IoT, programming, and Roblox UGC.
-        </p>
+  <main class="work-main">
+    <section class="work-hero" aria-labelledby="work-title">
+      <div class="work-shell">
+        <h1 id="work-title"><span>Creating practical</span><span>digital products</span></h1>
       </div>
     </section>
 
-    <section class="section section--compact">
-      <div class="container content-grid">
-        <div class="project-grid">
-          <div class="reveal reveal-up stagger-item" style="--delay: 80ms;">
-            <a
-              class="project-card project-link-card"
-              href="https://sampahkita.vercel.app/login"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View CuanSampah Platform project"
-            >
-              <div class="project-visual image-visual">
-                <span class="project-number">01</span>
-                <img src="assets/images/cuansampah.png" alt="CuanSampah Platform project preview">
-              </div>
-              <div class="project-content">
-                <p class="project-category">Web Platform</p>
-                <h3>CuanSampah Platform</h3>
-                <p>A waste-management platform concept connecting households, collectors, recyclers, and admins through a structured digital workflow.</p>
-                <span class="project-link-label">View project &nearr;</span>
-              </div>
+    <section class="work-index" aria-label="Project archive">
+      <div class="work-shell">
+        <div class="work-controls">
+          <div class="work-filters" aria-label="Filter projects">
+            <button class="is-active" type="button" aria-pressed="true">All</button>
+            <button type="button" aria-pressed="false">Design</button>
+            <button type="button" aria-pressed="false">Development</button>
+          </div>
+          <div class="work-views" aria-label="Project view">
+            <button class="is-active" type="button" aria-label="List view" aria-pressed="true"><span class="work-view-icon work-view-icon--list" aria-hidden="true"></span></button>
+            <button type="button" aria-label="Grid view" aria-pressed="false" disabled><span class="work-view-icon work-view-icon--grid" aria-hidden="true"></span></button>
+          </div>
+        </div>
+
+        <div class="work-table" id="project-table" role="table" aria-label="Selected projects">
+          <div class="work-table__header" role="row">
+            <span role="columnheader">Project</span><span role="columnheader">Type</span><span role="columnheader">Focus</span><span role="columnheader">Year</span>
+          </div>
+          <div class="work-index__list" role="rowgroup">
+            <a class="work-row reveal reveal-up" role="row" href="https://sampahkita.vercel.app/login" target="_blank" rel="noopener noreferrer" data-image="assets/images/cuansampah.png" data-alt="CuanSampah Platform project preview">
+              <h2 role="cell">CuanSampah Platform</h2><span class="work-row__type" role="cell">Web Platform</span><span class="work-row__focus" role="cell">Development</span><span class="work-row__year" role="cell">—</span>
+              <p class="work-row__description">A waste-management platform concept connecting households, collectors, recyclers, and admins through a structured digital workflow.</p>
+              <img class="work-row__image" src="assets/images/cuansampah.png" alt="CuanSampah Platform project preview">
+            </a>
+            <article class="work-row reveal reveal-up" role="row" tabindex="0" data-image="assets/images/focusmate-dashboard.png" data-alt="IoT Focus Monitoring project preview">
+              <h2 role="cell">IoT Focus Monitoring</h2><span class="work-row__type" role="cell">IoT Prototype</span><span class="work-row__focus" role="cell">IoT / Systems</span><span class="work-row__year" role="cell">—</span>
+              <p class="work-row__description">A focus-monitoring prototype using ESP32, sensors, and display modules to observe study environment and body signals.</p>
+              <img class="work-row__image" src="assets/images/focusmate-dashboard.png" alt="IoT Focus Monitoring project preview">
+            </article>
+            <article class="work-row reveal reveal-up" role="row" tabindex="0" data-image="assets/images/rwa-company-profile.png" data-alt="Company Profile Website project preview">
+              <h2 role="cell">Company Profile Website</h2><span class="work-row__type" role="cell">Website Design</span><span class="work-row__focus" role="cell">Web Development</span><span class="work-row__year" role="cell">—</span>
+              <p class="work-row__description">A clean business website concept for presenting company identity, services, products, and contact information.</p>
+              <img class="work-row__image" src="assets/images/rwa-company-profile.png" alt="Company Profile Website project preview">
+            </article>
+            <article class="work-row reveal reveal-up" role="row" tabindex="0" data-image="assets/images/food-planner.png" data-alt="Food Planner project preview">
+              <h2 role="cell">Food Planner</h2><span class="work-row__type" role="cell">Web Application</span><span class="work-row__focus" role="cell">Product Development</span><span class="work-row__year" role="cell">—</span>
+              <p class="work-row__description">A nutrition and kitchen-budget planning application concept designed to help users organize weekly meals, manage food stock, and control household spending.</p>
+              <img class="work-row__image" src="assets/images/food-planner.png" alt="Food Planner project preview">
+            </article>
+            <article class="work-row reveal reveal-up" role="row" tabindex="0" data-image="assets/images/sushimate.jpeg" data-alt="Sushimate Game project preview">
+              <h2 role="cell">Sushimate Game</h2><span class="work-row__type" role="cell">Game Development</span><span class="work-row__focus" role="cell">Programming</span><span class="work-row__year" role="cell">—</span>
+              <p class="work-row__description">A simple game project with interactive gameplay, score tracking, character movement, and order-based mechanics in a sushi-themed environment.</p>
+              <img class="work-row__image" src="assets/images/sushimate.jpeg" alt="Sushimate Game project preview">
+            </article>
+            <article class="work-row reveal reveal-up" role="row" tabindex="0" data-image="assets/images/algorithm-project.png" data-alt="Algorithm Programming Project preview">
+              <h2 role="cell">Algorithm Programming Project</h2><span class="work-row__type" role="cell">Programming</span><span class="work-row__focus" role="cell">Algorithms</span><span class="work-row__year" role="cell">—</span>
+              <p class="work-row__description">A programming project involving data structures, algorithmic logic, and implementation using C.</p>
+              <img class="work-row__image" src="assets/images/algorithm-project.png" alt="Algorithm Programming Project preview">
+            </article>
+            <a class="work-row reveal reveal-up" role="row" href="https://www.roblox.com/communities/3579419/Rare-Clothes-Group#!/store" target="_blank" rel="noopener noreferrer" data-image="assets/images/roblox-ugc.png" data-alt="Roblox UGC project preview">
+              <h2 role="cell">Roblox UGC</h2><span class="work-row__type" role="cell">Digital / 3D</span><span class="work-row__focus" role="cell">Creative Development</span><span class="work-row__year" role="cell">—</span>
+              <p class="work-row__description">A Roblox UGC project focused on creating and presenting digital fashion items for avatar customization, including clothing concepts, item previews, and store-style presentation.</p>
+              <img class="work-row__image" src="assets/images/roblox-ugc.png" alt="Roblox UGC project preview">
             </a>
           </div>
+        </div>
+      </div>
+      <div class="work-preview" aria-hidden="true">
+        <div class="work-preview__media"><img alt=""><img alt=""></div>
+        <span class="work-preview__cta">VIEW <span aria-hidden="true">↗</span></span>
+      </div>
+    </section>
 
-          <div class="reveal reveal-up stagger-item" style="--delay: 160ms;">
-            <article class="project-card">
-            <div class="project-visual image-visual">
-              <span class="project-number">02</span>
-              <img src="assets/images/focusmate-dashboard.png" alt="IoT Focus Monitoring project preview">
-            </div>
-            <div class="project-content">
-              <p class="project-category">IoT Prototype</p>
-              <h3>IoT Focus Monitoring</h3>
-              <p>A focus-monitoring prototype using ESP32, sensors, and display modules to observe study environment and body signals.</p>
-            </div>
-            </article>
-          </div>
-
-          <div class="reveal reveal-up stagger-item" style="--delay: 240ms;">
-            <article class="project-card">
-            <div class="project-visual image-visual">
-              <span class="project-number">03</span>
-              <img src="assets/images/rwa-company-profile.png" alt="Company Profile Website project preview">
-            </div>
-            <div class="project-content">
-              <p class="project-category">Website Design</p>
-              <h3>Company Profile Website</h3>
-              <p>A clean business website concept for presenting company identity, services, products, and contact information.</p>
-            </div>
-            </article>
-          </div>
-
-          <div class="reveal reveal-up stagger-item" style="--delay: 320ms;">
-            <article class="project-card">
-            <div class="project-visual image-visual">
-              <span class="project-number">04</span>
-              <img src="assets/images/food-planner.png" alt="Food Planner project preview">
-            </div>
-            <div class="project-content">
-              <p class="project-category">Web Application</p>
-              <h3>Food Planner</h3>
-              <p>A nutrition and kitchen-budget planning application concept designed to help users organize weekly meals, manage food stock, and control household spending.</p>
-            </div>
-            </article>
-          </div>
-
-          <div class="reveal reveal-up stagger-item" style="--delay: 400ms;">
-            <article class="project-card">
-            <div class="project-visual image-visual">
-              <span class="project-number">05</span>
-              <img class="project-image--center" src="assets/images/sushimate.jpeg" alt="Sushimate Game project preview">
-            </div>
-            <div class="project-content">
-              <p class="project-category">Game Development</p>
-              <h3>Sushimate Game</h3>
-              <p>A simple game project with interactive gameplay, score tracking, character movement, and order-based mechanics in a sushi-themed environment.</p>
-            </div>
-            </article>
-          </div>
-
-          <div class="reveal reveal-up stagger-item" style="--delay: 480ms;">
-            <article class="project-card">
-            <div class="project-visual image-visual">
-              <span class="project-number">06</span>
-              <img src="assets/images/algorithm-project.png" alt="Algorithm Programming Project preview">
-            </div>
-            <div class="project-content">
-              <p class="project-category">Programming</p>
-              <h3>Algorithm Programming Project</h3>
-              <p>A programming project involving data structures, algorithmic logic, and implementation using C.</p>
-            </div>
-            </article>
-          </div>
-
-          <div class="reveal reveal-up stagger-item" style="--delay: 560ms;">
-            <a
-              class="project-card project-link-card"
-              href="https://www.roblox.com/communities/3579419/Rare-Clothes-Group#!/store"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View Roblox UGC project"
-            >
-              <div class="project-visual image-visual">
-                <span class="project-number">07</span>
-                <img src="assets/images/roblox-ugc.png" alt="Roblox UGC project preview">
-              </div>
-              <div class="project-content">
-                <p class="project-category">Digital Fashion / 3D Asset</p>
-                <h3>Roblox UGC</h3>
-                <p>A Roblox UGC project focused on creating and presenting digital fashion items for avatar customization, including clothing concepts, item previews, and store-style presentation.</p>
-                <span class="project-link-label">View project &nearr;</span>
-              </div>
-            </a>
-          </div>
+    <section class="work-contact" aria-labelledby="work-contact-title">
+      <div class="work-shell">
+        <p class="work-label">Next / Contact</p>
+        <div class="work-contact__heading">
+          <h2 id="work-contact-title"><span>Let's work</span><span>together</span></h2>
+          <a href="contact.html">Get in touch <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer footer">
-    <div class="container footer-layout">
-      <p>&copy; <span id="currentYear"></span> Reyna Agoes. Built with HTML, CSS, and JavaScript.</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+  <footer class="work-footer"><div class="work-shell"><p>&copy; <span id="currentYear"></span> Reyna Agoes. Built with HTML, CSS, and JavaScript.</p><a href="home.html">Back home</a></div></footer>
+  <script src="script.js?v=20260929-about-transition"></script>
 </body>
 </html>

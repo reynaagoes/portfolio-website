@@ -3,193 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta
-    name="description"
-    content="About Reyna Agoes, including interests in web development, UI/UX, data, IoT, and Roblox UGC."
-  >
+  <meta name="description" content="About Reyna Agoes, including interests in web development, UI/UX, data, IoT, and Roblox UGC.">
   <title>About | Reyna Agoes</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260929-about-type">
 </head>
-<body data-page="about">
-  <script>
-    try {
-      document.body.classList.add((localStorage.getItem("portfolio-theme") === "light") ? "light-theme" : "dark-theme");
-    } catch (error) {
-      document.body.classList.add("dark-theme");
-    }
-  </script>
-  <header class="site-header reveal reveal-up" style="--delay: 40ms;">
-    <div class="container nav-shell">
-      <nav class="navbar" aria-label="Primary navigation">
-        <a class="brand" href="home.html">REYNA AGOES</a>
-        <div class="nav-cluster">
-          <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-          <button
-            class="theme-toggle"
-            id="themeToggle"
-            type="button"
-            aria-label="Toggle color theme"
-            aria-pressed="false"
-          >
-            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">Light</span>
-            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">Dark</span>
-          </button>
-        </div>
-      </nav>
-    </div>
+<body class="dark-theme page-about" data-page="about">
+  <header class="home-nav">
+    <nav class="home-nav__inner" aria-label="Primary navigation">
+      <a class="home-nav__brand site-wordmark" href="home.html" aria-label="Reyna Agoes — Home">
+        <span class="site-wordmark__first">REYNA</span>
+        <span class="site-wordmark__last">AGOES</span>
+      </a>
+      <ul class="home-nav__links">
+        <li><a href="projects.html">Work</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="page-main">
-    <section class="page-hero">
-      <div class="container">
-        <p class="page-eyebrow reveal reveal-up" style="--delay: 120ms;">About</p>
-        <h1 class="page-title reveal reveal-up" style="--delay: 200ms;">About</h1>
-        <p class="page-subtitle reveal reveal-up" style="--delay: 280ms;">
+  <main class="about-main">
+    <section class="about-hero" aria-labelledby="about-title">
+      <div class="about-shell about-hero__inner">
+        <p class="about-chapter reveal reveal-up" style="--delay: 80ms;">About Reyna Agoes</p>
+        <h1 id="about-title" class="reveal reveal-up" style="--delay: 140ms;">ABOUT</h1>
+        <p class="about-hero__statement reveal reveal-up" style="--delay: 220ms;">
           A closer look at how I think about digital products, interfaces, and practical technology experiments.
         </p>
       </div>
     </section>
 
-    <section class="section section--compact">
-      <div class="container content-grid about-layout">
-        <article class="about-copy reveal reveal-left" style="--delay: 80ms;">
-          <p>
-            I enjoy turning ideas into functional digital products. My current interests include
-            building clean websites, designing simple user experiences, working with data,
-            experimenting with IoT-based systems, and creating digital assets for Roblox UGC.
-          </p>
-        </article>
-
-        <aside class="facts-card reveal reveal-right" style="--delay: 160ms;">
-          <p class="panel-label">Small facts card</p>
-          <div class="fact-row">
-            <span>Focus</span>
-            <strong>Web, UI/UX, Data, IoT, Roblox UGC</strong>
-          </div>
-          <div class="fact-row">
-            <span>Based in</span>
-            <strong>Indonesia</strong>
-          </div>
-          <div class="fact-row">
-            <span>Currently learning</span>
-            <strong>Deployment, Git workflow, product development, and digital asset presentation</strong>
-          </div>
-          <div class="fact-row">
-            <span>Languages &amp; Tools</span>
-            <strong>HTML, CSS, JavaScript, C, SQL, MySQL, PostgreSQL, Git, GitHub, ESP32</strong>
-          </div>
-          <div class="fact-row">
-            <span>Education</span>
-            <strong>ITB &mdash; Information Systems and Technology</strong>
-          </div>
-        </aside>
+    <section class="about-section about-introduction" aria-labelledby="introduction-title">
+      <div class="about-shell about-editorial-grid">
+        <div class="about-section__label reveal reveal-up">
+          <p>01 /</p>
+          <h2 id="introduction-title">Introduction</h2>
+        </div>
+        <p class="about-introduction__copy reveal reveal-up" style="--delay: 100ms;">
+          I enjoy turning ideas into functional digital products. My current interests include
+          building clean websites, designing simple user experiences, working with data,
+          experimenting with IoT-based systems, and creating digital assets for Roblox UGC.
+        </p>
       </div>
     </section>
 
-    <section class="section section--compact">
-      <div class="container">
-        <div class="section-header reveal reveal-up" style="--delay: 80ms;">
-          <p class="section-kicker">Education</p>
-          <h2>Education</h2>
+    <section class="about-section about-facts" aria-labelledby="facts-title">
+      <div class="about-shell">
+        <div class="about-section__label reveal reveal-up">
+          <p>02 /</p>
+          <h2 id="facts-title">At a glance</h2>
         </div>
-        <article class="education-card reveal reveal-up" style="--delay: 160ms;">
-          <a
-            class="education-logo"
-            href="https://itb.ac.id/program-studi-sarjana-sistem-dan-teknologi-informasi"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Institut Teknologi Bandung Program Studi Sistem dan Teknologi Informasi"
-          >
+        <dl class="about-facts__list">
+          <div class="about-fact reveal reveal-up"><dt><span>01</span>Focus</dt><dd>Web, UI/UX, Data, IoT, Roblox UGC</dd></div>
+          <div class="about-fact reveal reveal-up" style="--delay: 60ms;"><dt><span>02</span>Based in</dt><dd>Indonesia</dd></div>
+          <div class="about-fact reveal reveal-up" style="--delay: 120ms;"><dt><span>03</span>Currently learning</dt><dd>Deployment, Git workflow, product development, and digital asset presentation</dd></div>
+          <div class="about-fact reveal reveal-up" style="--delay: 180ms;"><dt><span>04</span>Languages &amp; Tools</dt><dd>HTML, CSS, JavaScript, C, SQL, MySQL, PostgreSQL, Git, GitHub, ESP32</dd></div>
+          <div class="about-fact reveal reveal-up" style="--delay: 240ms;"><dt><span>05</span>Education</dt><dd>ITB &mdash; Information Systems and Technology</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="about-section about-education" aria-labelledby="education-title">
+      <div class="about-shell">
+        <div class="about-section__heading reveal reveal-up"><p>03 / Education</p><h2 id="education-title">Education</h2></div>
+        <article class="about-education__entry reveal reveal-up" style="--delay: 100ms;">
+          <a class="about-education__logo" href="https://itb.ac.id/program-studi-sarjana-sistem-dan-teknologi-informasi" target="_blank" rel="noopener noreferrer" aria-label="Institut Teknologi Bandung Program Studi Sistem dan Teknologi Informasi">
             <img src="assets/images/itb-logo.png" alt="Institut Teknologi Bandung logo">
           </a>
-          <div class="education-content">
-            <p class="panel-label">Academic Background</p>
+          <div class="about-education__title">
+            <p>Academic Background</p>
             <h3>Institut Teknologi Bandung</h3>
-            <div class="education-meta">
-              <p><strong>Program:</strong> Sistem dan Teknologi Informasi</p>
-              <p><strong>School:</strong> Sekolah Teknik Elektro dan Informatika</p>
-              <p><strong>Location:</strong> Bandung, Indonesia</p>
-            </div>
-            <p>
+          </div>
+          <div class="about-education__details">
+            <p><strong>Program:</strong> Sistem dan Teknologi Informasi</p>
+            <p><strong>School:</strong> Sekolah Teknik Elektro dan Informatika</p>
+            <p><strong>Location:</strong> Bandung, Indonesia</p>
+            <p class="about-education__description">
               I am currently studying at Institut Teknologi Bandung, majoring in Information Systems and Technology.
               My academic interests align with web development, product thinking, data, system design, and technology implementation.
             </p>
-            <a
-              class="education-link"
-              href="https://itb.ac.id/program-studi-sarjana-sistem-dan-teknologi-informasi"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View ITB Program Profile
-            </a>
+            <a class="about-text-link" href="https://itb.ac.id/program-studi-sarjana-sistem-dan-teknologi-informasi" target="_blank" rel="noopener noreferrer">View ITB Program Profile <span aria-hidden="true">&nearr;</span></a>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-header reveal reveal-up" style="--delay: 80ms;">
-          <p class="section-kicker">What I&apos;m Exploring</p>
-          <h2>What I&apos;m exploring</h2>
-        </div>
-        <div class="exploration-grid">
-          <article class="info-card reveal reveal-up stagger-item" style="--delay: 80ms;">
-            <p class="project-category">01</p>
-            <h3>Web Development</h3>
-            <p>Building websites that feel structured, clear, responsive, and purposeful across devices.</p>
-          </article>
-          <article class="info-card reveal reveal-up stagger-item" style="--delay: 160ms;">
-            <p class="project-category">02</p>
-            <h3>Product &amp; UI/UX</h3>
-            <p>Designing simple user journeys and interface decisions that keep digital products easy to understand.</p>
-          </article>
-          <article class="info-card reveal reveal-up stagger-item" style="--delay: 240ms;">
-            <p class="project-category">03</p>
-            <h3>Digital Experimentation</h3>
-            <p>Exploring data, connected systems, and digital assets as part of broader product development practice.</p>
-          </article>
+    <section class="about-section about-exploration" aria-labelledby="exploration-title">
+      <div class="about-shell">
+        <div class="about-section__heading reveal reveal-up"><p>04 / Exploring</p><h2 id="exploration-title">What I&apos;m exploring</h2></div>
+        <div class="about-exploration__list">
+          <article class="about-exploration__item reveal reveal-up"><p>01</p><h3>Web Development</h3><p>Building websites that feel structured, clear, responsive, and purposeful across devices.</p></article>
+          <article class="about-exploration__item reveal reveal-up" style="--delay: 80ms;"><p>02</p><h3>Product &amp; UI/UX</h3><p>Designing simple user journeys and interface decisions that keep digital products easy to understand.</p></article>
+          <article class="about-exploration__item reveal reveal-up" style="--delay: 160ms;"><p>03</p><h3>Digital Experimentation</h3><p>Exploring data, connected systems, and digital assets as part of broader product development practice.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section section--soft language-section">
-      <div class="container">
-        <div class="section-header reveal reveal-up" style="--delay: 80ms;">
-          <p class="section-kicker">Languages &amp; Tools</p>
-          <h2>Languages &amp; Tools</h2>
-        </div>
-        <div class="language-grid" aria-label="Languages and tools used by Reyna Agoes">
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 80ms;">HTML</span>
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 120ms;">CSS</span>
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 160ms;">JavaScript</span>
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 200ms;">C</span>
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 240ms;">SQL</span>
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 280ms;">MySQL</span>
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 320ms;">PostgreSQL</span>
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 360ms;">Git</span>
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 400ms;">GitHub</span>
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 440ms;">GitHub Pages</span>
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 480ms;">Arduino / ESP32</span>
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 520ms;">UI/UX</span>
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 560ms;">Figma</span>
-          <span class="language-badge reveal reveal-up stagger-item" style="--delay: 600ms;">Roblox UGC</span>
+    <section class="about-section about-tools" aria-labelledby="tools-title">
+      <div class="about-shell about-editorial-grid">
+        <div class="about-section__label reveal reveal-up"><p>05 /</p><h2 id="tools-title">Languages &amp; Tools</h2></div>
+        <div class="about-tools__list reveal reveal-up" style="--delay: 100ms;" aria-label="Languages and tools used by Reyna Agoes">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>C</span><span>SQL</span><span>MySQL</span><span>PostgreSQL</span><span>Git</span><span>GitHub</span><span>GitHub Pages</span><span>Arduino / ESP32</span><span>UI/UX</span><span>Figma</span><span>Roblox UGC</span>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer footer">
-    <div class="container footer-layout">
-      <p>&copy; <span id="currentYear"></span> Reyna Agoes. Built with HTML, CSS, and JavaScript.</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+  <footer class="about-footer"><div class="about-shell"><p>&copy; <span id="currentYear"></span> Reyna Agoes. Built with HTML, CSS, and JavaScript.</p></div></footer>
+  <script src="script.js?v=20260929-about-transition"></script>
 </body>
 </html>

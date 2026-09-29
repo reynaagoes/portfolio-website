@@ -3,135 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta
-    name="description"
-    content="Contact Reyna Agoes for projects, collaboration, or professional connection."
-  >
+  <meta name="description" content="Contact Reyna Agoes for projects, collaboration, or professional connection.">
   <title>Contact | Reyna Agoes</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260929-about-transition">
 </head>
-<body data-page="contact">
-  <script>
-    try {
-      document.body.classList.add((localStorage.getItem("portfolio-theme") === "light") ? "light-theme" : "dark-theme");
-    } catch (error) {
-      document.body.classList.add("dark-theme");
-    }
-  </script>
-  <header class="site-header reveal reveal-up" style="--delay: 40ms;">
-    <div class="container nav-shell">
-      <nav class="navbar" aria-label="Primary navigation">
-        <a class="brand" href="home.html">REYNA AGOES</a>
-        <div class="nav-cluster">
-          <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-          <button
-            class="theme-toggle"
-            id="themeToggle"
-            type="button"
-            aria-label="Toggle color theme"
-            aria-pressed="false"
-          >
-            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">Light</span>
-            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">Dark</span>
-          </button>
-        </div>
-      </nav>
-    </div>
+<body class="dark-theme page-contact" data-page="contact">
+  <header class="home-nav">
+    <nav class="home-nav__inner" aria-label="Primary navigation">
+      <a class="home-nav__brand site-wordmark" href="home.html" aria-label="Reyna Agoes — Home">
+        <span class="site-wordmark__first">REYNA</span>
+        <span class="site-wordmark__last">AGOES</span>
+      </a>
+      <ul class="home-nav__links">
+        <li><a href="projects.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="page-main">
-    <section class="page-hero">
-      <div class="container">
-        <p class="page-eyebrow reveal reveal-up" style="--delay: 120ms;">Contact</p>
-        <h1 class="page-title reveal reveal-up" style="--delay: 200ms;">Contact</h1>
-        <p class="page-subtitle reveal reveal-up" style="--delay: 280ms;">
-          Interested in discussing a project, collaboration, or just connecting?
-        </p>
+  <main class="contact-main">
+    <section class="contact-hero" aria-labelledby="contact-title">
+      <div class="contact-shell contact-hero__inner">
+        <p class="contact-chapter">Contact Reyna Agoes</p>
+        <h1 id="contact-title">CONTACT</h1>
+        <p class="contact-hero__statement">Interested in discussing a project, collaboration, or just connecting?</p>
       </div>
     </section>
 
-    <section class="section section--compact">
-      <div class="container content-grid contact-layout">
-        <div class="section-header section-header--compact reveal reveal-left" style="--delay: 80ms;">
-          <p class="section-kicker">Reach Out</p>
-          <h2>Let&apos;s connect</h2>
-          <p class="section-note">
-            You can reach me directly by email or through my public profiles.
-          </p>
+    <section class="contact-directory" aria-labelledby="connect-title">
+      <div class="contact-shell">
+        <div class="contact-directory__heading reveal reveal-up">
+          <p>01 / Reach out</p>
+          <div>
+            <h2 id="connect-title">Let&apos;s connect</h2>
+            <p>You can reach me directly by email or through my public profiles.</p>
+          </div>
         </div>
 
-        <div class="contact-card reveal reveal-right" style="--delay: 160ms;">
-          <div class="contact-list">
-            <a class="contact-item" href="mailto:reynaagoes@gmail.com" aria-label="Send an email to Reyna Agoes">
-              <span class="contact-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M3.75 6.75h16.5a1.5 1.5 0 0 1 1.5 1.5v7.5a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5v-7.5a1.5 1.5 0 0 1 1.5-1.5Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"/>
-                  <path d="m3 7.5 9 6 9-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"/>
-                </svg>
-              </span>
-              <span class="contact-copy">
-                <span class="contact-label">Email</span>
-                <span class="contact-value">reynaagoes@gmail.com</span>
-                <span class="contact-meta">Open profile &nearr;</span>
-              </span>
-            </a>
+        <div class="contact-directory__list">
+          <a class="contact-row reveal reveal-up" href="mailto:reynaagoes@gmail.com" aria-label="Send an email to Reyna Agoes">
+            <span class="contact-row__number">01</span>
+            <span class="contact-row__label">Email</span>
+            <strong>reynaagoes@gmail.com</strong>
+            <span class="contact-row__action">Send email <span aria-hidden="true">&nearr;</span></span>
+          </a>
 
-            <a
-              class="contact-item"
-              href="https://github.com/reynaagoes"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open Reyna Agoes GitHub profile"
-            >
-              <span class="contact-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M12 2.75a9.25 9.25 0 0 0-2.92 18.03c.46.09.62-.2.62-.45v-1.75c-2.52.55-3.05-1.08-3.05-1.08-.41-1.04-1-1.32-1-1.32-.82-.56.06-.55.06-.55.9.07 1.38.92 1.38.92.81 1.38 2.11.98 2.63.75.08-.58.31-.98.57-1.21-2.01-.23-4.13-1.01-4.13-4.5 0-.99.35-1.8.92-2.44-.09-.23-.4-1.17.09-2.43 0 0 .75-.24 2.47.93A8.54 8.54 0 0 1 12 7.08c.76 0 1.52.1 2.24.29 1.72-1.17 2.47-.93 2.47-.93.49 1.26.18 2.2.09 2.43.58.64.92 1.45.92 2.44 0 3.5-2.12 4.26-4.15 4.49.32.27.61.81.61 1.64v2.43c0 .25.17.55.63.45A9.25 9.25 0 0 0 12 2.75Z" fill="currentColor"/>
-                </svg>
-              </span>
-              <span class="contact-copy">
-                <span class="contact-label">GitHub</span>
-                <span class="contact-value">@reynaagoes</span>
-                <span class="contact-meta">Open profile &nearr;</span>
-              </span>
-            </a>
+          <a class="contact-row reveal reveal-up" style="--delay: 80ms;" href="https://github.com/reynaagoes" target="_blank" rel="noopener noreferrer" aria-label="Open Reyna Agoes GitHub profile">
+            <span class="contact-row__number">02</span>
+            <span class="contact-row__label">GitHub</span>
+            <strong>@reynaagoes</strong>
+            <span class="contact-row__action">Open profile <span aria-hidden="true">&nearr;</span></span>
+          </a>
 
-            <a
-              class="contact-item"
-              href="https://www.instagram.com/reynaath"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open Reyna Agoes Instagram profile"
-            >
-              <span class="contact-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/>
-                  <circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.7"/>
-                  <circle cx="17.45" cy="6.55" r="1.15" fill="currentColor"/>
-                </svg>
-              </span>
-              <span class="contact-copy">
-                <span class="contact-label">Instagram</span>
-                <span class="contact-value">@reynaath</span>
-                <span class="contact-meta">Open profile &nearr;</span>
-              </span>
-            </a>
-          </div>
+          <a class="contact-row reveal reveal-up" style="--delay: 160ms;" href="https://www.instagram.com/reynaath" target="_blank" rel="noopener noreferrer" aria-label="Open Reyna Agoes Instagram profile">
+            <span class="contact-row__number">03</span>
+            <span class="contact-row__label">Instagram</span>
+            <strong>@reynaath</strong>
+            <span class="contact-row__action">Open profile <span aria-hidden="true">&nearr;</span></span>
+          </a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer footer">
-    <div class="container footer-layout">
-      <p>&copy; <span id="currentYear"></span> Reyna Agoes. Built with HTML, CSS, and JavaScript.</p>
+  <footer class="contact-footer">
+    <div class="contact-shell contact-footer__inner">
+      <p>&copy; <span id="currentYear"></span> Reyna Agoes</p>
+      <p>Built with HTML, CSS, and JavaScript</p>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260929-about-transition"></script>
 </body>
 </html>

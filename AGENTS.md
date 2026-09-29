@@ -1,201 +1,147 @@
 # AGENTS.md
 
-## Purpose
+## MODE
 
-This repository is a small static portfolio website.
+Work fast. Use minimum tokens, tools, commands, and file reads.
 
-Primary goal for coding agents:
-**make the requested change with the smallest possible amount of inspection, reasoning, and code modification.**
+Do ONLY what the user explicitly asks.
 
-Do not treat this repository as a redesign or refactor task unless the user explicitly asks for one.
-
----
-
-## Codex Usage Policy
-
-### Minimize token / usage consumption
-
-1. Read only files directly relevant to the current request.
-2. Do not scan the entire repository unless strictly necessary.
-3. Start from filenames, selectors, text, or components explicitly mentioned by the user.
-4. Use targeted search before opening large files.
-5. Do not repeatedly reread unchanged files.
-6. Do not perform broad codebase audits.
-7. Do not investigate unrelated bugs, styling, accessibility, performance, SEO, or architecture.
-8. Do not install dependencies unless explicitly required.
-9. Prefer editing existing HTML/CSS/JS over introducing new systems.
-10. Stop once the requested task is correctly completed and verified.
+No over-engineering.
+No unrelated cleanup.
+No speculative improvements.
 
 ---
 
-## Fail-Fast Rule
+## BEFORE EDITING
 
-Before editing:
+1. Read this file.
+2. Inspect ONLY files directly relevant to the task.
+3. Understand existing code.
+4. Make the smallest possible change.
 
-1. Identify the exact file(s) responsible for the requested feature.
-2. Identify the relevant element, selector, function, or animation.
-3. Confirm the safest minimal edit.
-
-If the target cannot be identified confidently:
-
-**STOP. Do not guess.**
-
-Report:
-- files inspected,
-- likely relevant selectors/elements,
-- what information is missing.
-
-Do not make speculative edits.
+Do NOT scan the whole repository unless absolutely necessary.
 
 ---
 
-## Scope Control
+## EDITING RULES
 
-Unless explicitly requested, DO NOT:
-
-- redesign the website,
-- refactor unrelated code,
-- rename unrelated classes,
-- reorganize folders,
-- rewrite existing CSS,
-- change navigation,
-- alter typography,
-- modify global colors,
-- change responsive behavior outside the target feature,
-- touch other pages,
-- replace working code for stylistic reasons,
-- add frameworks or libraries,
-- modify assets unrelated to the task.
-
-Preserve the current visual identity and layout.
+- Preserve existing design and content unless asked to change them.
+- Reuse existing HTML, CSS, JS, components, and assets.
+- Do not install packages unless required.
+- Do not refactor unrelated code.
+- Do not rewrite entire files when a small edit is enough.
+- Do not touch unrelated files.
+- Never discard existing user changes.
 
 ---
 
-## Repository Context
+## STRICT LOW-USAGE MODE
 
-This is a static portfolio website using:
+For normal tasks, target:
 
-- HTML
-- CSS
-- JavaScript
-- local image/assets
+- 1–3 file reads
+- 1 focused edit
+- 0–1 validation commands
 
-Typical pages include:
+STOP immediately when the requested task is complete.
 
-- `index.html`
-- `home.html`
-- `about.html`
-- `projects.html`
-- `contact.html`
-- `style.css`
-- `script.js`
-
-There is no need to run `npm install` unless the repository structure later changes and a package manager file actually exists.
-
-Local testing can normally use:
-
-```bash
-python -m http.server 8000
-```
-
-Then open:
-
-```text
-http://localhost:8000
-```
+Do NOT perform extra investigation after finding the solution.
 
 ---
 
-## Editing Strategy
+## BROWSER / SCREENSHOT RULE
 
-For every request:
+NEVER automatically:
 
-### 1. Locate
-Use targeted search for:
-- visible text,
-- relevant class/id names,
-- filenames,
-- existing feature names.
+- launch Chrome or Edge
+- use headless browsers
+- take screenshots
+- view screenshots
+- create browser profiles
+- create temporary test HTML
+- perform visual regression
+- test every page
+- test desktop and mobile
+- repeat failed browser commands
 
-### 2. Inspect
-Open only enough surrounding code to understand the implementation.
+Only do browser or screenshot testing when the user explicitly asks for it.
 
-### 3. Edit
-Make the smallest coherent change.
-
-### 4. Verify
-Check only what is necessary to confirm:
-- requested behavior works,
-- target layout is intact,
-- no obvious regression was introduced.
-
-Do not perform unrelated cleanup.
+For normal HTML/CSS/JS changes, source-level verification is enough.
 
 ---
 
-## Visual Changes
+## VALIDATION
 
-When editing visual elements:
+Validate only what changed.
 
-- preserve the existing pixel / voxel / game-like portfolio aesthetic,
-- reuse existing spacing, colors, shadows, borders, and motion language where possible,
-- avoid introducing a visually unrelated design system,
-- keep decorative animation subtle enough not to compete with portfolio content,
-- ensure decorative elements do not block clicks,
-- keep responsive behavior intact.
+Prefer:
+- code inspection
+- syntax/reference check
 
----
+Do not run broad regression tests.
 
-## Animation Changes
+If one validation command fails, inspect the cause before retrying.
 
-Prefer CSS animation when the requested effect can be implemented cleanly without JavaScript.
-
-Use JavaScript only when behavior genuinely requires state or interaction.
-
-For decorative animations:
-
-- use `pointer-events: none`,
-- avoid expensive continuous DOM updates,
-- prefer `transform` and `opacity`,
-- keep loops smooth,
-- avoid unnecessary libraries.
+Do not repeatedly retry the same command.
 
 ---
 
-## Current Landing Page Rule
+## DESIGN
 
-For landing-page requests involving the existing hero:
+Portfolio direction:
 
-- preserve the hero copy,
-- preserve the portfolio panel,
-- preserve the existing ground/platform,
-- preserve the background/grid,
-- preserve the ENTER PORTFOLIO interaction,
-- do not alter other pages unless explicitly asked.
+- premium
+- dark
+- editorial
+- minimal
+- cinematic
+- bold typography
+- polished motion
 
-If replacing the current Roblox/UGC decorative character, remove only the relevant character and label, then add the requested replacement without redesigning the hero.
+Avoid:
+- Roblox / voxel aesthetics
+- generic portfolio templates
+- excessive cards
+- excessive gradients
+- excessive glow
+- unnecessary animation
 
----
-
-## Response Format
-
-After completing a coding task, respond concisely with only:
-
-1. **Files changed**
-2. **What changed**
-3. **Manual check needed**, if any
-
-Do not provide a long explanation unless requested.
+Preserve existing visual language.
 
 ---
 
-## Priority Order
+## RESPONSIVE
 
-When instructions conflict, follow this order:
+Do not break:
+- desktop
+- tablet
+- mobile
+- navigation
+- text layout
+- overflow
 
-1. User's explicit current request
-2. This `AGENTS.md`
-3. Existing project conventions
-4. General best practices
+Only inspect responsive behavior when the edited code could realistically affect it.
 
-The user's requested scope always takes priority over optional improvements.
+---
+
+## GIT
+
+Do NOT run:
+
+- git add
+- git commit
+- git push
+
+unless explicitly requested.
+
+---
+
+## FINISH
+
+When done, report only:
+
+1. files changed
+2. what changed
+3. validation performed
+
+Then STOP.
