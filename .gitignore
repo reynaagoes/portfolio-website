@@ -1,0 +1,5 @@
+# Local browser verification and cache artifacts
+/.tmp-transition-verify/
+/.edge-phase*/
+/.tmp-edge-debug/
+/.tmp-home-debug/

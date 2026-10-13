@@ -5,20 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Selected projects and experiments by Reyna Agoes across web development, IoT, programming, and Roblox UGC.">
   <title>Projects | Reyna Agoes</title>
-  <link rel="icon" type="image/png" href="/assets/images/logo-ra.png?v=2">
-  <link rel="shortcut icon" type="image/png" href="/assets/images/logo-ra.png?v=2">
-  <link rel="apple-touch-icon" href="/assets/images/logo-ra.png?v=2">
-  <link rel="stylesheet" href="style.css?v=20260929-work-repair">
+  <link rel="icon" type="image/png" href="/assets/images/logo-ra-transparent.png?v=3">
+  <link rel="shortcut icon" href="/assets/images/logo-ra-transparent.png?v=3">
+  <link rel="apple-touch-icon" href="/assets/images/logo-ra-transparent.png?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css?v=20260930-cosmic-heroes">
 </head>
 <body class="light-theme page-work" data-page="projects">
+  <div class="page-transition" aria-hidden="true">
+    <div class="page-transition__label"><span class="page-transition__name"></span></div>
+  </div>
   <header class="home-nav">
     <nav class="home-nav__inner work-shell" aria-label="Primary navigation">
       <a class="home-nav__brand site-wordmark" href="home.html" aria-label="Reyna Agoes — Home">
-        <span class="site-wordmark__first">REYNA</span>
-        <span class="site-wordmark__last">AGOES</span>
+        <img class="site-wordmark__logo" src="assets/images/logo-ra-transparent.png" alt="RA">
       </a>
       <ul class="home-nav__links">
         <li><a href="projects.html" aria-current="page">Work</a></li>
+        <li><a href="experience.html">Experience</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -27,6 +33,7 @@
 
   <main class="work-main">
     <section class="work-hero" aria-labelledby="work-title">
+      <canvas class="editorial-hero-effect" data-hero-effect="work" aria-hidden="true"></canvas>
       <div class="work-shell">
         <h1 id="work-title"><span>Creating practical</span><span>digital products</span></h1>
       </div>
@@ -107,6 +114,6 @@
   </main>
 
   <footer class="work-footer"><div class="work-shell"><p>&copy; <span id="currentYear"></span> Reyna Agoes. Built with HTML, CSS, and JavaScript.</p><a href="home.html">Back home</a></div></footer>
-  <script src="script.js?v=20260929-about-transition"></script>
+  <script src="script.js?v=20260930-segment-glow"></script>
 </body>
 </html>
