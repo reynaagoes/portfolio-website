@@ -5200,7 +5200,6 @@ a.home-work-row {
   margin-left: 3px;
 }
 
-
 .editorial-link,
 .view-all-work {
   display: inline-flex;
@@ -5229,7 +5228,6 @@ a.home-work-row {
   gap: 24px;
   border-color: #f2efe8;
 }
-
 
 .view-all-work {
   margin-top: clamp(32px, 3vw, 48px);
@@ -5277,7 +5275,6 @@ a.home-work-row {
   color: rgba(242, 239, 232, 0.22);
   font-weight: 300;
 }
-
 
 @media (max-width: 900px) {
   .selected-work__intro,
@@ -5359,7 +5356,6 @@ a.home-work-row {
   .home-work-preview {
     display: none;
   }
-
 
   .home-tools__layout {
     gap: 44px;
@@ -7877,7 +7873,7 @@ body.page-contact .contact-hero__statement {
 
   .home-hero__name {
     top: 20vh;
-    font-size: clamp(5rem, 17vw, 19rem);
+    font-size: clamp(4.25rem, 14.5vw, 16rem);
   }
 
   .home-hero__statement {
@@ -7913,7 +7909,7 @@ body.page-contact .contact-hero__statement {
 
   .home-hero__name {
     top: 24vh;
-    font-size: clamp(4rem, 18vw, 10rem);
+    font-size: clamp(3.4rem, 15.3vw, 8.5rem);
   }
 
   .home-hero__statement {
@@ -7945,7 +7941,7 @@ body.page-contact .contact-hero__statement {
     top: 20vh;
     right: 0;
     left: 0;
-    font-size: clamp(3.6rem, 23vw, 7rem);
+    font-size: clamp(3.05rem, 19.5vw, 5.95rem);
   }
 
   .home-hero__canvas::before {
@@ -8043,4 +8039,383 @@ body[data-page="home"] .home-hero::before {
 /* home hero starts on the dive's landing colour, so the page change has no seam */
 body[data-page="home"] .home-hero {
   background: var(--dive-landing);
+}
+
+/* Home hero: only logo, nav, name + portrait, and two quiet hints */
+.home-hero__hint,
+.home-hero__scroll {
+  position: absolute;
+  z-index: 5;
+  bottom: clamp(24px, 3vw, 44px);
+  margin: 0;
+  color: rgba(242, 239, 232, 0.42);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  line-height: 1;
+}
+
+.home-hero__hint {
+  left: clamp(24px, 3vw, 56px);
+  text-transform: lowercase;
+  pointer-events: none;
+}
+
+.home-hero__scroll {
+  right: clamp(24px, 3vw, 56px);
+  left: auto;
+  text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+  .home-hero__hint {
+    left: 20px;
+  }
+
+  .home-hero__scroll {
+    right: 20px;
+    left: auto;
+    bottom: clamp(24px, 3vw, 44px);
+  }
+}
+
+/* moved out of the hero */
+.selected-work__lede {
+  margin: 0 0 18px;
+  color: rgba(242, 239, 232, 0.7);
+  font-size: clamp(1rem, 1.4vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.site-footer .footer-layout {
+  flex-wrap: wrap;
+  gap: 8px 32px;
+}
+
+.footer-disciplines p,
+.footer-meta {
+  margin: 0;
+  color: rgba(242, 239, 232, 0.5);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.footer-disciplines span,
+.footer-meta span {
+  padding: 0 0.5em;
+  opacity: 0.6;
+}
+
+/* Hero: portrait on the pool floor, ripple menu */
+@media (min-width: 701px) {
+  .home-hero__portrait,
+  .home-hero__mask {
+    /* bottom lands on the underwater floor line, same size as before */
+    top: 17vh;
+    height: 82vh;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+  .home-hero__portrait,
+  .home-hero__mask {
+    top: 24vh;
+    height: 70vh;
+  }
+}
+
+@media (max-width: 700px) {
+  .home-hero__portrait,
+  .home-hero__mask {
+    top: 30vh;
+    height: 54vh;
+  }
+}
+
+/* ripple menu */
+.ripple-menu__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 4px;
+  color: inherit;
+  font: inherit;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.ripple-menu__icon svg {
+  display: block;
+  width: 28px;
+  height: 18px;
+  overflow: visible;
+}
+
+.ripple-menu__icon path {
+  transition: d 420ms cubic-bezier(0.22, 1, 0.36, 1), transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation: rippleMenuWave 3.4s ease-in-out infinite;
+}
+
+.ripple-menu__icon path:nth-child(2) { animation-delay: -1.1s; }
+.ripple-menu__icon path:nth-child(3) { animation-delay: -2.2s; }
+
+/* settle flat on hover, focus or while open */
+.ripple-menu__toggle:hover .ripple-menu__icon path,
+.ripple-menu__toggle:focus-visible .ripple-menu__icon path,
+.ripple-menu__toggle[aria-expanded="true"] .ripple-menu__icon path {
+  animation: none;
+  transform: none;
+}
+
+.ripple-menu__toggle:hover .ripple-menu__icon path:nth-child(1),
+.ripple-menu__toggle:focus-visible .ripple-menu__icon path:nth-child(1),
+.ripple-menu__toggle[aria-expanded="true"] .ripple-menu__icon path:nth-child(1) { d: path("M2 4 L 26 4"); }
+
+.ripple-menu__toggle:hover .ripple-menu__icon path:nth-child(2),
+.ripple-menu__toggle:focus-visible .ripple-menu__icon path:nth-child(2),
+.ripple-menu__toggle[aria-expanded="true"] .ripple-menu__icon path:nth-child(2) { d: path("M2 9 L 26 9"); }
+
+.ripple-menu__toggle:hover .ripple-menu__icon path:nth-child(3),
+.ripple-menu__toggle:focus-visible .ripple-menu__icon path:nth-child(3),
+.ripple-menu__toggle[aria-expanded="true"] .ripple-menu__icon path:nth-child(3) { d: path("M2 14 L 26 14"); }
+
+@keyframes rippleMenuWave {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-2.2px); }
+}
+
+.home-nav__inner .ripple-menu__panel {
+  position: absolute;
+  top: calc(100% - 12px);
+  right: clamp(20px, 3vw, 56px);
+  z-index: 25;
+  display: grid;
+  gap: 2px;
+  min-width: 190px;
+  margin: 0;
+  padding: 14px 18px;
+  list-style: none;
+  background: rgba(6, 26, 32, 0.78);
+  border: 1px solid rgba(140, 215, 215, 0.16);
+  border-radius: 4px;
+  backdrop-filter: blur(14px);
+  /* opens like a ripple spreading from the button */
+  clip-path: circle(0% at 86% 0%);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    clip-path 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 320ms ease,
+    transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.home-nav__inner .ripple-menu__panel.is-open {
+  clip-path: circle(160% at 86% 0%);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.home-nav__inner .ripple-menu__panel li {
+  overflow: hidden;
+}
+
+.home-nav__inner .ripple-menu__panel a {
+  display: block;
+  padding: 7px 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0;
+  translate: 0 110%;
+  transition: opacity 360ms ease, translate 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.home-nav__inner .ripple-menu__panel.is-open a {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.home-nav__inner .ripple-menu__panel.is-open li:nth-child(1) a { transition-delay: 90ms; }
+.home-nav__inner .ripple-menu__panel.is-open li:nth-child(2) a { transition-delay: 150ms; }
+.home-nav__inner .ripple-menu__panel.is-open li:nth-child(3) a { transition-delay: 210ms; }
+.home-nav__inner .ripple-menu__panel.is-open li:nth-child(4) a { transition-delay: 270ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ripple-menu__icon path {
+    animation: none;
+  }
+
+  .home-nav__inner .ripple-menu__panel,
+  .home-nav__inner .ripple-menu__panel a {
+    transition: none;
+  }
+}
+
+/* Hero: head-only portrait, menu in the corner, quiet corner hints */
+.home-nav__inner {
+  justify-content: space-between;
+}
+
+/* the four links live only inside the panel */
+.home-nav__inner .ripple-menu__panel {
+  position: absolute;
+  top: calc(100% - 12px);
+  right: clamp(20px, 3vw, 56px);
+  left: auto;
+  z-index: 25;
+  display: grid;
+  flex: none;
+  grid-template-columns: 1fr;
+  justify-items: start;
+  gap: 2px;
+  min-width: 190px;
+}
+
+.ripple-menu__toggle {
+  flex: none;
+  margin-left: auto;
+  background: none;
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+  /* icon and label on one row */
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.ripple-menu__word {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  line-height: 1;
+}
+
+/* portrait cropped to the head, sitting low near the floor line */
+.home-hero__portrait,
+.home-hero__mask {
+  object-fit: cover;
+  object-position: 50% 12%;
+}
+
+@media (min-width: 701px) {
+  .home-hero__portrait,
+  .home-hero__mask {
+    top: auto;
+    bottom: 6vh;
+    left: calc(50% - min(26vw, 400px));
+    width: min(52vw, 800px);
+    height: 62vh;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+  .home-hero__portrait,
+  .home-hero__mask {
+    top: auto;
+    bottom: 8vh;
+    left: calc(50% - 30vw);
+    width: 60vw;
+    height: 52vh;
+  }
+}
+
+@media (max-width: 700px) {
+  .home-hero__portrait,
+  .home-hero__mask {
+    top: auto;
+    bottom: 12vh;
+    left: 8vw;
+    width: 84vw;
+    height: 40vh;
+  }
+}
+
+/* both corner hints share one quiet style */
+.home-hero__hint,
+.home-hero__scroll {
+  position: absolute;
+  top: auto;
+  bottom: clamp(24px, 3vw, 44px);
+  z-index: 5;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: auto;
+  margin: 0;
+  color: rgba(242, 239, 232, 0.42);
+  font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  line-height: 1;
+  text-align: left;
+}
+
+.home-hero__hint {
+  right: auto;
+  left: clamp(20px, 3vw, 56px);
+  text-transform: lowercase;
+  pointer-events: none;
+}
+
+.home-hero__scroll {
+  right: clamp(20px, 3vw, 56px);
+  left: auto;
+  text-transform: uppercase;
+}
+
+/* Hero: portrait back to shoulders-up (shoulders never cropped) */
+.home-hero__portrait,
+.home-hero__mask {
+  /* whole figure inside the frame again: no crop, shoulders never cut off */
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+@media (min-width: 701px) {
+  .home-hero__portrait,
+  .home-hero__mask {
+    top: auto;
+    bottom: 1vh;
+    left: calc(50% - min(30vw, 480px));
+    width: min(60vw, 960px);
+    height: 82vh;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+  .home-hero__portrait,
+  .home-hero__mask {
+    bottom: 1vh;
+    left: 14vw;
+    width: 72vw;
+    height: 70vh;
+  }
+}
+
+@media (max-width: 700px) {
+  .home-hero__portrait,
+  .home-hero__mask {
+    bottom: 2vh;
+    left: 4vw;
+    width: 92vw;
+    height: 54vh;
+  }
+}
+
+/* portrait slightly translucent: the letters read faintly through the face */
+.home-hero__portrait,
+.home-hero__mask {
+  opacity: 0.85;
 }

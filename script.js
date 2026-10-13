@@ -346,11 +346,24 @@ const initHomeHeroPointer = () => {
     overlay.height = Math.round(portraitHeight * dpr);
     maskContext.setTransform(dpr, 0, 0, dpr, 0, 0);
     const style = getComputedStyle(portrait);
-    const scale = Math.min(portraitWidth / portrait.naturalWidth, portraitHeight / portrait.naturalHeight);
+    // match the CSS object-fit/position so the canvas copy lines up with the <img> crop
+    const cover = style.objectFit === "cover";
+    const scale = cover
+      ? Math.max(portraitWidth / portrait.naturalWidth, portraitHeight / portrait.naturalHeight)
+      : Math.min(portraitWidth / portrait.naturalWidth, portraitHeight / portrait.naturalHeight);
     imageWidth = portrait.naturalWidth * scale;
     imageHeight = portrait.naturalHeight * scale;
-    imageX = (portraitWidth - imageWidth) / 2;
-    imageY = (portraitHeight - imageHeight) * (/bottom|100%/.test(style.objectPosition) ? 1 : 0.5);
+    const position = (style.objectPosition || "").split(/\s+/);
+    const share = (token, fallback) => {
+      if (!token) return fallback;
+      if (token.endsWith("%")) return parseFloat(token) / 100;
+      if (/^(left|top)$/.test(token)) return 0;
+      if (/^(right|bottom)$/.test(token)) return 1;
+      if (token === "center") return 0.5;
+      return fallback;
+    };
+    imageX = (portraitWidth - imageWidth) * share(position[0], 0.5);
+    imageY = (portraitHeight - imageHeight) * share(position[1], /bottom|100%/.test(style.objectPosition) ? 1 : 0.5);
     room.width = light.width = Math.max(2, Math.ceil(width / CELL));
     room.height = light.height = Math.max(2, Math.ceil(height / CELL));
     roomImage = roomContext.createImageData(room.width, room.height);
@@ -607,7 +620,6 @@ const initHomeHeroPointer = () => {
     lightContext.putImageData(lightImage, 0, 0);
     drawParticles(t);
     drawReadability();
-
     drawPortrait(t);
   }
 
@@ -1041,6 +1053,51 @@ const initEditorialHeroEffect = () => {
   window.addEventListener("resize", resize, { passive: true }); resize(); render();
 };
 
+// Ripple menu: one toggle in the corner opens the nav links.
+const initRippleMenu = () => {
+  const toggle = document.querySelector(".ripple-menu__toggle");
+  const panel = document.getElementById("ripple-menu");
+  if (!toggle || !panel) return;
+
+  let open = false;
+  const setOpen = (next) => {
+    if (next === open) return;
+    open = next;
+    toggle.setAttribute("aria-expanded", String(open));
+    if (open) {
+      panel.hidden = false;
+      // let the closed state paint before the ripple opens
+      window.requestAnimationFrame(() => panel.classList.add("is-open"));
+    } else {
+      panel.classList.remove("is-open");
+      const hide = () => { if (!open) panel.hidden = true; };
+      if (prefersReducedMotion.matches) hide();
+      else window.setTimeout(hide, 560);
+    }
+  };
+
+  toggle.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setOpen(!open);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (open && !panel.contains(event.target) && !toggle.contains(event.target)) setOpen(false);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && open) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+
+  // keyboard: leaving the menu entirely closes it
+  panel.addEventListener("focusout", (event) => {
+    if (open && !panel.contains(event.relatedTarget) && event.relatedTarget !== toggle) setOpen(false);
+  });
+};
+
 // Arriving from the index.html dive: surface into the hero instead of popping in.
 const initHomeDiveReveal = () => {
   if (!homeHero) return;
@@ -1111,7 +1168,7 @@ const initHomeDiveReveal = () => {
   ], { duration: 900, delay: 450, easing: ease, fill: "backwards" });
 
   // 6. Nav and small text last.
-  document.querySelectorAll(".home-nav, .home-hero__statement, .home-hero__disciplines, .home-hero__meta, .home-hero__scroll")
+  document.querySelectorAll(".home-nav, .home-hero__hint, .home-hero__scroll")
     .forEach((element, index) => {
       element.animate([{ opacity: 0 }, { opacity: 1 }],
         { duration: 500, delay: 1050 + index * 40, easing: ease, fill: "backwards" });
@@ -1129,6 +1186,7 @@ if (document.readyState === "loading") {
     initPortfolioIntro();
     initHomeHeroPointer();
     initHomeDiveReveal();
+    initRippleMenu();
     initEditorialHeroEffect();
     initHomeWorkPreview();
     initRevealAnimations();
@@ -1138,6 +1196,7 @@ if (document.readyState === "loading") {
   initPortfolioIntro();
   initHomeHeroPointer();
   initHomeDiveReveal();
+  initRippleMenu();
   initEditorialHeroEffect();
   initHomeWorkPreview();
   initRevealAnimations();
