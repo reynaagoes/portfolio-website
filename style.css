@@ -99,6 +99,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Work and Experience are temporarily out of the public navigation (their pages stay live at their URLs).
+   To bring them back, delete this rule; the markup only carries a data-nav-hidden marker. */
+[data-nav-hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -4387,7 +4393,8 @@ body[data-page="experience"] {
 .experience-table__head,
 .experience-row {
   display: grid;
-  grid-template-columns: minmax(110px, 0.7fr) minmax(260px, 2fr) minmax(190px, 1.25fr) minmax(260px, 1.65fr);
+  /* zero minimums: the fixed ones summed past 900px and pushed tablets (701-980px) sideways */
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 2fr) minmax(0, 1.25fr) minmax(0, 1.65fr);
   gap: clamp(22px, 3vw, 52px);
   align-items: start;
 }
@@ -6845,7 +6852,6 @@ body[data-page="projects"] .work-shell {
 
 body[data-page="projects"] .home-nav__inner.work-shell {
   min-height: 92px;
-  padding-inline: clamp(32px, 8vw, 130px);
 }
 
 body[data-page="projects"] .work-hero {
@@ -6879,6 +6885,11 @@ body[data-page="projects"] .work-index {
   justify-content: space-between;
   align-items: center;
   gap: 36px;
+}
+
+/* filtered-out rows (initWorkFilters); beats the grid display set on .work-row */
+.work-row[hidden] {
+  display: none !important;
 }
 
 .work-filters,
@@ -7068,11 +7079,6 @@ body[data-page="projects"] .work-preview__cta {
 }
 
 @media (max-width: 768px) {
-  body[data-page="projects"] .work-shell,
-  body[data-page="projects"] .home-nav__inner.work-shell {
-    padding-inline: 20px;
-  }
-
   body[data-page="projects"] .work-hero {
     padding-top: 174px;
     padding-bottom: 104px;
@@ -8030,6 +8036,19 @@ body[data-page="home"] .home-hero::before {
   animation: poolBubble var(--rise) cubic-bezier(0.3, 0, 0.6, 1) var(--delay) forwards;
 }
 
+/* underside of the water surface seen from just below: brightest toward the light (top left),
+   rippled by the shared refraction filter, never a hard edge */
+.pool-dive__surface {
+  position: absolute;
+  inset: -12% -10% 46%;
+  background:
+    radial-gradient(60% 70% at 36% 0%, rgba(196, 246, 240, 0.5), rgba(120, 214, 220, 0.2) 42%, transparent 72%),
+    radial-gradient(90% 60% at 50% 0%, rgba(80, 180, 190, 0.18), transparent 70%);
+  opacity: 0;
+  transform-origin: 40% 0%;
+  pointer-events: none;
+}
+
 @keyframes poolBubble {
   0% { opacity: 0; transform: translate(0, 0); }
   20% { opacity: 0.9; }
@@ -8418,4 +8437,2140 @@ body[data-page="home"] .home-hero {
 .home-hero__portrait,
 .home-hero__mask {
   opacity: 0.85;
+}
+
+/* Home dive: one locked screen, the camera travels through the portrait into the tunnel */
+html:has(body.page-home),
+body.page-home {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.page-home .selected-work,
+.page-home .site-footer,
+.page-home .home-hero::after {
+  display: none;
+}
+
+.page-home .home-hero {
+  height: 100vh;
+  height: 100svh;
+}
+
+.page-home .home-hero__canvas {
+  transform-origin: 50% 38%;
+  will-change: transform, opacity;
+}
+
+.page-home .home-hero__field {
+  transform-origin: 50% 46%;
+}
+
+.home-dive__title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.home-dive {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  perspective: 900px;
+  perspective-origin: 50% 46%;
+  pointer-events: none;
+}
+
+.home-dive__door {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: -0.6em;
+  color: inherit;
+  font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: clamp(2.6rem, 8vw, 8rem);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  text-decoration: none;
+  opacity: 0;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  transition: color 240ms ease;
+}
+
+.home-dive__door--about {
+  left: clamp(20px, 12vw, 200px);
+}
+
+.home-dive__door--contact {
+  right: clamp(20px, 12vw, 200px);
+  align-items: flex-end;
+}
+
+.home-dive__index {
+  font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  opacity: 0.5;
+}
+
+.home-dive.is-open .home-dive__door {
+  pointer-events: auto;
+}
+
+.home-dive__door:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 10px;
+}
+
+@media (max-width: 700px) {
+  .home-dive__door {
+    font-size: clamp(2.2rem, 13vw, 4rem);
+  }
+
+  .home-dive__door--about {
+    top: 36%;
+    left: 8vw;
+  }
+
+  .home-dive__door--contact {
+    top: 62%;
+    right: 8vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-home .home-hero__canvas,
+  .home-dive__door {
+    transition: opacity 400ms ease, color 240ms ease;
+  }
+}
+
+/* ==========================================================================
+   Inner pages design system (Work, About, Experience, Contact).
+   These pages are always deep water, so nothing here depends on the theme class.
+   One set of tokens, one container, one type scale, one palette, one water scene.
+   ========================================================================== */
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) {
+  --ds-bg: #061014;
+  --ds-bg-2: #0b242a;
+  --ds-text: #f2f7f7;
+  --ds-muted: #9fb8bd;
+  --ds-accent: #4dc9d0;
+  --ds-line: rgba(159, 184, 189, 0.14);
+  --ds-panel: rgba(11, 36, 42, 0.42);
+  --ds-panel-hover: rgba(11, 36, 42, 0.68);
+  --ds-max: 1320px;
+  --ds-gutter: clamp(20px, 5vw, 72px);
+  --ds-section: clamp(72px, 10vw, 136px);
+  --ds-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ds-dur: 240ms;
+  --ds-font: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+  /* legacy tokens follow the palette */
+  --accent: var(--ds-accent);
+  --accent-strong: var(--ds-accent);
+  --text: var(--ds-text);
+  --text-strong: var(--ds-text);
+  --text-soft: var(--ds-muted);
+  --text-muted: var(--ds-muted);
+  --border: var(--ds-line);
+  --page-inline: var(--ds-gutter);
+  --text-primary: var(--ds-text);
+  color: var(--ds-text);
+  font-family: var(--ds-font);
+  /* brighter water near the surface, deep water below */
+  background: linear-gradient(180deg, var(--ds-bg-2) 0, var(--ds-bg) 70vh) no-repeat, var(--ds-bg);
+}
+
+/* Water: the hero canvas is pinned behind the whole page; sections float in it */
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) .editorial-hero-effect {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) :is(.work-hero, .about-hero, .experience-hero, .contact-hero) {
+  isolation: auto;
+  min-height: 0;
+}
+
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) :is(main, main > section, main > section > div, main > section > header, main > footer, body > footer, .work-footer, .experience-footer, .contact-footer) {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+}
+
+/* Container: nav and content share the same edges */
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) :is(.work-shell, .about-shell, .experience-shell, .contact-shell, .home-nav__inner) {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(var(--ds-max) + 2 * var(--ds-gutter));
+  margin-inline: auto;
+  padding-inline: var(--ds-gutter);
+}
+
+/* Rhythm: same hero offset and section spacing on every page */
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) main > section:first-of-type > [class*="shell"] {
+  padding-block: clamp(128px, 18vh, 192px) clamp(48px, 7vw, 96px);
+}
+
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) main > section + section {
+  padding-block: var(--ds-section);
+}
+
+/* Type scale */
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) :is(h1, h2, h3, h4, p, li, a, button, input, textarea, label) {
+  font-family: var(--ds-font);
+}
+
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) h1 {
+  max-width: 14ch;
+  font-size: clamp(2.5rem, 7vw, 6.5rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  overflow-wrap: break-word;
+}
+
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) h2:not(.work-row h2) {
+  font-size: clamp(1.875rem, 4vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--ds-text);
+  overflow-wrap: break-word;
+}
+
+/* label-column headings (About "01 / Introduction") must fit their narrow column */
+body.page-about .about-editorial-grid .about-section__label h2 {
+  font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+}
+
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) h3,
+body.page-work .work-row h2 {
+  font-size: clamp(1.0625rem, 1.5vw, 1.3125rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ds-text);
+}
+
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) :is(main p, main li) {
+  max-width: 68ch;
+  line-height: 1.6;
+  color: var(--ds-muted);
+}
+
+/* Hero headings and statements: white easing into cyan, no multicolour shimmer */
+:is(body.page-work .work-hero h1, body.page-about .about-hero h1, body.page-experience .experience-hero h1, body.page-contact .contact-hero h1,
+  body.page-about .about-hero__statement, body.page-contact .contact-hero__statement, body.page-experience .experience-hero__copy) {
+  color: transparent;
+  background-image: linear-gradient(100deg, var(--ds-text) 55%, var(--ds-accent) 130%);
+  background-size: 100% 100%;
+  background-position: 0 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: none;
+}
+
+/* ...but About and Contact heroes start at opacity 0 and rely on their reveal animation to appear */
+@media (prefers-reduced-motion: no-preference) {
+  body.page-about :is(.about-hero h1, .about-hero__statement) {
+    animation: aboutHeroReveal 760ms cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms) forwards;
+  }
+
+  body.page-contact .contact-hero h1 {
+    animation: contactHeroReveal 760ms cubic-bezier(0.22, 1, 0.36, 1) 100ms forwards;
+  }
+
+  /* p. lifts it past the :is() rule above, which takes the specificity of its strongest argument */
+  body.page-contact .contact-hero p.contact-hero__statement {
+    animation: contactHeroReveal 760ms cubic-bezier(0.22, 1, 0.36, 1) 180ms forwards;
+  }
+}
+
+/* Links and buttons: one colour change, one timing, one focus ring */
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) :is(a, button) {
+  transition: color var(--ds-dur) var(--ds-ease), background-color var(--ds-dur) var(--ds-ease), border-color var(--ds-dur) var(--ds-ease), opacity var(--ds-dur) var(--ds-ease);
+}
+
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) main a:hover {
+  color: var(--ds-accent);
+}
+
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) :is(a, button):focus-visible {
+  outline: 1px solid var(--ds-accent);
+  outline-offset: 4px;
+}
+
+/* Former lime CTAs move onto the palette */
+.work-preview__cta,
+.work-contact a:focus-visible,
+body[data-page="projects"] .work-contact a:focus-visible {
+  color: var(--ds-accent, #4dc9d0);
+  border-color: var(--ds-accent, #4dc9d0);
+}
+
+/* Remaining dividers inside the content become palette hairlines */
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) main [class*="shell"] * {
+  border-color: var(--ds-line);
+}
+
+/* Project cards: faint panes of water over the scene */
+body.page-work .work-row {
+  background-color: var(--ds-panel);
+}
+
+body.page-work .work-row:hover,
+body.page-work .work-row:focus-within {
+  background-color: var(--ds-panel-hover);
+}
+
+/* Footers share one layout */
+:is(.work-footer, .experience-footer, .contact-footer, body.page-about .site-footer) {
+  padding-block: clamp(40px, 6vw, 72px);
+  color: var(--ds-muted);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+}
+
+/* Home dive destinations share the accent */
+.home-dive__door:hover,
+.home-dive__door:focus-visible {
+  color: #4dc9d0;
+}
+
+/* ==========================================================================
+   Underwater experience v2
+   One water world: portal transitions, depth with scroll, surfacing reveals,
+   gallery, nav, journey and contact feedback. Motion lives inside
+   prefers-reduced-motion: no-preference; the reduced site stays still.
+   ========================================================================== */
+
+:root {
+  --sea-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --sea-sink: cubic-bezier(0.55, 0, 0.25, 1);
+  --sea-accent: #4dc9d0;
+  --sea-foam: #e9fbfc;
+  /* one camera lens for portals, hero type and the spotlight */
+  --sea-perspective: 1200px;
+}
+
+/* the camera's heading between spaces (data-portal, set per trip): deeper spaces lie below,
+   so travelling down the room drifts up past the lens and the next one rises from beneath */
+body {
+  --portal-rise: -2vh;
+  --portal-arrive: 3vh;
+}
+
+body[data-portal="up"] {
+  --portal-rise: 2vh;
+  --portal-arrive: -3vh;
+}
+
+/* --- Portal: the passage between pages is water, never a black curtain --- */
+.page-transition {
+  background:
+    radial-gradient(120% 90% at 16% -12%, rgba(77, 201, 208, 0.14), transparent 55%),
+    linear-gradient(180deg, #0b242a 0%, #061014 55%, #03090b 100%);
+}
+
+/* the opening of light the camera swims toward, then through */
+.page-transition::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  background: radial-gradient(closest-side, rgba(140, 224, 230, 0.16), rgba(77, 201, 208, 0.05) 45%, transparent 75%);
+  opacity: 0;
+  transform: scale(0.55);
+  pointer-events: none;
+}
+
+/* the veil is the water just left: as dark as that space was (--veil-depth, set by the camera) */
+.page-transition::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(1, 4, 6, 0.55), rgba(1, 4, 6, 0.85));
+  opacity: var(--veil-depth, 0);
+  pointer-events: none;
+}
+
+.page-transition__label {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-transition,
+  .page-transition.is-idle,
+  .page-transition.is-entering,
+  .page-transition.is-exiting {
+    transform: none;
+  }
+
+  .page-transition {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
+  }
+
+  .page-transition::before {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  .page-transition.is-idle {
+    opacity: 0;
+    visibility: hidden;
+    transition: none;
+  }
+
+  .page-transition.is-idle::before {
+    opacity: 0;
+    transform: scale(0.55);
+    transition: none;
+  }
+
+  .page-transition.is-entering {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 560ms cubic-bezier(0.4, 0, 0.2, 1) 260ms, visibility 0s;
+  }
+
+  .page-transition.is-entering::before {
+    opacity: 1;
+    transform: scale(1.2);
+    transition: transform 1000ms var(--sea-ease) 200ms, opacity 600ms ease 260ms;
+  }
+
+  .page-transition.is-exiting {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 820ms cubic-bezier(0.4, 0, 0.2, 1) 140ms, visibility 0s 960ms;
+  }
+
+  .page-transition.is-exiting::before {
+    opacity: 0;
+    transform: scale(2.4);
+    transition: transform 1000ms cubic-bezier(0.4, 0, 0.2, 1), opacity 800ms ease 150ms;
+  }
+
+  /* leaving: the camera swims forward, so the room drifts toward it and past it, losing focus */
+  .portal-target {
+    transform-origin: 50% 40vh;
+    transition: opacity 720ms cubic-bezier(0.4, 0, 0.2, 1), transform 900ms var(--sea-sink), filter 720ms ease;
+  }
+
+  body.portal-out .portal-target {
+    opacity: 0;
+    transform: perspective(var(--sea-perspective)) translate3d(0, var(--portal-rise), 160px);
+    filter: blur(10px) brightness(0.6);
+  }
+
+  /* the move scales content toward the lens; clip it sideways so it never widens the page
+     (a wider page flashes a horizontal scrollbar on desktop and zooms out phones mid-move).
+     main's overflow never clips the pinned canvas: its containing block is the viewport. */
+  :is(body.portal-out, body.portal-in) :is(main, body > header, body > footer) {
+    overflow-x: clip;
+  }
+
+  /* the water itself stays sharp (its own warp is the refraction): the camera pushes into it */
+  body.portal-out .editorial-hero-effect.portal-target {
+    opacity: 0.6;
+    transform: scale(1.08);
+    filter: brightness(0.8);
+  }
+
+  /* arriving: the next room comes up out of the distance in the same water and settles into focus */
+  body.portal-in .portal-target {
+    opacity: 0;
+    transform: perspective(var(--sea-perspective)) translate3d(0, var(--portal-arrive), -180px);
+    filter: blur(10px);
+    transition: none;
+  }
+
+  body.portal-in .editorial-hero-effect.portal-target {
+    opacity: 0.4;
+    transform: scale(1.04);
+    filter: none;
+  }
+
+  body.portal-in.portal-in-go .portal-target {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: opacity 900ms ease 120ms, transform 1200ms var(--sea-ease) 80ms, filter 1000ms ease 80ms;
+  }
+}
+
+/* <main> must never carry a transform: it holds the pinned water canvas and the cursor preview,
+   and a filled transform turned it into their containing block (canvas stretched to the page
+   height, preview offset from the cursor). The portal arrival now handles Work's entrance. */
+.page-work .work-main {
+  animation: none;
+}
+
+/* --- Depth: surface light recedes and the deep thickens as the page scrolls --- */
+.sea-depth {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.sea-depth::before,
+.sea-depth::after {
+  content: "";
+  position: absolute;
+}
+
+/* light from the surface, top left; moves slower than the page and fades with depth */
+.sea-depth::before {
+  inset: -12% -10% 0;
+  background: radial-gradient(70% 55% at 12% 0%, rgba(120, 214, 220, 0.1), transparent 70%);
+  opacity: calc(1 - var(--sea-depth, 0) * 0.85 - var(--sea-floor, 0) - var(--sea-carry, 0));
+  transform: translate3d(0, calc(var(--sea-depth, 0) * -14vh), 0);
+}
+
+/* the deep: darker toward the edges and the bottom, thicker the further down */
+.sea-depth::after {
+  inset: 0;
+  background:
+    radial-gradient(130% 100% at 30% 0%, transparent 35%, rgba(1, 5, 7, 0.7) 100%),
+    linear-gradient(180deg, transparent 0%, rgba(1, 5, 7, 0.55) 100%);
+  /* --sea-carry: darkness carried in from the previous space, settling to zero after arrival */
+  opacity: calc(var(--sea-floor, 0) + var(--sea-depth, 0) * 0.55 + var(--sea-carry, 0));
+}
+
+/* --- Reveal: content surfaces out of the water once, rising and coming into focus --- */
+@media (prefers-reduced-motion: no-preference) {
+  :root .reveal {
+    filter: blur(var(--reveal-blur, 8px));
+  }
+
+  /* only while surfacing: once settled, each element's own hover/focus transitions apply again */
+  :root .reveal:not(.is-settled) {
+    transition:
+      opacity 900ms var(--reveal-ease),
+      transform 1000ms var(--reveal-ease),
+      filter 900ms var(--reveal-ease),
+      color 240ms ease,
+      background-color 240ms ease;
+    transition-delay: var(--delay, 0ms);
+  }
+
+  :root .reveal.is-visible {
+    filter: blur(0);
+  }
+
+  :root .reveal.is-settled {
+    filter: none;
+    transition-delay: 0ms;
+    will-change: auto;
+  }
+}
+
+/* --- Depth images: surfacing from below, tipped back, dim and soft, then sharp (initDepthImages) ---
+   --depth-drift keeps a few pixels of parallax while on screen; the slow transform transition gives it
+   the drag of water. Same function list in both states so the browser interpolates, never jumps. */
+@media (prefers-reduced-motion: no-preference) {
+  .depth-image {
+    opacity: 0;
+    transform: perspective(var(--sea-perspective, 1200px)) translate3d(0, calc(26px + var(--depth-drift, 0px)), -40px) rotateX(5deg);
+    transform-origin: 50% 100%;
+    filter: blur(6px) brightness(0.6) saturate(0.75);
+    transition:
+      opacity 1000ms var(--reveal-ease) 160ms,
+      transform 1300ms var(--reveal-ease) 160ms,
+      filter 1100ms var(--reveal-ease) 160ms;
+  }
+
+  .depth-image.is-surfaced {
+    opacity: 1;
+    transform: perspective(var(--sea-perspective, 1200px)) translate3d(0, var(--depth-drift, 0px), 0) rotateX(0deg);
+    filter: none;
+  }
+}
+
+/* --- Work gallery --- */
+@media (prefers-reduced-motion: no-preference) {
+  /* the active row tips a fraction of a degree toward the cursor */
+  :root .page-work .work-row.is-settled {
+    transform: perspective(1400px) rotateX(0deg) rotateY(0deg);
+    transition:
+      opacity 360ms ease,
+      transform 700ms var(--sea-ease),
+      filter 360ms ease,
+      color 380ms ease,
+      background-color 240ms ease;
+    transition-delay: var(--filter-delay, 0ms);
+  }
+
+  :root .page-work .work-row.is-settled.is-active {
+    transform: perspective(1400px) rotateX(var(--row-rx, 0deg)) rotateY(var(--row-ry, 0deg)) translateZ(6px);
+  }
+
+  /* filters: leaving rows sink away, arriving rows surface in order */
+  :root .page-work .work-row.is-filtering-out {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
+    filter: blur(6px);
+  }
+
+  :root .page-work .work-row.is-filtering-in {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+    filter: blur(6px);
+    transition: none;
+  }
+
+  /* the preview leans into its motion like a pane pulled through water */
+  .page-work .work-preview,
+  .page-work .work-preview.is-visible {
+    transform: translate3d(-50%, -50%, 0) perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  }
+
+  .page-work .work-preview {
+    scale: 0.94;
+    transition: opacity 320ms ease, scale 560ms var(--sea-ease);
+  }
+
+  .page-work .work-preview.is-visible {
+    scale: 1;
+  }
+
+  /* image opens from the middle out, then drifts behind the frame (parallax) */
+  .page-work .work-preview__media {
+    clip-path: inset(16% 10% 16% 10%);
+    transition: clip-path 680ms var(--sea-ease);
+  }
+
+  .page-work .work-preview.is-visible .work-preview__media {
+    clip-path: inset(0);
+  }
+
+  .page-work .work-preview__media img.is-active {
+    transform: translate3d(var(--drift-x, 0px), var(--drift-y, 0px), 0) scale(1.06);
+  }
+
+  /* light from the surface plays across the image, as if seen through the water */
+  .page-work .work-preview__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(165deg, rgba(190, 240, 244, 0.16) 0%, transparent 32%),
+      radial-gradient(60% 40% at 30% 20%, rgba(120, 220, 226, 0.12), transparent 70%),
+      radial-gradient(50% 35% at 70% 80%, rgba(120, 220, 226, 0.08), transparent 70%);
+    background-size: 100% 100%, 180% 180%, 160% 160%;
+    mix-blend-mode: screen;
+    opacity: 0;
+    animation: seaPreviewLight 7s ease-in-out infinite alternate paused;
+    transition: opacity 500ms ease 150ms;
+  }
+
+  .page-work .work-preview.is-visible .work-preview__media::after {
+    opacity: 1;
+    animation-play-state: running;
+  }
+}
+
+@keyframes seaPreviewLight {
+  to {
+    background-position: 0 0, 100% 60%, 0% 100%;
+  }
+}
+
+/* --- Nav: one line of light marks the current page and glides to the hovered link --- */
+.home-nav__links.has-indicator {
+  position: relative;
+}
+
+.home-nav__links.has-indicator a::after {
+  display: none !important;
+}
+
+.home-nav__links .nav-current {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  list-style: none;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--sea-accent) 22%, var(--sea-foam) 50%, var(--sea-accent) 78%, transparent);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-nav__links .nav-current {
+    transition: transform 520ms var(--sea-ease), width 520ms var(--sea-ease), opacity 300ms ease;
+  }
+
+  .home-nav__links.has-indicator a {
+    transition: opacity 320ms ease, color 320ms ease;
+  }
+}
+
+.home-nav__links.has-indicator a:hover,
+.home-nav__links.has-indicator a:focus-visible {
+  color: var(--sea-foam);
+}
+
+/* --- Experience: a thread of light descending past each milestone --- */
+.experience-main {
+  position: relative;
+}
+
+.experience-journey {
+  position: absolute;
+  z-index: 0;
+  width: 1px;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0, rgba(159, 184, 189, 0.14) 5%, rgba(159, 184, 189, 0.14) 95%, transparent);
+}
+
+.experience-journey__fill {
+  position: absolute;
+  inset: 0;
+  transform: scaleY(var(--journey, 0));
+  transform-origin: top;
+  background: linear-gradient(180deg, rgba(77, 201, 208, 0.04), rgba(77, 201, 208, 0.55));
+}
+
+.experience-journey__lantern {
+  position: absolute;
+  top: calc(var(--journey, 0) * 100%);
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--sea-foam) 0, rgba(77, 201, 208, 0.8) 35%, rgba(77, 201, 208, 0) 70%);
+  box-shadow: 0 0 24px 6px rgba(77, 201, 208, 0.16);
+  opacity: min(1, calc(var(--journey, 0) * 30));
+}
+
+.experience-journey__marker {
+  position: absolute;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  border: 1px solid rgba(159, 184, 189, 0.35);
+  border-radius: 50%;
+  background: #061014;
+}
+
+.experience-journey__marker.is-reached {
+  border-color: var(--sea-accent);
+  background: var(--sea-accent);
+  box-shadow: 0 0 0 4px rgba(77, 201, 208, 0.12);
+}
+
+:root .experience-section.is-reached .experience-section__heading > p {
+  color: var(--sea-accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .experience-journey__marker {
+    transition: background-color 600ms ease, border-color 600ms ease, box-shadow 600ms ease;
+  }
+
+  :root .experience-section .experience-section__heading > p {
+    transition: color 600ms ease;
+  }
+}
+
+/* --- Contact: light under the pointer, a ripple on press, details surfacing in turn --- */
+.contact-row {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.contact-row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(420px circle at var(--light-x, 50%) var(--light-y, 50%), rgba(77, 201, 208, 0.13), rgba(77, 201, 208, 0.04) 40%, transparent 70%);
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.contact-row:hover::before,
+.contact-row:focus-visible::before {
+  opacity: 1;
+}
+
+:root .contact-row:hover .contact-row__action,
+:root .contact-row:focus-visible .contact-row__action {
+  color: var(--sea-accent);
+}
+
+.contact-ripple {
+  position: absolute;
+  z-index: -1;
+  width: var(--ripple-size, 300px);
+  aspect-ratio: 1;
+  margin: calc(var(--ripple-size, 300px) / -2) 0 0 calc(var(--ripple-size, 300px) / -2);
+  border: 1px solid rgba(120, 220, 226, 0.45);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(77, 201, 208, 0.1), transparent 60%);
+  pointer-events: none;
+  animation: seaContactRipple 900ms var(--sea-ease) forwards;
+}
+
+@keyframes seaContactRipple {
+  from {
+    opacity: 1;
+    transform: scale(0.02);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .contact-row.reveal > :nth-child(1) { --i: 0; }
+  .contact-row.reveal > :nth-child(2) { --i: 1; }
+  .contact-row.reveal > :nth-child(3) { --i: 2; }
+  .contact-row.reveal > :nth-child(4) { --i: 3; }
+
+  /* translate (not transform) for the entrance, so the existing hover transform keeps working */
+  .contact-row.reveal > :not(.contact-ripple) {
+    opacity: 0;
+    translate: 0 14px;
+    transition:
+      opacity 700ms ease calc(var(--delay, 0ms) + 120ms + var(--i, 0) * 70ms),
+      translate 900ms var(--sea-ease) calc(var(--delay, 0ms) + 120ms + var(--i, 0) * 70ms),
+      transform 240ms var(--sea-ease),
+      color 240ms ease,
+      gap 220ms ease;
+  }
+
+  .contact-row.reveal.is-visible > :not(.contact-ripple) {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* ==========================================================================
+   Underwater experience v3: depth typography and the project spotlight.
+   The continuous camera lives in the portal and depth rules above
+   (--sea-perspective, data-portal, --veil-depth, --sea-carry).
+   ========================================================================== */
+
+/* --- Depth typography: hero headings surface word by word (initDepthTypography) --- */
+:is(body.page-work, body.page-about, body.page-experience, body.page-contact) {
+  --hero-ink: linear-gradient(100deg, var(--ds-text) 55%, var(--ds-accent) 130%);
+}
+
+/* the heading itself stays put (its legacy entrance animations are retired); its words move */
+:root .reveal.reveal-depth {
+  position: relative;
+  opacity: 1;
+  transform: none;
+  filter: none;
+  background-image: none;
+  animation: none !important;
+}
+
+/* each word paints its own slice of the heading's ink, positioned against the heading's box,
+   so the white-to-cyan gradient stays continuous while the words move independently */
+.reveal-depth .depth-word {
+  display: inline-block;
+  padding: 0.14em 0.05em;
+  margin: -0.14em -0.05em;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-image: var(--hero-ink);
+  background-repeat: no-repeat;
+  background-size: var(--ink-w, 100%) var(--ink-h, 100%);
+  background-position: calc(var(--ink-x, 0px) * -1) calc(var(--ink-y, 0px) * -1);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* eyebrow and statement: their legacy entrances are retired in favour of the shared reveal */
+:root .reveal.reveal-depth-line {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* from deep below and tilted back, out of focus, into place */
+  :root .reveal-depth .depth-word {
+    opacity: 0;
+    transform: perspective(var(--sea-perspective)) translate3d(0, 0.38em, -260px) rotateX(24deg);
+    transform-origin: 50% 100%;
+    filter: blur(12px);
+    transition:
+      opacity 1100ms ease,
+      transform 1600ms var(--sea-ease),
+      filter 1300ms var(--sea-ease);
+    transition-delay: calc(var(--delay, 0ms) + var(--word-index, 0) * 90ms);
+  }
+
+  :root .reveal-depth.is-visible .depth-word {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+
+  :root .reveal-depth.is-settled .depth-word {
+    filter: none;
+    transition-delay: 0ms;
+  }
+
+  :root .reveal.reveal-depth-line:not(.is-visible) {
+    opacity: 0;
+    transform: perspective(var(--sea-perspective)) translate3d(0, 0.7em, -140px);
+    filter: blur(8px);
+  }
+
+  :root .reveal.reveal-depth-line.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Project spotlight (Work) --- */
+.spotlight-hint {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+html.spotlight-lock {
+  overflow: hidden;
+}
+
+.spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  padding: clamp(84px, 11vh, 120px) var(--ds-gutter, 24px) clamp(24px, 5vh, 48px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: var(--ds-text, #f2f7f7);
+}
+
+/* display: grid above would otherwise override the hidden attribute */
+.spotlight[hidden] {
+  display: none;
+}
+
+.spotlight:not(.is-open) {
+  pointer-events: none;
+}
+
+.spotlight [hidden] {
+  display: none !important;
+}
+
+/* open water: the page has drifted past the lens, the pinned caustics still show through */
+.spotlight__water {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(80% 60% at 16% 0%, rgba(77, 201, 208, 0.1), transparent 60%),
+    linear-gradient(180deg, rgba(6, 18, 22, 0.62) 0%, rgba(3, 10, 12, 0.86) 100%);
+  opacity: 0;
+}
+
+.spotlight.is-open .spotlight__water {
+  opacity: 1;
+}
+
+.spotlight__close {
+  position: fixed;
+  top: clamp(20px, 3.4vh, 30px);
+  right: var(--ds-gutter, 24px);
+  z-index: 2;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  color: var(--ds-text, #f2f7f7);
+  background: rgba(6, 18, 22, 0.5);
+  border: 1px solid var(--ds-line, rgba(159, 184, 189, 0.14));
+  border-radius: 999px;
+  font: 650 0.75rem/1 var(--ds-font, Inter, sans-serif);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.spotlight__close span {
+  font-size: 1.15rem;
+  letter-spacing: 0;
+}
+
+.spotlight__frame {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr);
+  gap: clamp(28px, 4vw, 72px);
+  align-items: center;
+  width: 100%;
+  max-width: var(--ds-max, 1320px);
+  margin-inline: auto;
+  /* gaps around the content fall through to the water, which closes the spotlight */
+  pointer-events: none;
+}
+
+.spotlight__frame > * {
+  pointer-events: auto;
+}
+
+.spotlight__stage {
+  margin: 0;
+  transform: perspective(var(--sea-perspective)) rotateX(var(--sp-rx, 0deg)) rotateY(var(--sp-ry, 0deg));
+}
+
+.spotlight__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  max-height: 68vh;
+  overflow: hidden;
+  background: rgba(4, 14, 18, 0.72);
+  box-shadow: 0 40px 120px rgba(0, 6, 8, 0.55);
+}
+
+.spotlight__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+}
+
+.spotlight__media img.is-active {
+  opacity: 1;
+}
+
+/* the same surface light as the hover preview, playing across the image */
+.spotlight__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(165deg, rgba(190, 240, 244, 0.14) 0%, transparent 32%),
+    radial-gradient(60% 40% at 30% 20%, rgba(120, 220, 226, 0.1), transparent 70%),
+    radial-gradient(50% 35% at 70% 80%, rgba(120, 220, 226, 0.07), transparent 70%);
+  background-size: 100% 100%, 180% 180%, 160% 160%;
+  mix-blend-mode: screen;
+}
+
+.spotlight__info {
+  display: grid;
+  gap: 18px;
+  align-content: center;
+}
+
+.spotlight__count {
+  margin: 0;
+  color: var(--ds-muted, #9fb8bd);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+}
+
+.spotlight__title {
+  margin: 0;
+  color: var(--ds-text, #f2f7f7);
+  font-size: clamp(2.2rem, 3.6vw, 3.6rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+.spotlight__meta {
+  margin: 0;
+  color: var(--sea-accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.spotlight__description {
+  max-width: 42ch;
+  margin: 0;
+  color: var(--ds-muted, #9fb8bd);
+  font-size: clamp(0.98rem, 1.05vw, 1.08rem);
+  line-height: 1.65;
+}
+
+.spotlight__visit {
+  justify-self: start;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+  padding-bottom: 6px;
+  color: var(--ds-text, #f2f7f7);
+  border-bottom: 1px solid rgba(77, 201, 208, 0.5);
+  font-size: 0.82rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.spotlight__visit:hover,
+.spotlight__visit:focus-visible {
+  color: var(--sea-accent);
+  border-color: var(--sea-accent);
+}
+
+.spotlight__controls {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  max-width: var(--ds-max, 1320px);
+  margin: clamp(20px, 4vh, 40px) auto 0;
+}
+
+.spotlight__step {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  color: var(--ds-text, #f2f7f7);
+  background: transparent;
+  border: 1px solid var(--ds-line, rgba(159, 184, 189, 0.14));
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.spotlight__step:hover,
+.spotlight__step:focus-visible,
+.spotlight__close:hover,
+.spotlight__close:focus-visible {
+  color: var(--sea-accent);
+  border-color: var(--sea-accent);
+}
+
+.spotlight__step:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* the hover preview hands its image to the spotlight */
+body.spotlight-open .work-preview {
+  opacity: 0 !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .spotlight__water {
+    transition: opacity 600ms ease;
+  }
+
+  .spotlight__stage {
+    transition: transform 800ms var(--sea-ease);
+  }
+
+  .spotlight__media::after {
+    animation: seaPreviewLight 7s ease-in-out infinite alternate;
+  }
+
+  .spotlight .spotlight__visit:hover,
+  .spotlight .spotlight__visit:focus-visible {
+    gap: 16px;
+  }
+
+  /* details surface in reading order once the image has arrived (scoped under .spotlight to
+     outrank the site-wide link/button transition rule) */
+  .spotlight .spotlight__info > *,
+  .spotlight .spotlight__controls,
+  .spotlight .spotlight__close {
+    opacity: 0;
+    translate: 0 14px;
+    transition:
+      opacity 600ms ease,
+      translate 800ms var(--sea-ease),
+      color 240ms ease,
+      border-color 240ms ease,
+      gap 240ms ease;
+  }
+
+  .spotlight.is-open .spotlight__info > *,
+  .spotlight.is-open .spotlight__controls,
+  .spotlight.is-open .spotlight__close {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .spotlight.is-open .spotlight__close { transition-delay: 200ms, 200ms, 0ms, 0ms, 0ms; }
+  .spotlight.is-open .spotlight__info > :nth-child(1) { transition-delay: 300ms, 300ms, 0ms, 0ms, 0ms; }
+  .spotlight.is-open .spotlight__info > :nth-child(2) { transition-delay: 370ms, 370ms, 0ms, 0ms, 0ms; }
+  .spotlight.is-open .spotlight__info > :nth-child(3) { transition-delay: 440ms, 440ms, 0ms, 0ms, 0ms; }
+  .spotlight.is-open .spotlight__info > :nth-child(4) { transition-delay: 510ms, 510ms, 0ms, 0ms, 0ms; }
+  .spotlight.is-open .spotlight__info > :nth-child(5) { transition-delay: 580ms, 580ms, 0ms, 0ms, 0ms; }
+  .spotlight.is-open .spotlight__controls { transition-delay: 620ms, 620ms, 0ms, 0ms, 0ms; }
+}
+
+@media (max-width: 860px) {
+  .spotlight {
+    grid-template-rows: auto auto;
+    align-items: start;
+    padding-top: 88px;
+  }
+
+  .spotlight__frame {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .spotlight__media {
+    max-height: 46vh;
+  }
+
+  .spotlight__title {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+  }
+
+  .spotlight__controls {
+    margin-top: 28px;
+  }
+}
+
+/* =====================================================================
+   About: one continuous dive (initAboutStory). Sections are depths in the same water; the pinned
+   canvas behind them dims and diffuses as the page scrolls, so there are no section backgrounds.
+   ===================================================================== */
+.about-story {
+  --story-line: var(--ds-line);
+  --story-muted: var(--ds-muted);
+  --story-accent: var(--ds-accent);
+}
+
+.about-story__section {
+  position: relative;
+  padding-block: clamp(96px, 13vw, 190px);
+  scroll-margin-top: 72px;
+}
+
+.about-story__head {
+  margin-bottom: clamp(36px, 5vw, 72px);
+}
+
+.about-story .about-story__index,
+.about-story .about-story__kicker {
+  margin: 0 0 14px;
+  color: var(--story-accent);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.about-story__title {
+  margin: 0;
+  color: var(--ds-text);
+  font-family: Anton, Impact, sans-serif;
+  font-size: clamp(2.6rem, 6.4vw, 6rem);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+/* hero cue: a drop slides down its line, pointing into the water below */
+.about-story__cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: clamp(32px, 5vw, 56px);
+  color: var(--story-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color var(--ds-dur) ease;
+}
+
+.about-story__cue-line {
+  position: relative;
+  width: 1px;
+  height: 44px;
+  overflow: hidden;
+  background: var(--story-line);
+}
+
+.about-story__cue-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -40%;
+  width: 1px;
+  height: 40%;
+  background: linear-gradient(transparent, var(--story-accent));
+}
+
+.about-story__cue:hover,
+.about-story__cue:focus-visible {
+  color: var(--ds-text);
+}
+
+/* depth gauge: where in the dive the reader is; jumps between sections */
+/* the text column keeps clear of it on wide screens; labels appear to its left only on hover or focus */
+@media (min-width: 1101px) {
+  .about-story .about-shell {
+    padding-right: max(var(--ds-gutter), 96px);
+  }
+}
+
+.about-gauge {
+  position: fixed;
+  z-index: 20;
+  top: 50%;
+  right: clamp(16px, 2.2vw, 36px);
+  translate: 0 -50%;
+}
+
+.about-gauge ol {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0 0 0 1px;
+  list-style: none;
+  border-left: 1px solid var(--story-line);
+}
+
+.about-gauge a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0 8px 14px;
+  color: rgba(159, 184, 189, 0.55);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color var(--ds-dur) ease;
+}
+
+.about-gauge a::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  width: 3px;
+  height: 0;
+  background: var(--story-accent);
+  translate: 0 -50%;
+  transition: height 420ms var(--ds-ease);
+}
+
+.about-gauge em {
+  font-style: normal;
+  position: absolute;
+  right: calc(100% + 18px);
+  padding: 6px 10px;
+  background: rgba(6, 16, 20, 0.86);
+  pointer-events: none;
+  opacity: 0;
+  translate: 6px 0;
+  transition: opacity var(--ds-dur) ease, translate 320ms var(--ds-ease);
+  white-space: nowrap;
+}
+
+.about-gauge a:hover,
+.about-gauge a:focus-visible,
+.about-gauge a.is-current {
+  color: var(--ds-text);
+}
+
+.about-gauge a.is-current::before {
+  height: 100%;
+}
+
+.about-gauge a:hover em,
+.about-gauge a:focus-visible em {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* 01 profile: portrait and introduction side by side */
+.about-profile__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(40px, 7vw, 120px);
+  align-items: center;
+}
+
+.about-profile__media {
+  margin: 0;
+}
+
+.about-profile__frame {
+  --tilt-x: 0;
+  --tilt-y: 0;
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--ds-bg-2);
+  transform: perspective(1100px) rotateX(calc(var(--tilt-y) * -5deg)) rotateY(calc(var(--tilt-x) * 7deg));
+  box-shadow: 0 40px 100px rgba(0, 6, 8, 0.5);
+}
+
+.about-profile__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  scale: 1.08;
+  translate: calc(var(--tilt-x) * -16px) calc(var(--tilt-y) * -16px);
+}
+
+/* underwater grade: light from the top left, deep teal settling at the bottom */
+.about-profile__frame::before,
+.about-profile__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.about-profile__frame::before {
+  z-index: 1;
+  background:
+    linear-gradient(160deg, rgba(150, 230, 232, 0.16) 0%, transparent 38%),
+    linear-gradient(180deg, transparent 45%, rgba(4, 20, 24, 0.62) 100%);
+  mix-blend-mode: soft-light;
+}
+
+/* a patch of surface light follows the cursor across the photo */
+.about-profile__frame::after {
+  z-index: 2;
+  background: radial-gradient(38% 30% at var(--light-x, 50%) var(--light-y, 40%), rgba(160, 236, 236, 0.16), transparent 70%);
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.about-profile__frame.is-lit::after {
+  opacity: 1;
+}
+
+.about-profile__media figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+  margin-top: 18px;
+  color: var(--ds-text);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.about-profile__media figcaption span {
+  color: var(--story-muted);
+  font-weight: 500;
+}
+
+.about-story .about-profile__copy {
+  max-width: 30ch;
+  margin: 0;
+  color: var(--ds-text);
+  font-size: clamp(1.3rem, 2.3vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+}
+
+/* 02 at a glance: readouts that catch the light under the cursor */
+.about-glance__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  margin: 0;
+  border-top: 1px solid var(--story-line);
+}
+
+.about-glance__card {
+  position: relative;
+  min-height: 210px;
+  padding: clamp(24px, 2.6vw, 36px);
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 1px solid var(--story-line);
+  transition: background-color 400ms ease, translate 500ms var(--ds-ease);
+}
+
+.about-glance__card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: radial-gradient(260px circle at var(--light-x, 50%) var(--light-y, 0%), rgba(77, 201, 208, 0.12), transparent 70%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.about-glance__card:hover {
+  background-color: var(--ds-panel);
+  translate: 0 -4px;
+}
+
+.about-glance__card:hover::before {
+  opacity: 1;
+}
+
+.about-glance__card dt {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 36px;
+  color: var(--story-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.about-glance__card dt span {
+  color: var(--story-accent);
+}
+
+.about-glance__card dd {
+  margin: 0;
+  color: var(--ds-text);
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  line-height: 1.45;
+}
+
+/* 03 capabilities: chips drawn toward the cursor (--near from initAboutStory) */
+.about-capabilities__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: clamp(36px, 6vw, 96px);
+  align-items: start;
+}
+
+.about-capabilities__grid .about-story__head {
+  margin-bottom: 0;
+}
+
+.about-capabilities__field {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-story .about-capabilities__field li {
+  max-width: none;
+  --near: 0;
+  padding: 13px 20px;
+  border: 1px solid color-mix(in srgb, var(--story-accent) calc(var(--near) * 70%), var(--story-line));
+  border-radius: 999px;
+  color: color-mix(in srgb, var(--ds-text) calc(55% + var(--near) * 45%), var(--story-muted));
+  background: rgba(11, 36, 42, calc(0.22 + var(--near) * 0.4));
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: translate 420ms var(--ds-ease), border-color 300ms ease, color 300ms ease, background-color 300ms ease;
+}
+
+/* 04 education: a milestone on a line that fills as it is read (--milestone) */
+.about-milestone__entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+}
+
+.about-milestone__track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 47px;
+  width: 1px;
+  background: var(--story-line);
+}
+
+.about-milestone__track span {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--story-accent), rgba(77, 201, 208, 0.2));
+  transform: scaleY(var(--milestone, 0));
+  transform-origin: top;
+}
+
+.about-milestone__marker {
+  position: relative;
+  display: grid;
+  place-items: center;
+  align-self: start;
+  width: 96px;
+  height: 96px;
+  border: 1px solid var(--story-line);
+  border-radius: 50%;
+  background: var(--ds-bg);
+}
+
+.page-about .about-milestone__marker .about-education__logo {
+  width: 54px;
+}
+
+.about-story .about-milestone__body h3 {
+  margin: 0;
+  color: var(--ds-text);
+  font-size: clamp(1.8rem, 3.6vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.about-milestone__facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: clamp(28px, 4vw, 48px) 0;
+  padding-block: 24px;
+  border-block: 1px solid var(--story-line);
+}
+
+.about-milestone__facts dt {
+  margin-bottom: 8px;
+  color: var(--story-muted);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.about-milestone__facts dd {
+  margin: 0;
+  color: var(--ds-text);
+  line-height: 1.45;
+}
+
+.about-story .about-milestone__copy {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--story-muted);
+  line-height: 1.75;
+}
+
+/* 05 exploring: one interest open at a time */
+.about-interests__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--story-line);
+}
+
+.about-story .about-interest {
+  max-width: none;
+  border-bottom: 1px solid var(--story-line);
+}
+
+.about-interest h3 {
+  margin: 0;
+}
+
+.about-interest__toggle {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 32px;
+  align-items: center;
+  width: 100%;
+  padding: clamp(22px, 3vw, 34px) 0;
+  overflow: hidden;
+  isolation: isolate;
+  border: 0;
+  color: var(--story-muted);
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: color 300ms ease;
+}
+
+.about-interest__num {
+  color: var(--story-accent);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.about-interest__name {
+  font-size: clamp(1.5rem, 3.4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  transition: translate 500ms var(--ds-ease);
+}
+
+.about-interest__icon {
+  position: relative;
+  justify-self: end;
+  width: 18px;
+  height: 18px;
+}
+
+.about-interest__icon::before,
+.about-interest__icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transition: rotate 420ms var(--ds-ease);
+}
+
+.about-interest__icon::after {
+  rotate: 90deg;
+}
+
+.about-interest.is-open .about-interest__icon::after {
+  rotate: 0deg;
+}
+
+.about-interest__toggle:hover,
+.about-interest__toggle:focus-visible,
+.about-interest.is-open .about-interest__toggle {
+  color: var(--ds-text);
+}
+
+.about-interest__toggle:hover .about-interest__name {
+  translate: 10px 0;
+}
+
+.about-interest__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 520ms var(--ds-ease);
+}
+
+.about-interest.is-open .about-interest__panel {
+  grid-template-rows: 1fr;
+}
+
+.about-interest__panel > div {
+  overflow: hidden;
+}
+
+.about-story .about-interest__panel p {
+  max-width: 54ch;
+  margin: 0;
+  padding: 0 32px clamp(26px, 3vw, 38px) 64px;
+  color: var(--story-muted);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.7;
+}
+
+/* closing: on to Contact, or back to the surface */
+.about-surface {
+  padding-top: clamp(48px, 6vw, 96px);
+}
+
+.about-surface__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.about-surface__next {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 10px 6px 10px 0;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--ds-text);
+  text-decoration: none;
+}
+
+.about-surface__label {
+  color: var(--story-accent);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.about-surface__word {
+  font-family: Anton, Impact, sans-serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.about-surface__next > [aria-hidden] {
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  transition: translate 420ms var(--ds-ease);
+}
+
+.about-surface__next:hover > [aria-hidden],
+.about-surface__next:focus-visible > [aria-hidden] {
+  translate: 10px 0;
+}
+
+.about-surface__top {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 22px;
+  border: 1px solid var(--story-line);
+  border-radius: 999px;
+  color: var(--story-muted);
+  background: rgba(11, 36, 42, 0.3);
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 300ms ease, border-color 300ms ease, background-color 300ms ease;
+}
+
+.about-surface__top:hover,
+.about-surface__top:focus-visible {
+  border-color: rgba(77, 201, 208, 0.5);
+  color: var(--ds-text);
+  background: rgba(11, 36, 42, 0.6);
+}
+
+.about-story :is(a, button):focus-visible {
+  outline: 1px solid var(--story-accent);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .about-story__cue-line::after {
+    animation: aboutCueDrop 2.4s var(--sea-sink, ease-in-out) infinite;
+  }
+
+  .about-profile__image {
+    transition: translate 600ms var(--ds-ease), opacity 1000ms var(--reveal-ease) 160ms, transform 1300ms var(--reveal-ease) 160ms, filter 1100ms var(--reveal-ease) 160ms;
+  }
+}
+
+@keyframes aboutCueDrop {
+  0% { top: -40%; }
+  70%, 100% { top: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-story *,
+  .about-story *::before,
+  .about-story *::after {
+    transition-duration: 1ms !important;
+  }
+}
+
+@media (max-width: 1100px) {
+  .about-gauge {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .about-profile__grid,
+  .about-capabilities__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-profile__media {
+    width: min(100%, 440px);
+  }
+
+  .about-story .about-profile__copy {
+    max-width: none;
+  }
+
+  .about-milestone__facts {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-story__section {
+    padding-block: 88px;
+  }
+
+  .about-milestone__entry {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .about-milestone__track {
+    left: 31px;
+  }
+
+  .about-milestone__marker {
+    width: 64px;
+    height: 64px;
+  }
+
+  .page-about .about-milestone__marker .about-education__logo {
+    width: 38px;
+  }
+
+  .about-interest__toggle {
+    grid-template-columns: 44px minmax(0, 1fr) 24px;
+  }
+
+  .about-story .about-interest__panel p {
+    padding-left: 44px;
+    padding-right: 0;
+  }
+
+  .about-glance__card {
+    min-height: 0;
+  }
+
+  .about-surface__inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* =====================================================================
+   About + Contact: MON WALLET ocean atmosphere. Same water, bluer and more luminous: the shared
+   tokens are retinted here, the water canvas uses SEA_TINT.ocean (script.js), and the existing
+   .sea-depth layer carries the soft glows. No new elements.
+   ===================================================================== */
+:is(body.page-about, body.page-contact) {
+  --ds-bg: #041c24;
+  --ds-bg-2: #062832;
+  --ds-panel: rgba(11, 48, 59, 0.45);
+  --ds-panel-hover: rgba(18, 67, 80, 0.6);
+}
+
+/* luminous depth: light pooling from the surface at the top left, a fainter glow across the water,
+   the floor settling into #073642 rather than black */
+:is(body.page-about, body.page-contact) .sea-depth {
+  background:
+    radial-gradient(55% 42% at 16% 6%, rgba(54, 170, 189, 0.2), transparent 72%),
+    radial-gradient(45% 38% at 86% 34%, rgba(29, 120, 136, 0.13), transparent 70%),
+    radial-gradient(80% 55% at 50% 112%, rgba(7, 54, 66, 0.55), transparent 72%);
+}
+
+/* the deep thickens into dark teal, never black, so text keeps a calm, even ground */
+:is(body.page-about, body.page-contact) .sea-depth::after {
+  background:
+    radial-gradient(130% 100% at 30% 0%, transparent 38%, rgba(3, 20, 26, 0.72) 100%),
+    linear-gradient(180deg, transparent 0%, rgba(3, 20, 26, 0.5) 100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* the glow breathes on a long, slow cycle (compositor-only: opacity and scale) */
+  :is(body.page-about, body.page-contact) .sea-depth {
+    animation: oceanBreathe 32s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes oceanBreathe {
+  from { opacity: 0.88; scale: 1; }
+  to { opacity: 1; scale: 1.04; }
+}
+
+/* =====================================================================
+   Home portal: the centrepiece in place of the portrait (drawn by initHomeHeroPointer). Positioned
+   with left/top, never a transform, because the script maps the room's light buffer onto it through
+   offsetLeft/offsetTop. The dive zooms the stage on the portal's centre.
+   ===================================================================== */
+.page-home {
+  --portal-size: min(66vmin, 640px);
+  --portal-y: 46vh;
+}
+
+.page-home .home-hero__canvas {
+  transform-origin: 50% var(--portal-y);
+}
+
+.home-portal {
+  position: absolute;
+  z-index: 1;
+  top: calc(var(--portal-y) - var(--portal-size) / 2);
+  left: calc(50% - var(--portal-size) / 2);
+  display: block;
+  width: var(--portal-size);
+  height: var(--portal-size);
+  pointer-events: none;
+}
+
+/* one quiet line under the opening */
+.home-portal__line {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--portal-y) + var(--portal-size) * 0.4);
+  left: 0;
+  width: 100%;
+  margin: 0;
+  color: rgba(200, 236, 236, 0.58);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+/* the line drops away as soon as the dive begins */
+.home-hero.is-diving .home-portal__line {
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+@media (max-width: 700px) {
+  .page-home {
+    --portal-size: min(86vw, 420px);
+    --portal-y: 44vh;
+  }
+}
+
+/* =====================================================================
+   About + Contact: shared interactive reading (initReadingHighlight).
+   Blocks opt in with data-reading. Screen readers get each block once from the hidden copy;
+   the visible words carry a soft selection-style light that walks across them.
+   ===================================================================== */
+.reading-spoken {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* the light sits behind the word: padding with an equal negative margin, so wrapping and spacing never move */
+[data-reading] .reading-word {
+  margin: 0 -0.14em;
+  padding: 0.02em 0.14em 0.06em;
+  border-radius: 0.28em;
+  background-color: rgba(77, 201, 208, 0);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: background-color 320ms ease, color 320ms ease;
+}
+
+[data-reading] .reading-word.is-read {
+  color: #ffffff;
+  background-color: rgba(77, 201, 208, 0.22);
+}
+
+/* big display titles take a lighter wash so the letterforms stay in front */
+.about-story__title .reading-word.is-read,
+.contact-directory__heading h2 .reading-word.is-read {
+  background-color: rgba(77, 201, 208, 0.16);
+}
+
+/* interactive feedback, one language on both pages: cyan focus ring, light under the pointer */
+:is(body.page-about, body.page-contact) main :is(a, button):focus-visible {
+  outline: 1px solid var(--ds-accent);
+  outline-offset: 4px;
+}
+
+.contact-row__action {
+  transition: color 300ms ease;
+}
+
+.contact-row:hover .contact-row__action,
+.contact-row:focus-visible .contact-row__action {
+  color: var(--ds-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reading] .reading-word {
+    transition: none;
+  }
+}
+
+/* reading caret: a thin text cursor resting at the end of the lit word (initReadingHighlight).
+   The element moves and shows/hides; its ::before draws the bar and carries the blink. */
+.reading-caret {
+  position: absolute;
+  z-index: 30;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 1em;
+  margin-left: -1px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease;
+}
+
+.reading-caret::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1px;
+  background: linear-gradient(180deg, rgba(232, 252, 252, 0.95), rgba(120, 220, 226, 0.85));
+  box-shadow: 0 0 5px rgba(77, 201, 208, 0.3);
+}
+
+.reading-caret.is-on {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reading-caret {
+    transition: opacity 240ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1), height 220ms ease;
+  }
+
+  /* appearing: straight into place, no glide in from wherever it last was */
+  .reading-caret.is-jump {
+    transition: opacity 240ms ease;
+  }
+
+  .reading-caret.is-on::before {
+    animation: readingCaretBlink 1.1s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes readingCaretBlink {
+  0%, 35% { opacity: 1; }
+  100% { opacity: 0.3; }
 }

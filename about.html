@@ -5,13 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="About Reyna Agoes, including interests in web development, UI/UX, data, IoT, and Roblox UGC.">
   <title>About | Reyna Agoes</title>
-  <link rel="icon" type="image/png" href="/assets/images/logo-ra-transparent.png?v=3">
-  <link rel="shortcut icon" href="/assets/images/logo-ra-transparent.png?v=3">
-  <link rel="apple-touch-icon" href="/assets/images/logo-ra-transparent.png?v=3">
+  <link rel="canonical" href="https://reynaagoes.github.io/portfolio-website/about.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Reyna Agoes">
+  <meta property="og:title" content="About | Reyna Agoes">
+  <meta property="og:description" content="About Reyna Agoes, including interests in web development, UI/UX, data, IoT, and Roblox UGC.">
+  <meta property="og:url" content="https://reynaagoes.github.io/portfolio-website/about.html">
+  <meta property="og:image" content="https://reynaagoes.github.io/portfolio-website/assets/images/logo-ra.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#061014">
+  <link rel="icon" type="image/png" href="assets/images/logo-ra-transparent.png?v=3">
+  <link rel="shortcut icon" href="assets/images/logo-ra-transparent.png?v=3">
+  <link rel="apple-touch-icon" href="assets/images/logo-ra-transparent.png?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="style.css?v=20260930-cosmic-text-fix">
+  <link rel="stylesheet" href="style.css?v=20261104-caret">
 </head>
 <body class="dark-theme page-about" data-page="about">
   <div class="page-transition" aria-hidden="true">
@@ -23,15 +32,15 @@
         <img class="site-wordmark__logo" src="assets/images/logo-ra-transparent.png" alt="RA">
       </a>
       <ul class="home-nav__links">
-        <li><a href="projects.html">Work</a></li>
-        <li><a href="experience.html">Experience</a></li>
+        <li data-nav-hidden><a href="projects.html">Work</a></li>
+        <li data-nav-hidden><a href="experience.html">Experience</a></li>
         <li><a href="about.html" aria-current="page">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main class="about-main">
+  <main class="about-main about-story">
     <section class="about-hero" aria-labelledby="about-title">
       <canvas class="editorial-hero-effect" data-hero-effect="about" aria-hidden="true"></canvas>
       <div class="about-shell about-hero__inner">
@@ -40,90 +49,133 @@
         <p class="about-hero__statement reveal reveal-up" style="--delay: 220ms;">
           A closer look at how I think about digital products, interfaces, and practical technology experiments.
         </p>
+        <a class="about-story__cue" href="#introduction" data-story-jump data-magnetic>
+          <span class="about-story__cue-line" aria-hidden="true"></span>Dive in
+        </a>
       </div>
     </section>
 
-    <section class="about-section about-introduction" aria-labelledby="introduction-title">
-      <div class="about-shell about-editorial-grid">
-        <div class="about-section__label reveal reveal-up">
-          <p>01 /</p>
-          <h2 id="introduction-title">Introduction</h2>
+    <nav class="about-gauge" aria-label="About sections">
+      <ol>
+        <li><a href="#introduction" data-story-jump><span>01</span><em>Introduction</em></a></li>
+        <li><a href="#facts" data-story-jump><span>02</span><em>At a glance</em></a></li>
+        <li><a href="#tools" data-story-jump><span>03</span><em>Capabilities</em></a></li>
+        <li><a href="#education" data-story-jump><span>04</span><em>Education</em></a></li>
+        <li><a href="#exploration" data-story-jump><span>05</span><em>Exploring</em></a></li>
+      </ol>
+    </nav>
+
+    <section class="about-story__section about-profile" id="introduction" aria-labelledby="introduction-title">
+      <div class="about-shell about-profile__grid">
+        <figure class="about-profile__media">
+          <div class="about-profile__frame" data-story-tilt>
+            <img class="about-profile__image" src="assets/images/reyna-intro.png" alt="Portrait of Reyna Agoes" decoding="async">
+          </div>
+          <figcaption>Reyna Agoes <span>ITB &mdash; Information Systems and Technology</span></figcaption>
+        </figure>
+        <div class="about-profile__text">
+          <header class="about-story__head reveal reveal-up">
+            <p class="about-story__index">01 /</p>
+            <h2 id="introduction-title" class="about-story__title" data-reading>Introduction</h2>
+          </header>
+          <p class="about-profile__copy reveal reveal-up" style="--delay: 100ms;" data-parallax="-0.05" data-reading>I&apos;m interested in financial markets and technology, and I enjoy staying active.</p>
         </div>
-        <p class="about-introduction__copy reveal reveal-up" style="--delay: 100ms;">
-          I enjoy turning ideas into functional digital products. My current interests include
-          building clean websites, designing simple user experiences, working with data,
-          experimenting with IoT-based systems, and creating digital assets for Roblox UGC.
-        </p>
       </div>
     </section>
 
-    <section class="about-section about-facts" aria-labelledby="facts-title">
+    <section class="about-story__section about-glance" id="facts" aria-labelledby="facts-title">
       <div class="about-shell">
-        <div class="about-section__label reveal reveal-up">
-          <p>02 /</p>
-          <h2 id="facts-title">At a glance</h2>
-        </div>
-        <dl class="about-facts__list">
-          <div class="about-fact reveal reveal-up"><dt><span>01</span>Focus</dt><dd>Web, UI/UX, Data, IoT, Roblox UGC</dd></div>
-          <div class="about-fact reveal reveal-up" style="--delay: 60ms;"><dt><span>02</span>Based in</dt><dd>Indonesia</dd></div>
-          <div class="about-fact reveal reveal-up" style="--delay: 120ms;"><dt><span>03</span>Currently learning</dt><dd>Deployment, Git workflow, product development, and digital asset presentation</dd></div>
-          <div class="about-fact reveal reveal-up" style="--delay: 180ms;"><dt><span>04</span>Languages &amp; Tools</dt><dd>HTML, CSS, JavaScript, C, SQL, MySQL, PostgreSQL, Git, GitHub, ESP32</dd></div>
-          <div class="about-fact reveal reveal-up" style="--delay: 240ms;"><dt><span>05</span>Education</dt><dd>ITB &mdash; Information Systems and Technology</dd></div>
+        <header class="about-story__head reveal reveal-up" data-parallax="0.04">
+          <p class="about-story__index">02 /</p>
+          <h2 id="facts-title" class="about-story__title" data-reading>At a glance</h2>
+        </header>
+        <dl class="about-glance__grid">
+          <div class="about-glance__card reveal reveal-up" data-ripple><dt><span>01</span>Focus</dt><dd data-reading>Web, UI/UX, Data, IoT, Roblox UGC</dd></div>
+          <div class="about-glance__card reveal reveal-up" style="--delay: 60ms;" data-ripple><dt><span>02</span>Based in</dt><dd data-reading>Indonesia</dd></div>
+          <div class="about-glance__card reveal reveal-up" style="--delay: 120ms;" data-ripple><dt><span>03</span>Currently learning</dt><dd data-reading>Deployment, Git workflow, product development, and digital asset presentation</dd></div>
+          <div class="about-glance__card reveal reveal-up" style="--delay: 180ms;" data-ripple><dt><span>04</span>Languages &amp; Tools</dt><dd data-reading>HTML, CSS, JavaScript, C, SQL, MySQL, PostgreSQL, Git, GitHub, ESP32</dd></div>
+          <div class="about-glance__card reveal reveal-up" style="--delay: 240ms;" data-ripple><dt><span>05</span>Education</dt><dd data-reading>ITB &mdash; Information Systems and Technology</dd></div>
         </dl>
       </div>
     </section>
 
-    <section class="about-section about-tools" aria-labelledby="tools-title">
-      <div class="about-shell about-editorial-grid">
-        <header class="about-tools__heading reveal reveal-up">
-          <p>02 / Capabilities</p>
-          <h2 id="tools-title">LANGUAGES<br>&amp; TOOLS</h2>
+    <section class="about-story__section about-capabilities" id="tools" aria-labelledby="tools-title">
+      <div class="about-shell about-capabilities__grid">
+        <header class="about-story__head reveal reveal-up" data-parallax="0.05">
+          <p class="about-story__index">03 / Capabilities</p>
+          <h2 id="tools-title" class="about-story__title" data-reading>LANGUAGES<br>&amp; TOOLS</h2>
         </header>
-        <div class="about-tools__list reveal reveal-up" style="--delay: 100ms;" aria-label="Languages and tools used by Reyna Agoes">
-          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>C</span><span>SQL</span><span>MySQL</span><span>PostgreSQL</span><span>Git</span><span>GitHub</span><span>GitHub Pages</span><span>Arduino</span><span>ESP32</span><span>UI/UX</span><span>Figma</span><span>Roblox UGC</span>
-        </div>
+        <ul class="about-capabilities__field reveal reveal-up" style="--delay: 100ms;" aria-label="Languages and tools used by Reyna Agoes">
+          <li>HTML</li><li>CSS</li><li>JavaScript</li><li>C</li><li>SQL</li><li>MySQL</li><li>PostgreSQL</li><li>Git</li><li>GitHub</li><li>GitHub Pages</li><li>Arduino</li><li>ESP32</li><li>UI/UX</li><li>Figma</li><li>Roblox UGC</li>
+        </ul>
       </div>
     </section>
 
-    <section class="about-section about-education" aria-labelledby="education-title">
+    <section class="about-story__section about-milestone" id="education" aria-labelledby="education-title">
       <div class="about-shell">
-        <div class="about-section__heading reveal reveal-up"><p>03 / Education</p><h2 id="education-title">Education</h2></div>
-        <article class="about-education__entry reveal reveal-up" style="--delay: 100ms;">
-          <a class="about-education__logo" href="https://itb.ac.id/program-studi-sarjana-sistem-dan-teknologi-informasi" target="_blank" rel="noopener noreferrer" aria-label="Institut Teknologi Bandung Program Studi Sistem dan Teknologi Informasi">
-            <img src="assets/images/itb-logo.png" alt="Institut Teknologi Bandung logo">
-          </a>
-          <div class="about-education__title">
-            <p>Academic Background</p>
-            <h3>Institut Teknologi Bandung</h3>
+        <header class="about-story__head reveal reveal-up" data-parallax="0.04">
+          <p class="about-story__index">04 / Education</p>
+          <h2 id="education-title" class="about-story__title" data-reading>Education</h2>
+        </header>
+        <article class="about-milestone__entry">
+          <div class="about-milestone__track" aria-hidden="true"><span></span></div>
+          <div class="about-milestone__marker reveal reveal-up">
+            <a class="about-education__logo" href="https://itb.ac.id/program-studi-sarjana-sistem-dan-teknologi-informasi" target="_blank" rel="noopener noreferrer" aria-label="Institut Teknologi Bandung Program Studi Sistem dan Teknologi Informasi">
+              <img src="assets/images/itb-logo.png" alt="Institut Teknologi Bandung logo">
+            </a>
           </div>
-          <div class="about-education__details">
-            <p><strong>Program:</strong> Sistem dan Teknologi Informasi</p>
-            <p><strong>School:</strong> Sekolah Teknik Elektro dan Informatika</p>
-            <p><strong>Location:</strong> Bandung, Indonesia</p>
-            <p class="about-education__description">
+          <div class="about-milestone__body">
+            <div class="reveal reveal-up">
+              <p class="about-story__kicker">Academic Background</p>
+              <h3 data-reading>Institut Teknologi Bandung</h3>
+            </div>
+            <dl class="about-milestone__facts reveal reveal-up" style="--delay: 80ms;">
+              <div><dt>Program</dt><dd data-reading>Sistem dan Teknologi Informasi</dd></div>
+              <div><dt>School</dt><dd data-reading>Sekolah Teknik Elektro dan Informatika</dd></div>
+              <div><dt>Location</dt><dd data-reading>Bandung, Indonesia</dd></div>
+            </dl>
+            <p class="about-milestone__copy reveal reveal-up" style="--delay: 140ms;" data-reading>
               I am currently studying at Institut Teknologi Bandung, majoring in Information Systems and Technology.
               My academic interests align with web development, product thinking, data, system design, and technology implementation.
             </p>
-            <a class="about-text-link" href="https://itb.ac.id/program-studi-sarjana-sistem-dan-teknologi-informasi" target="_blank" rel="noopener noreferrer">View ITB Program Profile <span aria-hidden="true">&nearr;</span></a>
+            <a class="about-text-link reveal reveal-up" style="--delay: 200ms;" href="https://itb.ac.id/program-studi-sarjana-sistem-dan-teknologi-informasi" target="_blank" rel="noopener noreferrer" data-magnetic>View ITB Program Profile <span aria-hidden="true">&nearr;</span></a>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="about-section about-exploration" aria-labelledby="exploration-title">
+    <section class="about-story__section about-interests" id="exploration" aria-labelledby="exploration-title">
       <div class="about-shell">
-        <div class="about-section__heading reveal reveal-up"><p>04 / Exploring</p><h2 id="exploration-title">What I&apos;m exploring</h2></div>
-        <div class="about-exploration__list">
-          <article class="about-exploration__item reveal reveal-up"><p>01</p><h3>Web Development</h3><p>Building websites that feel structured, clear, responsive, and purposeful across devices.</p></article>
-          <article class="about-exploration__item reveal reveal-up" style="--delay: 80ms;"><p>02</p><h3>Product &amp; UI/UX</h3><p>Designing simple user journeys and interface decisions that keep digital products easy to understand.</p></article>
-          <article class="about-exploration__item reveal reveal-up" style="--delay: 160ms;"><p>03</p><h3>Digital Experimentation</h3><p>Exploring data, connected systems, and digital assets as part of broader product development practice.</p></article>
-        </div>
+        <header class="about-story__head reveal reveal-up" data-parallax="0.04">
+          <p class="about-story__index">05 / Exploring</p>
+          <h2 id="exploration-title" class="about-story__title" data-reading>What I&apos;m exploring</h2>
+        </header>
+        <ol class="about-interests__list">
+          <li class="about-interest is-open reveal reveal-up">
+            <h3><button class="about-interest__toggle" type="button" aria-expanded="true" aria-controls="interest-web" data-ripple><span class="about-interest__num">01</span><span class="about-interest__name">Web Development</span><span class="about-interest__icon" aria-hidden="true"></span></button></h3>
+            <div class="about-interest__panel" id="interest-web"><div><p data-reading>Building websites that feel structured, clear, responsive, and purposeful across devices.</p></div></div>
+          </li>
+          <li class="about-interest is-open reveal reveal-up" style="--delay: 80ms;">
+            <h3><button class="about-interest__toggle" type="button" aria-expanded="true" aria-controls="interest-product" data-ripple><span class="about-interest__num">02</span><span class="about-interest__name">Product &amp; UI/UX</span><span class="about-interest__icon" aria-hidden="true"></span></button></h3>
+            <div class="about-interest__panel" id="interest-product"><div><p data-reading>Designing simple user journeys and interface decisions that keep digital products easy to understand.</p></div></div>
+          </li>
+          <li class="about-interest is-open reveal reveal-up" style="--delay: 160ms;">
+            <h3><button class="about-interest__toggle" type="button" aria-expanded="true" aria-controls="interest-experiments" data-ripple><span class="about-interest__num">03</span><span class="about-interest__name">Digital Experimentation</span><span class="about-interest__icon" aria-hidden="true"></span></button></h3>
+            <div class="about-interest__panel" id="interest-experiments"><div><p data-reading>Exploring data, connected systems, and digital assets as part of broader product development practice.</p></div></div>
+          </li>
+        </ol>
       </div>
     </section>
 
+    <section class="about-story__section about-surface" aria-label="Continue">
+      <div class="about-shell about-surface__inner reveal reveal-up">
+        <a class="about-surface__next" href="contact.html" data-magnetic data-ripple><span class="about-surface__label">Next</span><span class="about-surface__word">Contact</span><span aria-hidden="true">&rarr;</span></a>
+        <button class="about-surface__top" type="button" data-story-top data-magnetic>Back to surface <span aria-hidden="true">&uarr;</span></button>
+      </div>
+    </section>
   </main>
 
   <footer class="about-footer"><div class="about-shell"><p>&copy; <span id="currentYear"></span> Reyna Agoes. Built with HTML, CSS, and JavaScript.</p></div></footer>
-  <script src="script.js?v=20260930-segment-glow"></script>
+  <script src="script.js?v=20261104-caret"></script>
 </body>
 </html>

@@ -5,13 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Contact Reyna Agoes for projects, collaboration, or professional connection.">
   <title>Contact | Reyna Agoes</title>
-  <link rel="icon" type="image/png" href="/assets/images/logo-ra-transparent.png?v=3">
-  <link rel="shortcut icon" href="/assets/images/logo-ra-transparent.png?v=3">
-  <link rel="apple-touch-icon" href="/assets/images/logo-ra-transparent.png?v=3">
+  <link rel="canonical" href="https://reynaagoes.github.io/portfolio-website/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Reyna Agoes">
+  <meta property="og:title" content="Contact | Reyna Agoes">
+  <meta property="og:description" content="Contact Reyna Agoes for projects, collaboration, or professional connection.">
+  <meta property="og:url" content="https://reynaagoes.github.io/portfolio-website/contact.html">
+  <meta property="og:image" content="https://reynaagoes.github.io/portfolio-website/assets/images/logo-ra.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#061014">
+  <link rel="icon" type="image/png" href="assets/images/logo-ra-transparent.png?v=3">
+  <link rel="shortcut icon" href="assets/images/logo-ra-transparent.png?v=3">
+  <link rel="apple-touch-icon" href="assets/images/logo-ra-transparent.png?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="style.css?v=20260930-cosmic-text-fix">
+  <link rel="stylesheet" href="style.css?v=20261104-caret">
 </head>
 <body class="dark-theme page-contact" data-page="contact">
   <div class="page-transition" aria-hidden="true">
@@ -23,8 +32,8 @@
         <img class="site-wordmark__logo" src="assets/images/logo-ra-transparent.png" alt="RA">
       </a>
       <ul class="home-nav__links">
-        <li><a href="projects.html">Work</a></li>
-        <li><a href="experience.html">Experience</a></li>
+        <li data-nav-hidden><a href="projects.html">Work</a></li>
+        <li data-nav-hidden><a href="experience.html">Experience</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html" aria-current="page">Contact</a></li>
       </ul>
@@ -46,8 +55,8 @@
         <div class="contact-directory__heading reveal reveal-up">
           <p>01 / Reach out</p>
           <div>
-            <h2 id="connect-title">Let&apos;s connect</h2>
-            <p>You can reach me directly by email or through my public profiles.</p>
+            <h2 id="connect-title" data-reading>Let&apos;s connect</h2>
+            <p data-reading>You can reach me directly by email or through my public profiles.</p>
           </div>
         </div>
 
@@ -56,21 +65,21 @@
             <span class="contact-row__number">01</span>
             <span class="contact-row__label">Email</span>
             <strong>reynaagoes@gmail.com</strong>
-            <span class="contact-row__action">Send email <span aria-hidden="true">&nearr;</span></span>
+            <span class="contact-row__action" data-magnetic>Send email <span aria-hidden="true">&nearr;</span></span>
           </a>
 
           <a class="contact-row reveal reveal-up" style="--delay: 80ms;" href="https://github.com/reynaagoes" target="_blank" rel="noopener noreferrer" aria-label="Open Reyna Agoes GitHub profile">
             <span class="contact-row__number">02</span>
             <span class="contact-row__label">GitHub</span>
             <strong>@reynaagoes</strong>
-            <span class="contact-row__action">Open profile <span aria-hidden="true">&nearr;</span></span>
+            <span class="contact-row__action" data-magnetic>Open profile <span aria-hidden="true">&nearr;</span></span>
           </a>
 
           <a class="contact-row reveal reveal-up" style="--delay: 160ms;" href="https://www.instagram.com/reynaath" target="_blank" rel="noopener noreferrer" aria-label="Open Reyna Agoes Instagram profile">
             <span class="contact-row__number">03</span>
             <span class="contact-row__label">Instagram</span>
             <strong>@reynaath</strong>
-            <span class="contact-row__action">Open profile <span aria-hidden="true">&nearr;</span></span>
+            <span class="contact-row__action" data-magnetic>Open profile <span aria-hidden="true">&nearr;</span></span>
           </a>
         </div>
       </div>
@@ -84,6 +93,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260930-segment-glow"></script>
+  <script src="script.js?v=20261104-caret"></script>
 </body>
 </html>

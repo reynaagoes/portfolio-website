@@ -8,13 +8,22 @@
     content="Personal portfolio homepage of Reyna Agoes featuring selected work, digital interests, and contact links."
   >
   <title>Reyna Agoes | Personal Portfolio</title>
-  <link rel="icon" type="image/png" href="/assets/images/logo-ra-transparent.png?v=3">
-  <link rel="shortcut icon" href="/assets/images/logo-ra-transparent.png?v=3">
-  <link rel="apple-touch-icon" href="/assets/images/logo-ra-transparent.png?v=3">
+  <link rel="canonical" href="https://reynaagoes.github.io/portfolio-website/home.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Reyna Agoes">
+  <meta property="og:title" content="Reyna Agoes | Personal Portfolio">
+  <meta property="og:description" content="Personal portfolio homepage of Reyna Agoes featuring selected work, digital interests, and contact links.">
+  <meta property="og:url" content="https://reynaagoes.github.io/portfolio-website/home.html">
+  <meta property="og:image" content="https://reynaagoes.github.io/portfolio-website/assets/images/logo-ra.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#061014">
+  <link rel="icon" type="image/png" href="assets/images/logo-ra-transparent.png?v=3">
+  <link rel="shortcut icon" href="assets/images/logo-ra-transparent.png?v=3">
+  <link rel="apple-touch-icon" href="assets/images/logo-ra-transparent.png?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="style.css?v=20260930-typographic-transition">
+  <link rel="stylesheet" href="style.css?v=20261104-caret">
 </head>
 <body class="page-home" data-page="home">
   <div class="page-transition" aria-hidden="true">
@@ -44,8 +53,8 @@
             <span class="ripple-menu__word">Menu</span>
           </button>
           <ul class="home-nav__links ripple-menu__panel" id="ripple-menu" hidden>
-            <li><a href="projects.html">Work</a></li>
-            <li><a href="experience.html">Experience</a></li>
+            <li data-nav-hidden><a href="projects.html">Work</a></li>
+            <li data-nav-hidden><a href="experience.html">Experience</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
@@ -54,26 +63,17 @@
     <section class="home-hero" aria-labelledby="home-hero-title">
       <canvas class="home-hero__field" aria-hidden="true"></canvas>
       <div class="home-hero__canvas">
-        <img class="home-hero__portrait" src="assets/images/reyna-intro.png" alt="Portrait of Reyna Agoes">
-        <canvas class="home-hero__mask" aria-hidden="true"></canvas>
-        <h1 class="home-hero__name" id="home-hero-title">
-          <span class="home-hero__name-line home-hero__name-line--reyna"><span>REYNA</span></span>
-          <span class="home-hero__name-line home-hero__name-line--agoes"><span>AGOES</span></span>
-        </h1>
-
-        <p class="home-hero__hint">(move your cursor)</p>
-
-        <a class="home-hero__scroll" href="#home-depth">SCROLL TO DIVE <span aria-hidden="true">&darr;</span></a>
-        <nav class="home-depth" id="home-depth" aria-label="Explore deeper" aria-hidden="true" inert>
-          <p>DEEPER INTO MY WORLD</p>
-          <a href="about.html">ABOUT <span aria-hidden="true">&nearr;</span></a>
-          <a href="contact.html">CONTACT <span aria-hidden="true">&nearr;</span></a>
-          <a class="home-depth__work" href="#selected-work">Continue to selected work &darr;</a>
-        </nav>
+        <canvas class="home-portal" aria-hidden="true"></canvas>
+        <p class="home-portal__line" aria-hidden="true">Beyond the surface</p>
+        <h1 class="home-dive__title" id="home-hero-title">Reyna Agoes</h1>
       </div>
+      <nav class="home-dive" aria-label="Dive destinations">
+        <a class="home-dive__door home-dive__door--about" href="about.html"><span class="home-dive__index" aria-hidden="true">01</span><span class="home-dive__word">ABOUT</span></a>
+        <a class="home-dive__door home-dive__door--contact" href="contact.html"><span class="home-dive__index" aria-hidden="true">02</span><span class="home-dive__word">CONTACT</span></a>
+      </nav>
     </section>
 
-    <section class="selected-work" id="selected-work" aria-labelledby="selected-work-title">
+    <section class="selected-work" id="selected-work" data-nav-hidden aria-labelledby="selected-work-title">
       <div class="editorial-shell">
         <header class="selected-work__intro reveal reveal-up">
           <div>
@@ -137,6 +137,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260930-experience"></script>
+  <script src="script.js?v=20261104-caret"></script>
 </body>
 </html>
