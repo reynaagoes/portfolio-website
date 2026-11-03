@@ -36,9 +36,8 @@ const setActiveNav = () => {
   });
 };
 
-const fixedDarkPages = new Set(["home", "experience", "about", "contact", "intro"]);
-applyTheme(document.body.dataset.page === "projects" ? "light" :
-  (fixedDarkPages.has(document.body.dataset.page) ? "dark" : (savedTheme === "light" ? "light" : "dark")));
+applyTheme(document.body.dataset.page === "intro" ? "dark" :
+  (savedTheme || (document.body.dataset.page === "projects" ? "light" : "dark")));
 setActiveNav();
 
 const initPageTransitions = () => {
@@ -206,6 +205,76 @@ const initPortfolioIntro = () => {
   window.setTimeout(() => portfolioIntro.classList.add("is-entering"), duration + 100);
   window.setTimeout(() => portfolioIntro.classList.add("is-leaving"), duration + 700);
   window.setTimeout(goHome, duration + 1100);
+};
+
+// One reversible progress controller; the existing water renderer remains the only Home simulation.
+const initHomeScrollDive = () => {
+  if (!homeHero || homeHero.dataset.diveReady) return;
+  homeHero.dataset.diveReady = "true";
+  const destinations = homeHero.querySelector(".home-depth");
+  const hint = homeHero.querySelector(".home-hero__scroll");
+  if (!destinations) return;
+  let target = 0, progress = 0, frame = null, previous = 0, touchY = null;
+  const clamp = (value) => Math.max(0, Math.min(1, value));
+  const paint = () => {
+    homeHero.style.setProperty("--dive", progress.toFixed(4));
+    homeHero.dataset.dive = progress;
+    const revealed = progress >= 0.68;
+    destinations.inert = !revealed;
+    destinations.setAttribute("aria-hidden", String(!revealed));
+    document.body.classList.toggle("is-home-diving", progress < 0.999);
+    homeHero.dispatchEvent(new Event("dive:progress"));
+  };
+  const tick = (now) => {
+    frame = null;
+    if (document.hidden) return;
+    const dt = Math.min(64, previous ? now - previous : 16);
+    previous = now;
+    progress += (target - progress) * (1 - Math.exp(-dt / 110));
+    if (Math.abs(target - progress) < 0.001) progress = target;
+    paint();
+    if (progress !== target) frame = requestAnimationFrame(tick);
+  };
+  const seek = (value) => {
+    target = clamp(value);
+    if (prefersReducedMotion.matches) { progress = target; paint(); return; }
+    if (frame === null && !document.hidden) { previous = 0; frame = requestAnimationFrame(tick); }
+  };
+  const editable = (element) => element.closest("input, textarea, select, [contenteditable], .ripple-menu__panel, .ripple-menu__toggle");
+  const advance = (delta, event) => {
+    if (window.scrollY > 1 || editable(event.target)) return;
+    // Once fully submerged, forward input can reach the preserved work section.
+    if (delta > 0 && progress === 1 && target === 1) return;
+    event.preventDefault();
+    seek(target + delta / Math.max(900, innerHeight * 1.8));
+  };
+  window.addEventListener("wheel", (event) => {
+    if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+    advance(event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1), event);
+  }, { passive: false });
+  window.addEventListener("touchstart", (event) => {
+    touchY = event.touches.length === 1 ? event.touches[0].clientY : null;
+  }, { passive: true });
+  window.addEventListener("touchmove", (event) => {
+    if (touchY === null || event.touches.length !== 1) return;
+    const y = event.touches[0].clientY;
+    advance((touchY - y) * 2.2, event);
+    touchY = y;
+  }, { passive: false });
+  window.addEventListener("touchend", () => { touchY = null; }, { passive: true });
+  window.addEventListener("keydown", (event) => {
+    if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey || editable(event.target) || event.target.closest("a, button")) return;
+    const delta = { ArrowDown: 120, ArrowUp: -120, PageDown: 420, PageUp: -420, " ": event.shiftKey ? -300 : 300, Home: -2000, End: 2000 }[event.key];
+    if (delta !== undefined) advance(delta, event);
+  });
+  hint?.addEventListener("click", (event) => { event.preventDefault(); seek(1); });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) { if (frame !== null) cancelAnimationFrame(frame); frame = null; }
+    else seek(target);
+  });
+  prefersReducedMotion.addEventListener("change", () => seek(target));
+  window.addEventListener("pageshow", () => { paint(); seek(target); });
+  paint();
 };
 
 const initHomeHeroPointer = () => {
@@ -669,6 +738,9 @@ const initHomeHeroPointer = () => {
     if (frame !== null) cancelAnimationFrame(frame);
     frame = null;
   };
+  homeHero.addEventListener("dive:progress", () => {
+    if (ready && reduced.matches) draw(0); else wake();
+  });
   document.addEventListener("visibilitychange", () => document.hidden ? pause() : wake());
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(([entry]) => {
@@ -1184,6 +1256,7 @@ if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     initPageTransitions();
     initPortfolioIntro();
+    initHomeScrollDive();
     initHomeHeroPointer();
     initHomeDiveReveal();
     initRippleMenu();
@@ -1194,6 +1267,7 @@ if (document.readyState === "loading") {
 } else {
   initPageTransitions();
   initPortfolioIntro();
+  initHomeScrollDive();
   initHomeHeroPointer();
   initHomeDiveReveal();
   initRippleMenu();
